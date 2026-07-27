@@ -1,0 +1,71 @@
+{
+  "model_version": "3.0",
+  "trained_at": "2026-07-26T09:26:12Z",
+  "training_days": 138,
+  "minimum_training_days": 120,
+  "date_from": "2026-03-11",
+  "date_to": "2026-07-26",
+  "data_source": "booking_demand_daily",
+  "is_demo": false,
+  "provenance_verified": true,
+  "guest_mix_coverage_pct": 0.0,
+  "guest_mix_ready": false,
+  "ready": true,
+  "blocking_reasons": [],
+  "targets": {
+    "bookings": {
+      "target": "bookings",
+      "test_days": 28,
+      "train_days": 110,
+      "metrics": {
+        "mae": 0.1364,
+        "rmse": 0.199,
+        "wape": 0.0,
+        "bias": 0.1364,
+        "n": 28,
+        "prediction_interval_coverage": 92.8571
+      },
+      "baseline_metrics": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "wape": 0.0,
+        "bias": 0.0,
+        "n": 28
+      },
+      "baseline_improvement_pct": 0.0,
+      "beats_baseline": true,
+      "model_path": "bookings_model.joblib"
+    },
+    "guests": {
+      "target": "guests",
+      "test_days": 28,
+      "train_days": 110,
+      "metrics": {
+        "mae": 0.2727,
+        "rmse": 0.398,
+        "wape": 0.0,
+        "bias": 0.2727,
+        "n": 28,
+        "prediction_interval_coverage": 92.8571
+      },
+      "baseline_metrics": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "wape": 0.0,
+        "bias": 0.0,
+        "n": 28
+      },
+      "baseline_improvement_pct": 0.0,
+      "beats_baseline": true,
+      "model_path": "guests_model.joblib"
+    }
+  },
+  "mae": 0.1364,
+  "rmse": 0.199,
+  "wape": 0.0,
+  "bias": 0.1364,
+  "baseline_improvement_pct": 0.0,
+  "baseline_note": "Holdout period contained only zero-demand days.",
+  "usable_days": 138,
+  "safe_for_live_use": true
+}
