@@ -28,9 +28,22 @@ Example:
 ```json
 {
   "status": "ok",
-  "service": "predictive-analytics"
+  "service": "predictive-analytics",
+  "model_ready": true,
+  "metadata": {
+    "model_version": "3.0",
+    "trained_at": "2026-08-20T04:37:45Z",
+    "training_days": 256,
+    "date_from": "2025-12-01",
+    "date_to": "2026-08-13",
+    "data_source": "booking_demand_daily",
+    "targets": { "...": "holdout metrics from training" },
+    "safe_for_live_use": true
+  }
 }
 ```
+
+`metadata` is the real `forecast_models_metadata.json` artifact (or `null` if missing). Metrics are never invented.
 
 ## Forecast
 

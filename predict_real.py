@@ -354,6 +354,10 @@ def generate_forecast(
             }
         )
 
+    bookings_target = (metadata.get("targets") or {}).get("bookings") or {}
+    bookings_metrics = bookings_target.get("metrics") or {}
+    bookings_baseline = bookings_target.get("baseline_metrics") or {}
+
     return {
         "success": True,
         "model_version": str(metadata.get("model_version", "3.0")),
@@ -364,7 +368,25 @@ def generate_forecast(
             "training_days": metadata.get("training_days") or metadata.get("usable_days"),
             "safe_for_live_use": metadata.get("safe_for_live_use") is True,
             "data_source": metadata.get("data_source"),
+            "date_from": metadata.get("date_from"),
+            "date_to": metadata.get("date_to"),
+            "minimum_training_days": metadata.get("minimum_training_days"),
+            "targets": metadata.get("targets") or {},
+            # Authoritative holdout metrics from training metadata (not invented).
+            "metrics": {
+                "mae": metadata.get("mae", bookings_metrics.get("mae")),
+                "rmse": metadata.get("rmse", bookings_metrics.get("rmse")),
+                "wape": metadata.get("wape", bookings_metrics.get("wape")),
+                "bias": metadata.get("bias", bookings_metrics.get("bias")),
+                "prediction_interval_coverage": bookings_metrics.get(
+                    "prediction_interval_coverage"
+                ),
+            },
+            "baseline_metrics": bookings_baseline or None,
+            "baseline_note": metadata.get("baseline_note")
+            or bookings_target.get("baseline_note"),
         },
+        "model_metadata": metadata,
         "forecast_range": {
             "start_date": dates[0].strftime("%Y-%m-%d"),
             "end_date": dates[-1].strftime("%Y-%m-%d"),

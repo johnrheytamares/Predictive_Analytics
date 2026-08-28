@@ -84,13 +84,40 @@ def warmup_models() -> None:
         logger.exception("Unexpected model warmup failure")
 
 
+def _model_ready(metadata: dict | None) -> bool:
+    if not metadata or not isinstance(metadata, dict):
+        return False
+    return (
+        metadata.get("ready") is True
+        and metadata.get("safe_for_live_use") is True
+        and metadata.get("is_demo") is not True
+    )
+
+
 @app.get("/health")
 def health():
-    """Lightweight readiness probe — does not run forecasts."""
-    return {
+    """
+    Liveness/readiness probe for Docker + Node.
+
+    Always returns HTTP 200 when the process is up. Includes authoritative
+    model metadata from forecast_models_metadata.json when available so the
+    Node readiness endpoint can populate the admin dashboard without local
+    .joblib files. Does not invent metrics.
+    """
+    payload: dict = {
         "status": "ok",
         "service": "predictive-analytics",
+        "model_ready": False,
+        "metadata": None,
     }
+    try:
+        metadata = load_metadata(use_cache=True)
+        if metadata:
+            payload["metadata"] = metadata
+            payload["model_ready"] = _model_ready(metadata)
+    except Exception:
+        logger.exception("Failed to attach model metadata to /health")
+    return payload
 
 
 @app.get("/forecast")
