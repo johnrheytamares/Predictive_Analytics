@@ -355,7 +355,13 @@ def generate_forecast(
         )
 
     bookings_target = (metadata.get("targets") or {}).get("bookings") or {}
-    bookings_metrics = bookings_target.get("metrics") or {}
+    # Older bundles store Prophet metrics under `metrics`, even when the
+    # selected predictor is the baseline. Never label those as baseline scores.
+    bookings_metrics = bookings_target.get("selected_metrics") or (
+        bookings_target.get("baseline_metrics")
+        if bookings_target.get("selected_model") == "weekday_baseline"
+        else bookings_target.get("metrics")
+    ) or {}
     bookings_baseline = bookings_target.get("baseline_metrics") or {}
 
     return {
@@ -374,10 +380,10 @@ def generate_forecast(
             "targets": metadata.get("targets") or {},
             # Authoritative holdout metrics from training metadata (not invented).
             "metrics": {
-                "mae": metadata.get("mae", bookings_metrics.get("mae")),
-                "rmse": metadata.get("rmse", bookings_metrics.get("rmse")),
-                "wape": metadata.get("wape", bookings_metrics.get("wape")),
-                "bias": metadata.get("bias", bookings_metrics.get("bias")),
+                "mae": bookings_metrics.get("mae", metadata.get("mae")),
+                "rmse": bookings_metrics.get("rmse", metadata.get("rmse")),
+                "wape": bookings_metrics.get("wape", metadata.get("wape")),
+                "bias": bookings_metrics.get("bias", metadata.get("bias")),
                 "prediction_interval_coverage": bookings_metrics.get(
                     "prediction_interval_coverage"
                 ),

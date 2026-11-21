@@ -248,13 +248,13 @@ def compute_metrics(actual: np.ndarray, predicted: np.ndarray, lower=None, upper
     mae = float(mean_absolute_error(actual, predicted))
     rmse = float(np.sqrt(mean_squared_error(actual, predicted)))
     denom = float(np.sum(np.abs(actual)))
-    wape = float((np.sum(np.abs(actual - predicted)) / denom) * 100) if denom > 0 else 0.0
+    wape = float((np.sum(np.abs(actual - predicted)) / denom) * 100) if denom > 0 else None
     bias = float(np.mean(predicted - actual)) if len(actual) else 0.0
 
     metrics = {
         "mae": round(mae, 4),
         "rmse": round(rmse, 4),
-        "wape": round(wape, 4),
+        "wape": round(wape, 4) if wape is not None else None,
         "bias": round(bias, 4),
         "n": int(len(actual)),
     }
@@ -293,7 +293,7 @@ def chronological_split(df: pd.DataFrame, test_days: int) -> tuple[pd.DataFrame,
     return train_df, test_df
 
 
-def evaluate_prophet(train_df: pd.DataFrame, test_df: pd.DataFrame) -> tuple[dict, dict, float, str | None]:
+def evaluate_prophet(train_df: pd.DataFrame, test_df: pd.DataFrame) -> tuple[dict, dict, float | None, str | None]:
     model = build_prophet()
     model.fit(train_df)
 
@@ -306,21 +306,13 @@ def evaluate_prophet(train_df: pd.DataFrame, test_df: pd.DataFrame) -> tuple[dic
 
     prophet_metrics = compute_metrics(actual, yhat, lower=lower, upper=upper)
 
-    # Baseline uses only history available before each test day (train + earlier test days).
-    rolling_history = train_df.copy()
-    baseline_preds = []
-    for _, row in test_df.iterrows():
-        baseline_preds.append(
-            weekday_baseline_predictions(rolling_history, pd.Series([row["ds"]]))[0]
-        )
-        rolling_history = pd.concat(
-            [rolling_history, pd.DataFrame({"ds": [row["ds"]], "y": [row["y"]]})],
-            ignore_index=True,
-        )
-    baseline_preds = np.asarray(baseline_preds, dtype=float)
+    # Fixed-origin comparison: neither method receives actual holdout values.
+    baseline_preds = weekday_baseline_predictions(train_df, test_df["ds"])
     baseline_metrics = compute_metrics(actual, baseline_preds)
 
-    if baseline_metrics["wape"] > 0:
+    if baseline_metrics["wape"] is None:
+        improvement_pct = None
+    elif baseline_metrics["wape"] > 0:
         improvement_pct = (
             (baseline_metrics["wape"] - prophet_metrics["wape"]) / baseline_metrics["wape"]
         ) * 100
@@ -332,7 +324,9 @@ def evaluate_prophet(train_df: pd.DataFrame, test_df: pd.DataFrame) -> tuple[dic
         baseline_note = "Holdout period contained only zero-demand days."
         baseline_metrics["note"] = baseline_note
 
-    return prophet_metrics, baseline_metrics, float(round(improvement_pct, 4)), baseline_note
+    return prophet_metrics, baseline_metrics, (
+        float(round(improvement_pct, 4)) if improvement_pct is not None else None
+    ), baseline_note
 
 
 def train_full_model(df: pd.DataFrame) -> Prophet:
@@ -459,7 +453,9 @@ def train_target(df: pd.DataFrame, target: str, test_days: int) -> tuple[Prophet
         train_df, test_df
     )
     final_model = train_full_model(series)
-    beats_baseline = metrics["wape"] <= baseline_metrics["wape"]
+    # WAPE has no meaningful denominator on an all-zero holdout.
+    selection_metric = "wape" if float(test_df["y"].sum()) > 0 else "mae"
+    beats_baseline = metrics[selection_metric] <= baseline_metrics[selection_metric]
     selected_model = "prophet" if beats_baseline else "weekday_baseline"
     return final_model, {
         "target": target,
@@ -471,6 +467,9 @@ def train_target(df: pd.DataFrame, target: str, test_days: int) -> tuple[Prophet
         "baseline_note": baseline_note,
         "beats_baseline": beats_baseline,
         "selected_model": selected_model,
+        "selected_metrics": metrics if beats_baseline else baseline_metrics,
+        "evaluation_protocol": "fixed_origin",
+        "selection_metric": selection_metric,
         "baseline_history": [
             {"ds": row.ds.strftime("%Y-%m-%d"), "y": float(row.y)}
             for row in series.itertuples(index=False)
