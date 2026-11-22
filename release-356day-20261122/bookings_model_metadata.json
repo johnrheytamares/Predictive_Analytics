@@ -1,0 +1,18 @@
+{
+  "data_source": "live_bookings",
+  "trained_at": "2026-11-22T13:49:52Z",
+  "training_start": "2025-12-01",
+  "training_end": "2026-11-21",
+  "usable_days": 356,
+  "is_demo": false,
+  "safe_for_live_use": true,
+  "model_version": "3.0",
+  "mae": 0.5804,
+  "rmse": 0.9725,
+  "wape": 203.125,
+  "bias": 0.2232,
+  "baseline_improvement_pct": -6.7911,
+  "baseline_note": null,
+  "ready": true,
+  "dataset": "booking_demand_daily"
+}

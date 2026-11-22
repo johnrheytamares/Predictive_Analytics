@@ -20,9 +20,20 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 
 def load_history(path):
     text = Path(path).read_text(encoding="utf-8-sig")
-    rows = re.findall(r"^\|\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|", text, re.M)
-    data = pd.DataFrame(rows, columns=["demand_date", "bookings", "guests"]) if rows else pd.read_csv(path)
-    data = data[["demand_date", "bookings", "guests"]].copy()
+    table_lines = [line.strip() for line in text.splitlines() if line.strip().startswith("|")]
+    header = next((line for line in table_lines if re.match(r"\|\s*demand_date\s*\|", line)), None)
+    if header:
+        columns = [part.strip() for part in header.strip("|").split("|")]
+        rows = [[part.strip() for part in line.strip("|").split("|")]
+                for line in table_lines if re.match(r"\|\s*\d{4}-\d{2}-\d{2}\s*\|", line)]
+        data = pd.DataFrame(rows, columns=columns)
+    else:
+        rows = re.findall(r"^\|\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|", text, re.M)
+        data = pd.DataFrame(rows, columns=["demand_date", "bookings", "guests"]) if rows else pd.read_csv(path)
+    demographic_columns = [name for name in (
+        "adults", "children", "seniors", "infants", "known_guests", "unknown_guests"
+    ) if name in data.columns]
+    data = data[["demand_date", "bookings", "guests", *demographic_columns]].copy()
     data["demand_date"] = pd.to_datetime(data["demand_date"], errors="raise")
     for target in ("bookings", "guests"):
         data[target] = pd.to_numeric(data[target], errors="raise")

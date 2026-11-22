@@ -7,9 +7,28 @@ import pandas as pd
 import evaluate_forecasts as evaluation
 import train_real_model as training
 import predict_real as inference
+import prepare_export_release as release
 
 
 class ForecastEvaluationTests(unittest.TestCase):
+    def test_demographic_table_columns_are_preserved(self):
+        pasted = ("| demand_date | bookings | guests | adults | children | seniors | infants | known_guests | unknown_guests |\n"
+                  "| 2026-01-01 | 1 | 2 | 1 | 1 | 0 | 0 | 2 | 0 |")
+        with patch.object(evaluation.Path, "read_text", return_value=pasted):
+            data = evaluation.load_history("unused.txt")
+        self.assertEqual(int(data.known_guests.iloc[0]), 2)
+
+    def test_release_rejects_inconsistent_demographics_before_training(self):
+        data = pd.DataFrame({"demand_date": pd.date_range("2026-01-01", periods=120),
+                             "bookings": 1, "guests": 2, "adults": 1, "children": 0,
+                             "seniors": 0, "infants": 0, "known_guests": 2, "unknown_guests": 0})
+        with patch.object(release, "load_history", return_value=data), \
+             patch.object(release.training, "train_target") as fit:
+            with self.assertRaisesRegex(ValueError, "Known guests"):
+                release.prepare("unused.csv", "unused-release-for-validation",
+                                expected_days=120, expected_bookings=120, expected_guests=240)
+            fit.assert_not_called()
+
     def test_all_zero_holdout_has_undefined_wape(self):
         scores = evaluation.metrics([0, 0], [1, 2])
         self.assertIsNone(scores["wape"])
