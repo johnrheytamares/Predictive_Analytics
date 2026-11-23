@@ -1,0 +1,6 @@
+# Preserve the verified RC bytes and the serving files hashed by its manifest.
+/experiments/robust_release_candidate_20261124/** -text
+/api.py -text
+/predict_real.py -text
+/Dockerfile -text
+/requirements.txt -text

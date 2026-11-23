@@ -1,0 +1,34 @@
+{
+  "release_candidate_id": "robust_median_rc_20261124",
+  "deployment_scope": "release-candidate-not-deployed",
+  "production_approved": false,
+  "staging_approved": false,
+  "canonical_sha256_before": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "canonical_unchanged": true,
+  "release_candidate_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "a7d6aad702df9fed3d5cf0306f5723073b3714c0df6810647e5ba203fcf4196d",
+    "guests_model.joblib": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb"
+  },
+  "serving_code_sha256": {
+    "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+    "api.py": "4047334b10f4e64854352b874c996e919632e3d1fb68d1ffb8116659be380be6",
+    "Dockerfile": "4b3c71120c4cc0807e1ba81722dbc9770588bc91f0ec3f4f39b48df9dae86391",
+    "requirements.txt": "f89a5e72863072801258ddb42119af719b7b8d204095cd0316e729cad21a2454"
+  },
+  "bookings_byte_identical_to_canonical": true,
+  "configuration": {
+    "bookings": "weekday_baseline",
+    "guests": "robust_median_guests",
+    "postprocess": "Variant A",
+    "profile": "cutoff_anchored_four_week_weekday_median",
+    "maximum_days_per_cutoff": 90,
+    "interval_status": "Not evaluated"
+  }
+}

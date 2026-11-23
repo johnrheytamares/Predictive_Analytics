@@ -31,13 +31,16 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent
-BOOKINGS_MODEL_PATH = ROOT / "bookings_model.joblib"
-GUESTS_MODEL_PATH = ROOT / "guests_model.joblib"
-METADATA_PATH = ROOT / "forecast_models_metadata.json"
-LEGACY_METADATA_PATH = ROOT / "bookings_model_metadata.json"
+# Explicit opt-in for isolated local releases; canonical defaults are unchanged.
+ARTIFACT_ROOT = Path(os.getenv("PREDICTION_ARTIFACT_DIR") or ROOT).resolve()
+BOOKINGS_MODEL_PATH = ARTIFACT_ROOT / "bookings_model.joblib"
+GUESTS_MODEL_PATH = ARTIFACT_ROOT / "guests_model.joblib"
+METADATA_PATH = ARTIFACT_ROOT / "forecast_models_metadata.json"
+LEGACY_METADATA_PATH = ARTIFACT_ROOT / "bookings_model_metadata.json"
 
 MAX_FORECAST_DAYS = int(os.getenv("PREDICTION_MAX_FORECAST_DAYS", "90"))
 GUEST_MIX_UNAVAILABLE_MESSAGE = "Insufficient reliable demographic history."
+ROBUST_MEDIAN_GUESTS = "robust_median_guests"
 
 _model_lock = threading.Lock()
 _cached_metadata: dict | None = None
@@ -223,6 +226,8 @@ def reconcile_bounds(prediction: int, lower: int, upper: int) -> tuple[int, int]
 
 
 def predict_series(bundle, dates: pd.DatetimeIndex) -> list[dict]:
+    if bundle.get("model_type") == ROBUST_MEDIAN_GUESTS:
+        return predict_robust_median_guests(bundle, dates)
     model = bundle.get("model")
     if bundle.get("model_type") == "weekday_baseline":
         history = pd.DataFrame(bundle.get("baseline_history") or [])
@@ -274,6 +279,132 @@ def predict_series(bundle, dates: pd.DatetimeIndex) -> list[dict]:
     return rows
 
 
+def robust_history(bundle, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """Validate observations usable at a fixed cutoff, without filling missing days."""
+    history = pd.DataFrame(bundle.get("baseline_history") or [])
+    if history.empty or not {"ds", "y"}.issubset(history.columns):
+        raise ForecastError("ROBUST_HISTORY_INVALID", "Robust median guests requires saved daily history.", status_code=422)
+    try:
+        history["ds"] = pd.to_datetime(history["ds"], errors="raise")
+        if history["ds"].isna().any() or not (history["ds"] == history["ds"].dt.normalize()).all():
+            raise ValueError("Dates must be daily observations")
+        history = history.loc[history["ds"] < cutoff].set_index("ds").sort_index()
+        values = history["y"].to_numpy(dtype=float)
+        if history.index.has_duplicates or not np.isfinite(values).all() or (values < 0).any():
+            raise ValueError("Duplicate dates or invalid counts")
+    except (ValueError, TypeError, AttributeError) as exc:
+        raise ForecastError("ROBUST_HISTORY_INVALID", "Robust guest history requires unique daily dates and finite nonnegative counts.", status_code=422) from exc
+    if history.empty:
+        raise ForecastError("ROBUST_HISTORY_INVALID", "No robust guest history exists before the forecast cutoff.", status_code=422)
+    return history
+
+
+def robust_weekday_values(history: pd.DataFrame, weekday: int, *, before: pd.Timestamp | None = None) -> list[float]:
+    """Four most recent matching-weekday actuals before an optional bound (zeros kept)."""
+    frame = history
+    if before is not None:
+        frame = frame.loc[frame.index < before]
+    values = frame.loc[frame.index.dayofweek == int(weekday), "y"]
+    return [float(v) for v in values.tail(4).tolist()]
+
+
+def robust_capabilities(bundle, cutoff: pd.Timestamp) -> dict:
+    """Cutoff-anchored profile: each weekday needs four pre-cutoff actuals; horizon up to MAX_FORECAST_DAYS."""
+    history = robust_history(bundle, cutoff)
+    weekday_counts = {
+        weekday: int((history.index.dayofweek == weekday).sum()) for weekday in range(7)
+    }
+    supported = []
+    for ds in pd.date_range(cutoff, periods=MAX_FORECAST_DAYS):
+        if weekday_counts[int(ds.dayofweek)] >= 4:
+            supported.append(ds.strftime("%Y-%m-%d"))
+        else:
+            break
+    return {
+        "method": ROBUST_MEDIAN_GUESTS,
+        "cutoff": cutoff.strftime("%Y-%m-%d"),
+        "required_matching_weekdays": 4,
+        "includes_zero_days": True,
+        "profile": "cutoff_anchored_four_week_weekday_median",
+        "maximum_days_per_cutoff": MAX_FORECAST_DAYS,
+        "supported_dates": supported,
+        "latest_supported_date": max(supported) if supported else None,
+        "history_through": history.index.max().strftime("%Y-%m-%d"),
+        "weekday_observation_counts": weekday_counts,
+        "fallback": None,
+        "recursive_predictions": False,
+    }
+
+
+def validate_robust_configuration(bookings_bundle, guests_bundle, metadata):
+    actual = guests_bundle.get("model_type")
+    label = ((metadata.get("targets") or {}).get("guests") or {}).get("selected_model")
+    if ROBUST_MEDIAN_GUESTS in (actual, label):
+        if actual != label or bookings_bundle.get("model_type") != "weekday_baseline" or (
+            ((metadata.get("targets") or {}).get("bookings") or {}).get("selected_model") != "weekday_baseline"
+        ):
+            raise ForecastError("MODEL_CONFIGURATION_MISMATCH", "Robust guest dispatch and metadata must agree, with weekday baseline bookings.", status_code=422)
+
+
+def predict_robust_median_guests(bundle, dates: pd.DatetimeIndex) -> list[dict]:
+    """Cutoff-anchored Robust Median: median of four pre-cutoff matching weekdays, zeros included.
+
+    For each weekday required by the request, take the four most recent recorded
+    actuals strictly before the forecast cutoff and reuse that median for every
+    matching target date in the horizon. Never consume on/after-cutoff actuals
+    and never substitute recursively predicted values. Bounds use historical
+    residuals of this same rule; coverage is not validated.
+    """
+    if len(dates) == 0:
+        return []
+    cutoff = dates.min()
+    history = robust_history(bundle, cutoff)
+
+    profiles: dict[int, float] = {}
+    missing = []
+    seen_weekdays: set[int] = set()
+    for ds in dates:
+        weekday = int(ds.dayofweek)
+        if weekday in seen_weekdays:
+            continue
+        seen_weekdays.add(weekday)
+        prior = robust_weekday_values(history, weekday)
+        if len(prior) < 4:
+            missing.append({
+                "target_date": ds.strftime("%Y-%m-%d"),
+                "weekday": weekday,
+                "missing_historical_dates": [],
+                "available_matching_weekdays": len(prior),
+                "required_matching_weekdays": 4,
+            })
+        else:
+            profiles[weekday] = float(np.median(prior))
+    if missing:
+        raise ForecastError(
+            "ROBUST_RANGE_UNSUPPORTED",
+            "Every weekday in the robust guest range requires four matching weekdays strictly before the forecast cutoff. No recursive or mean fallback is used.",
+            status_code=422,
+            extra={"policy": robust_capabilities(bundle, cutoff), "unsupported_dates": missing},
+        )
+
+    residuals = []
+    for ds, row in history.iterrows():
+        prior = robust_weekday_values(history, int(ds.dayofweek), before=ds)
+        if len(prior) == 4:
+            residuals.append(abs(float(row["y"]) - float(np.median(prior))))
+    margin = float(np.quantile(residuals, 0.90)) if residuals else 0.0
+
+    rows = []
+    for ds in dates:
+        prediction = profiles[int(ds.dayofweek)]
+        rows.append({
+            "prediction": clamp_int(prediction),
+            "lower": clamp_int(max(0.0, prediction - margin)),
+            "upper": clamp_int(prediction + margin),
+        })
+    return rows
+
+
 def build_guest_mix_block(metadata: dict) -> dict:
     ready = metadata.get("guest_mix_ready") is True
     coverage = float(metadata.get("guest_mix_coverage_pct") or 0)
@@ -304,6 +435,7 @@ def generate_forecast(
     use_cache: bool = True,
 ) -> dict:
     bookings_model, guests_model = get_model_bundles(use_cache=use_cache)
+    validate_robust_configuration(bookings_model, guests_model, metadata)
 
     dates = pd.date_range(start=start, end=end, freq="D")
     bookings_rows = predict_series(bookings_model, dates)

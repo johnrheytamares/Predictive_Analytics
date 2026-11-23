@@ -10,9 +10,11 @@ from __future__ import annotations
 import logging
 import os
 from typing import Optional
+import pandas as pd
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from predict_real import (
     ForecastError,
@@ -20,6 +22,9 @@ from predict_real import (
     load_metadata,
     run_forecast,
     validate_readiness,
+    ROBUST_MEDIAN_GUESTS,
+    robust_capabilities,
+    validate_robust_configuration,
 )
 
 logging.basicConfig(
@@ -115,7 +120,14 @@ def health():
         if metadata:
             payload["metadata"] = metadata
             payload["model_ready"] = _model_ready(metadata)
+            if (metadata.get("targets") or {}).get("guests", {}).get("selected_model") == ROBUST_MEDIAN_GUESTS:
+                bookings, guests = get_model_bundles(use_cache=True)
+                validate_robust_configuration(bookings, guests, metadata)
+                cutoff = pd.Timestamp(metadata["date_to"]) + pd.Timedelta(days=1)
+                payload["forecast_capabilities"] = robust_capabilities(guests, cutoff)
+                payload["model_ready"] = payload["model_ready"] and bool(payload["forecast_capabilities"]["supported_dates"])
     except Exception:
+        payload["model_ready"] = False
         logger.exception("Failed to attach model metadata to /health")
     return payload
 
@@ -139,6 +151,10 @@ def forecast(
         )
     except ForecastError as exc:
         detail = exc.message
+        if exc.code in {"ROBUST_RANGE_UNSUPPORTED", "ROBUST_HISTORY_INVALID", "MODEL_CONFIGURATION_MISMATCH"}:
+            return JSONResponse(status_code=exc.status_code,
+                                content={"detail": exc.message, "code": exc.code, **(exc.extra or {})},
+                                headers={"X-Error-Code": exc.code})
         if exc.code == "INVALID_DATE":
             detail = "Invalid date format. Use YYYY-MM-DD."
         elif exc.code == "MODEL_MISSING":

@@ -1,0 +1,192 @@
+{
+  "package": "robust_release_candidate_20261124",
+  "release_candidate_id": "robust_median_rc_20261124",
+  "deployment_scope": "release-candidate-not-deployed",
+  "production_approved": false,
+  "staging_approved": false,
+  "staging_go_recommendation": true,
+  "production_go_recommendation": false,
+  "created_at_utc": "2026-11-23T16:50:19Z",
+  "configuration_version": {
+    "bookings": "weekday_baseline",
+    "guests": "robust_median_guests",
+    "postprocess": "Variant A",
+    "profile": "cutoff_anchored_four_week_weekday_median",
+    "maximum_days_per_cutoff": 90,
+    "interval_status": "Not evaluated",
+    "interval_coverage_evaluated": false
+  },
+  "canonical_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "canonical_unchanged": true,
+  "bookings_byte_identical_to_canonical": true,
+  "release_candidate_artifact_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "a7d6aad702df9fed3d5cf0306f5723073b3714c0df6810647e5ba203fcf4196d",
+    "guests_model.joblib": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb"
+  },
+  "serving_code_sha256": {
+    "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+    "api.py": "4047334b10f4e64854352b874c996e919632e3d1fb68d1ffb8116659be380be6",
+    "Dockerfile": "4b3c71120c4cc0807e1ba81722dbc9770588bc91f0ec3f4f39b48df9dae86391",
+    "requirements.txt": "f89a5e72863072801258ddb42119af719b7b8d204095cd0316e729cad21a2454"
+  },
+  "package_files": [
+    {
+      "relative_path": "artifacts\\bookings_model.joblib",
+      "sha256": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+      "bytes": 59370
+    },
+    {
+      "relative_path": "artifacts\\bookings_model_metadata.json",
+      "sha256": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+      "bytes": 446
+    },
+    {
+      "relative_path": "artifacts\\forecast_models_metadata.json",
+      "sha256": "a7d6aad702df9fed3d5cf0306f5723073b3714c0df6810647e5ba203fcf4196d",
+      "bytes": 6522
+    },
+    {
+      "relative_path": "artifacts\\guests_model.joblib",
+      "sha256": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+      "bytes": 59385
+    },
+    {
+      "relative_path": "prepare_release_candidate.py",
+      "sha256": "a49c5b290d4fbd61edcc8a52481003adaef08b52448554c1600007fcbc97c820",
+      "bytes": 7025
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "b1f82d44a37a18dd2d51588e707e9bc947891fe946bb997a97f99e804b6decb1",
+      "bytes": 401
+    },
+    {
+      "relative_path": "RELEASE_CANDIDATE.md",
+      "sha256": "3182c9d6b60367bdaff78ee75811f9a12b7ea494842cae3e70b9676c6c0e2293",
+      "bytes": 6552
+    },
+    {
+      "relative_path": "source_integrity.json",
+      "sha256": "bb6d2c242ad8014e7293531237767f97e27cb8b5a7e185338002cbb3cb75fdf6",
+      "bytes": 1808
+    },
+    {
+      "relative_path": "verification_fastapi.json",
+      "sha256": "c0a083f2b8762cde2daa761ad7cbe72699d8049a54428d29a125f9374f6c4ae3",
+      "bytes": 3629
+    },
+    {
+      "relative_path": "verification_node.json",
+      "sha256": "662db33047e5c28cbbf28a8952fd789f4730aa940113acdd3444ea0625a843a3",
+      "bytes": 4690
+    },
+    {
+      "relative_path": "verify_fastapi.py",
+      "sha256": "95b95f3c7d54dcfeb49c55f71a597a3d4cccc66da8b4f309a361cea8c4241d65",
+      "bytes": 7804
+    }
+  ],
+  "related_verification_script": {
+    "path": "C:\\Users\\John Rhey Tamares\\CAPSTONE_BACKEND\\reservision-backend\\experiments\\robust_release_candidate_20261124\\verify-rc-local.mjs",
+    "sha256": "484a803d4df56e08fa157136a6e2618203672c991203ebbc8d9812861663e172"
+  },
+  "verification_summary": {
+    "fastapi_tests_passed": 4,
+    "fastapi_failures": 0,
+    "fastapi_ranges": {
+      "range_7": {
+        "days": 7,
+        "bookings": 2,
+        "guests": 14
+      },
+      "range_30": {
+        "days": 30,
+        "bookings": 11,
+        "guests": 77
+      },
+      "range_90": {
+        "days": 90,
+        "bookings": 36,
+        "guests": 252
+      }
+    },
+    "node_authorization": {
+      "anonymous": 401,
+      "customer": 403
+    },
+    "node_forecasts": [
+      {
+        "mode": "robust_rc",
+        "days": 7,
+        "start": "2026-11-25",
+        "end": "2026-12-01",
+        "bookings": 2,
+        "guests": 14
+      },
+      {
+        "mode": "robust_rc",
+        "days": 30,
+        "start": "2026-11-25",
+        "end": "2026-12-24",
+        "bookings": 11,
+        "guests": 77
+      },
+      {
+        "mode": "robust_rc",
+        "days": 90,
+        "start": "2026-11-25",
+        "end": "2027-02-22",
+        "bookings": 37,
+        "guests": 259
+      },
+      {
+        "mode": "baseline",
+        "days": 7,
+        "start": "2026-11-25",
+        "end": "2026-12-01",
+        "bookings": 4,
+        "guests": 30
+      },
+      {
+        "mode": "baseline",
+        "days": 30,
+        "start": "2026-11-25",
+        "end": "2026-12-24",
+        "bookings": 16,
+        "guests": 119
+      },
+      {
+        "mode": "baseline",
+        "days": 90,
+        "start": "2026-11-25",
+        "end": "2027-02-22",
+        "bookings": 76,
+        "guests": 566
+      }
+    ],
+    "node_canonical_unchanged": true,
+    "vue_capability_script": "passed",
+    "vue_dashboard_script": "passed",
+    "node_unit_tests_passed": 11
+  },
+  "reproducible_verification": [
+    "python -B experiments/robust_release_candidate_20261124/verify_fastapi.py",
+    "cd CAPSTONE_BACKEND/reservision-backend && node experiments/robust_release_candidate_20261124/verify-rc-local.mjs",
+    "cd CAPSTONE_FRONTEND/reservision && node scripts/verify-forecast-capabilities.mjs && node scripts/verify-forecast-dashboard.mjs"
+  ],
+  "rollback_inventory": {
+    "files": {
+      "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+      "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+      "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+      "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+    }
+  }
+}

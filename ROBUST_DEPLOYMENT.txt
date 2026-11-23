@@ -1,0 +1,114 @@
+Robust Median RC deployment and Git rollback
+
+Prepared only: no Git index changes, commits, pushes, deployments or DB changes.
+Do not rerun prepare_release_candidate.py or ML evaluations.
+
+Confirmed Python production baseline:
+51730a2179da9bbc0bf8c492f7b3c6a2a5201d2c
+Production service: eduardos-resort-predictive-analytics-gqrmo9
+The baseline commit contains Dockerfile, requirements, serving code, and all four
+canonical artifacts. Joblibs match the manifest exactly. Canonical JSON Git blobs
+can differ from Windows files by CRLF/LF only; verify_release_git.py checks this.
+
+Actual safety gate before ANY push:
+Read Dokploy Source and deployment settings for Python, Node and Vue. Record
+provider/repository, watched branch, auto-deploy switch, build type/path/context,
+and last successful full commit. Preview disabled does NOT disable auto-deploy.
+Browser access was unavailable during preparation. Watched branches/auto-deploy
+are UNVERIFIED. Node/Vue last successful production commits are UNVERIFIED.
+Local pre-RC heads are only rollback candidates, not proof of deployed versions:
+Node: f0cf5c9b9268a70b56a568ae8c2b0268d31bfa31
+Vue: f54892e1a7792a55db5cb4bc86415eb1aebf1970
+Do not publish rollback refs for Node/Vue until matched to successful Dokploy logs.
+
+RC build configuration (dedicated staging apps; do not edit production now):
+All repositories: staging/robust-median-rc-20261124.
+Python: Dockerfile build, repo-root context '.', Dockerfile.robust-rc, port 8001.
+RC files are /app/robust-rc/artifacts. PREDICTION_ARTIFACT_DIR must be absent from
+Dokploy overrides or equal /app/robust-rc/artifacts. The image verifies manifest
+hashes. It never replaces repository-root canonical artifacts. Existing root
+Dockerfile remains the baseline recipe. Python must remain internal-only.
+Node: build path /reservision-backend; use the EXISTING confirmed working build
+type and runtime configuration; package script start is node server.js, Node
+>=22.12.0. Do not guess or change production build type. Staging URL must point
+only to staging Python. Use isolated DB and staging secrets; do not run training
+sync, migrations, or package scripts that mutate databases.
+Vue: Dockerfile build; repo build path /reservision, context '.', Dockerfile.
+Set build argument VITE_API_URL to the staging Node API including /api.
+Preserve required VITE_GOOGLE_CLIENT_ID if used; container port 3000.
+Production continues to use its recorded source/build/env settings.
+
+Byte-preservation repair (user-run; not executed during preparation):
+In Predictive_Analytics:
+git add -- .gitattributes api.py predict_real.py Dockerfile requirements.txt
+git add -- experiments/robust_release_candidate_20261124
+git add -- Dockerfile.robust-rc verify_release_git.py ROBUST_DEPLOYMENT.txt
+In CAPSTONE_BACKEND:
+git add -- .gitattributes reservision-backend/experiments/robust_release_candidate_20261124/verify-rc-local.mjs
+In CAPSTONE_FRONTEND:
+git add -- reservision/Dockerfile
+In Predictive_Analytics:
+python -B verify_release_git.py
+Require PASS. In each repository run:
+git -c core.whitespace=cr-at-eol,-blank-at-eol diff --cached --check
+git diff --cached --name-status
+git diff --cached
+Review explicit allowlist: original 14 Python files plus .gitattributes,
+Dockerfile and requirements (byte preservation only), Dockerfile.robust-rc,
+verify_release_git.py and this runbook; original five backend files plus
+.gitattributes; original five frontend files plus reservision/Dockerfile.
+No manuals, uploads, secrets, old experiments or unrelated tests/scripts.
+
+Only after hash PASS and live source/auto-deploy safety checks:
+In each repo, verify git branch --show-current equals the staging branch, then:
+git commit -m "Package verified Robust Median RC for staging"
+git push --set-upstream origin HEAD:refs/heads/staging/robust-median-rc-20261124
+Never push main or use force. Record each resulting full SHA for deployment.
+If staging auto-deploy is enabled, a push may deploy staging immediately; prepare
+rollback refs and staging environment first or use manual deployment later.
+
+Git-based rollback refs (publish only after push safety checks; never force):
+Python, from Predictive_Analytics:
+git push origin 51730a2179da9bbc0bf8c492f7b3c6a2a5201d2c:refs/heads/rollback/robust-median-baseline-20261124
+Node, from CAPSTONE_BACKEND (PowerShell; enter confirmed successful commit):
+$nodeBaseline = Read-Host 'Confirmed Dokploy Node successful 40-character commit'
+if ($nodeBaseline -notmatch '^[0-9a-fA-F]{40}$') { throw 'Invalid commit' }
+git cat-file -e "$nodeBaseline^{commit}"
+if ($LASTEXITCODE -ne 0) { throw 'Baseline commit unavailable' }
+git push origin "${nodeBaseline}:refs/heads/rollback/robust-median-baseline-20261124"
+Vue, from CAPSTONE_FRONTEND:
+$vueBaseline = Read-Host 'Confirmed Dokploy Vue successful 40-character commit'
+if ($vueBaseline -notmatch '^[0-9a-fA-F]{40}$') { throw 'Invalid commit' }
+git cat-file -e "$vueBaseline^{commit}"
+if ($LASTEXITCODE -ne 0) { throw 'Baseline commit unavailable' }
+git push origin "${vueBaseline}:refs/heads/rollback/robust-median-baseline-20261124"
+Verify remote refs with git ls-remote origin refs/heads/rollback/robust-median-baseline-20261124.
+If a ref already exists at another commit, STOP; choose a new uniquely named ref.
+
+Rollback execution (only when explicitly authorized):
+Use Dokploy source branch rollback/robust-median-baseline-20261124 in the affected
+apps. Python MUST use root Dockerfile and root context, NOT Dockerfile.robust-rc;
+remove RC-specific PREDICTION_ARTIFACT_DIR override. Node must use the recorded
+baseline build type/path/env; Vue /reservision Dockerfile with recorded baseline
+production VITE_API_URL, not a staging URL. Restore recorded baseline service
+URLs if changed. Manually redeploy Python -> Node -> Vue. Do not rely on a
+one-click rollback, reset main, force-push, or restore databases for this change.
+Confirm Python health reports weekday_baseline for both targets, Node live/ready
+200 plus authenticated readiness, then Vue admin dashboard and API connectivity.
+Git rollback rebuilds require registry/dependency access; retain the known-good
+image digest too if available. A prior successful build is not a new rebuild test.
+
+Deployment sequence (after authorization and gates):
+1. Publish and verify rollback refs, preserve settings/commit/image inventory.
+2. Push reviewed RC branches only after confirming webhook behavior.
+3. Dedicated staging Python build/deploy; require model_ready and RC identity,
+   guests robust_median_guests, bookings weekday_baseline, max horizon 90,
+   interval status Not evaluated, correct artifact dir.
+4. Staging Node deploy; require health/live, health/ready, admin readiness;
+   anonymous 401 and customer 403; staging DB only.
+5. Staging Vue deploy; confirm configured API and authenticated browser 7/30/90
+   ranges, totals, guest mix and unsupported-range error. No ML reevaluation.
+6. Production cutover remains a separate approval, after successful staging.
+
+Local image build was not executed: Docker daemon is unavailable here.
+The image integrity RUN step fails closed if staged/build bytes do not match.

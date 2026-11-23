@@ -1,0 +1,23 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PORT=8001 \
+    PREDICTION_ARTIFACT_DIR=/app/robust-rc/artifacts
+
+WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential curl \
+    && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+COPY api.py predict_real.py ./
+COPY experiments/robust_release_candidate_20261124/artifacts/ ./robust-rc/artifacts/
+COPY experiments/robust_release_candidate_20261124/PACKAGE_MANIFEST.json ./robust-rc/PACKAGE_MANIFEST.json
+# Verify exact release bytes in the image, before it can be deployed.
+RUN python -c "import hashlib,json,pathlib; p=pathlib.Path('/app/robust-rc'); m=json.loads((p/'PACKAGE_MANIFEST.json').read_text()); expected={p/'artifacts'/n:h for n,h in m['release_candidate_artifact_sha256'].items()}; expected.update({pathlib.Path('/app')/n:m['serving_code_sha256'][n] for n in ('api.py','predict_real.py','requirements.txt')}); bad=[str(f) for f,h in expected.items() if hashlib.sha256(f.read_bytes()).hexdigest()!=h]; assert not bad, 'RC integrity mismatch: '+str(bad)"
+EXPOSE 8001
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD curl -fsS http://127.0.0.1:8001/health || exit 1
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8001"]
