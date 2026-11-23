@@ -1,0 +1,611 @@
+{
+  "protocol": {
+    "phase": "3-arima",
+    "interpreter": "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\arima_experiment.py",
+    "dataset_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7",
+    "orders": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1
+      ]
+    ],
+    "development": "24 weeks: 2026-04-06 through 2026-09-20",
+    "reserved": "8 weeks: 2026-09-21 through 2026-11-15; previously inspected",
+    "wape": "100 * sum(|pred-actual|) / sum(actual); weekly uses week totals",
+    "serving_hashes_unchanged": true,
+    "failures": []
+  },
+  "selection": {
+    "bookings": {
+      "method": "arima_211",
+      "development_weekly_wape": 28.58847868413723,
+      "development_daily_wape": 68.10798294351582,
+      "development_weekly_mae": 3.323410647030953
+    },
+    "guests": {
+      "method": "arima_111",
+      "development_weekly_wape": 40.25342894701836,
+      "development_daily_wape": 107.33977183634688,
+      "development_weekly_mae": 50.70254821118187
+    }
+  },
+  "comparison": [
+    {
+      "period": "development",
+      "method": "arima_100",
+      "target": "bookings",
+      "weekly_wape": 42.466178871980404,
+      "daily_wape": 74.61288282898505,
+      "weekly_mae": 4.936693293867721,
+      "daily_mae": 1.2391068041242161,
+      "weekly_rmse": 5.5538456308562045,
+      "daily_rmse": 1.5642583556800262,
+      "weekly_bias": 1.0149933331813397,
+      "daily_bias": 0.14499904759733426
+    },
+    {
+      "period": "development",
+      "method": "arima_100",
+      "target": "guests",
+      "weekly_wape": 56.67549992956811,
+      "daily_wape": 118.78585704777315,
+      "weekly_mae": 71.3875151196185,
+      "daily_mae": 21.374383681870135,
+      "weekly_rmse": 82.6626786264628,
+      "daily_rmse": 27.03288968035234,
+      "weekly_bias": 51.914377023266276,
+      "daily_bias": 7.4163395747523255
+    },
+    {
+      "period": "development",
+      "method": "arima_101",
+      "target": "bookings",
+      "weekly_wape": 42.56965767989652,
+      "daily_wape": 74.65778670512177,
+      "weekly_mae": 4.94872270528797,
+      "daily_mae": 1.239852529210058,
+      "weekly_rmse": 5.562792442962727,
+      "daily_rmse": 1.5649051051209466,
+      "weekly_bias": 1.0005023885085824,
+      "daily_bias": 0.14292891264408322
+    },
+    {
+      "period": "development",
+      "method": "arima_101",
+      "target": "guests",
+      "weekly_wape": 56.39229631045379,
+      "daily_wape": 119.00398625246453,
+      "weekly_mae": 71.03079656104242,
+      "daily_mae": 21.41363395483335,
+      "weekly_rmse": 82.25189727007648,
+      "daily_rmse": 27.10759439032421,
+      "weekly_bias": 52.198587584512985,
+      "daily_bias": 7.456941083501856
+    },
+    {
+      "period": "development",
+      "method": "arima_111",
+      "target": "bookings",
+      "weekly_wape": 29.120283397358833,
+      "daily_wape": 69.00022932883765,
+      "weekly_mae": 3.3852329449429646,
+      "daily_mae": 1.1458966656396252,
+      "weekly_rmse": 4.465384945445269,
+      "daily_rmse": 1.4865322606245577,
+      "weekly_bias": 1.7286463567387191,
+      "daily_bias": 0.24694947953410273
+    },
+    {
+      "period": "development",
+      "method": "arima_111",
+      "target": "guests",
+      "weekly_wape": 40.25342894701836,
+      "daily_wape": 107.33977183634688,
+      "weekly_mae": 50.70254821118187,
+      "daily_mae": 19.314769658409325,
+      "weekly_rmse": 65.37320329145808,
+      "daily_rmse": 26.047392451769483,
+      "weekly_bias": 31.310194119706328,
+      "daily_bias": 4.4728848742437615
+    },
+    {
+      "period": "development",
+      "method": "arima_211",
+      "target": "bookings",
+      "weekly_wape": 28.58847868413723,
+      "daily_wape": 68.10798294351582,
+      "weekly_mae": 3.323410647030953,
+      "daily_mae": 1.1310790024548165,
+      "weekly_rmse": 4.33880138208801,
+      "daily_rmse": 1.478894873728793,
+      "weekly_bias": 1.4368999434801586,
+      "daily_bias": 0.20527142049716549
+    },
+    {
+      "period": "development",
+      "method": "arima_211",
+      "target": "guests",
+      "weekly_wape": 41.16287678945223,
+      "daily_wape": 108.94713852544355,
+      "weekly_mae": 51.84807355604753,
+      "daily_mae": 19.603999985858085,
+      "weekly_rmse": 66.31704474746968,
+      "daily_rmse": 26.24269953934478,
+      "weekly_bias": 35.32178215584817,
+      "daily_bias": 5.045968879406881
+    },
+    {
+      "period": "reserved",
+      "method": "arima_211",
+      "target": "bookings",
+      "weekly_wape": 55.81719204829381,
+      "daily_wape": 88.32882638479269,
+      "weekly_mae": 2.162916191871385,
+      "daily_mae": 0.4889631460586738,
+      "weekly_rmse": 2.7016636493048587,
+      "daily_rmse": 0.6658356326693147,
+      "weekly_bias": 1.6094392909749389,
+      "daily_bias": 0.22991989871070553
+    },
+    {
+      "period": "reserved",
+      "method": "arima_211",
+      "target": "guests",
+      "weekly_wape": 97.03442514562784,
+      "daily_wape": 162.5305298376473,
+      "weekly_mae": 33.35558364380957,
+      "daily_mae": 7.981409947384464,
+      "weekly_rmse": 39.07806617816707,
+      "daily_rmse": 9.45738964927552,
+      "weekly_bias": 28.274391890551385,
+      "daily_bias": 4.039198841507341
+    },
+    {
+      "period": "reserved",
+      "method": "arima_111",
+      "target": "bookings",
+      "weekly_wape": 56.21336366402755,
+      "daily_wape": 88.80352625934339,
+      "weekly_mae": 2.1782678419810675,
+      "daily_mae": 0.49159094893565086,
+      "weekly_rmse": 2.7026023170346254,
+      "daily_rmse": 0.6623691355573018,
+      "weekly_bias": 1.666394542513291,
+      "daily_bias": 0.23805636321618445
+    },
+    {
+      "period": "reserved",
+      "method": "arima_111",
+      "target": "guests",
+      "weekly_wape": 96.3305502067131,
+      "daily_wape": 161.37817122364905,
+      "weekly_mae": 33.11362663355763,
+      "daily_mae": 7.924820908304193,
+      "weekly_rmse": 38.79162093689856,
+      "daily_rmse": 9.438380824366455,
+      "weekly_bias": 27.685802312382897,
+      "daily_bias": 3.9551146160546997
+    },
+    {
+      "period": "reserved",
+      "method": "arima_selected_pair",
+      "target": "bookings",
+      "weekly_wape": 55.81719204829381,
+      "daily_wape": 88.32882638479269,
+      "weekly_mae": 2.162916191871385,
+      "daily_mae": 0.4889631460586738,
+      "weekly_rmse": 2.7016636493048587,
+      "daily_rmse": 0.6658356326693147,
+      "weekly_bias": 1.6094392909749389,
+      "daily_bias": 0.22991989871070553
+    },
+    {
+      "period": "reserved",
+      "method": "arima_selected_pair",
+      "target": "guests",
+      "weekly_wape": 96.3305502067131,
+      "daily_wape": 161.37817122364905,
+      "weekly_mae": 33.11362663355763,
+      "daily_mae": 7.924820908304193,
+      "weekly_rmse": 38.79162093689856,
+      "daily_rmse": 9.438380824366455,
+      "weekly_bias": 27.685802312382897,
+      "daily_bias": 3.9551146160546997
+    }
+  ],
+  "development_summaries": {
+    "arima_100": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 303.35983999635215,
+          "absolute_error": 118.48063905282531,
+          "net_error": 24.359839996352154,
+          "mae": 4.936693293867721,
+          "rmse": 5.5538456308562045,
+          "wape": 42.466178871980404,
+          "bias": 1.0149933331813397
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 303.35983999635215,
+          "absolute_error": 208.16994309286832,
+          "net_error": 24.359839996352154,
+          "mae": 1.2391068041242161,
+          "rmse": 1.5642583556800262,
+          "wape": 74.61288282898505,
+          "bias": 0.14499904759733426
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 4268.945048558391,
+          "absolute_error": 1713.300362870844,
+          "net_error": 1245.9450485583907,
+          "mae": 71.3875151196185,
+          "rmse": 82.6626786264628,
+          "wape": 56.67549992956811,
+          "bias": 51.914377023266276
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 4268.94504855839,
+          "absolute_error": 3590.8964585541826,
+          "net_error": 1245.9450485583907,
+          "mae": 21.374383681870135,
+          "rmse": 27.03288968035234,
+          "wape": 118.78585704777315,
+          "bias": 7.4163395747523255
+        }
+      }
+    },
+    "arima_101": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 303.01205732420595,
+          "absolute_error": 118.76934492691129,
+          "net_error": 24.01205732420598,
+          "mae": 4.94872270528797,
+          "rmse": 5.562792442962727,
+          "wape": 42.56965767989652,
+          "bias": 1.0005023885085824
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 303.01205732420595,
+          "absolute_error": 208.29522490728974,
+          "net_error": 24.01205732420598,
+          "mae": 1.239852529210058,
+          "rmse": 1.5649051051209466,
+          "wape": 74.65778670512177,
+          "bias": 0.14292891264408322
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 4275.766102028312,
+          "absolute_error": 1704.7391174650181,
+          "net_error": 1252.7661020283117,
+          "mae": 71.03079656104242,
+          "rmse": 82.25189727007648,
+          "wape": 56.39229631045379,
+          "bias": 52.198587584512985
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 4275.766102028312,
+          "absolute_error": 3597.490504412003,
+          "net_error": 1252.7661020283117,
+          "mae": 21.41363395483335,
+          "rmse": 27.10759439032421,
+          "wape": 119.00398625246453,
+          "bias": 7.456941083501856
+        }
+      }
+    },
+    "arima_111": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 320.48751256172926,
+          "absolute_error": 81.24559067863115,
+          "net_error": 41.48751256172926,
+          "mae": 3.3852329449429646,
+          "rmse": 4.465384945445269,
+          "wape": 29.120283397358833,
+          "bias": 1.7286463567387191
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 320.48751256172926,
+          "absolute_error": 192.51063982745706,
+          "net_error": 41.48751256172926,
+          "mae": 1.1458966656396252,
+          "rmse": 1.4865322606245577,
+          "wape": 69.00022932883765,
+          "bias": 0.24694947953410273
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3774.444658872952,
+          "absolute_error": 1216.861157068365,
+          "net_error": 751.4446588729519,
+          "mae": 50.70254821118187,
+          "rmse": 65.37320329145808,
+          "wape": 40.25342894701836,
+          "bias": 31.310194119706328
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3774.444658872952,
+          "absolute_error": 3244.8813026127664,
+          "net_error": 751.4446588729519,
+          "mae": 19.314769658409325,
+          "rmse": 26.047392451769483,
+          "wape": 107.33977183634688,
+          "bias": 4.4728848742437615
+        }
+      }
+    },
+    "arima_211": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 313.4855986435238,
+          "absolute_error": 79.76185552874287,
+          "net_error": 34.48559864352381,
+          "mae": 3.323410647030953,
+          "rmse": 4.33880138208801,
+          "wape": 28.58847868413723,
+          "bias": 1.4368999434801586
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 313.4855986435238,
+          "absolute_error": 190.02127241240916,
+          "net_error": 34.4855986435238,
+          "mae": 1.1310790024548165,
+          "rmse": 1.478894873728793,
+          "wape": 68.10798294351582,
+          "bias": 0.20527142049716549
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3870.722771740356,
+          "absolute_error": 1244.3537653451408,
+          "net_error": 847.722771740356,
+          "mae": 51.84807355604753,
+          "rmse": 66.31704474746968,
+          "wape": 41.16287678945223,
+          "bias": 35.32178215584817
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3870.722771740356,
+          "absolute_error": 3293.471997624158,
+          "net_error": 847.722771740356,
+          "mae": 19.603999985858085,
+          "rmse": 26.24269953934478,
+          "wape": 108.94713852544355,
+          "bias": 5.045968879406881
+        }
+      }
+    }
+  },
+  "reserved_summaries": {
+    "arima_211": {
+      "bookings": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 31.0,
+          "predicted_total": 43.87551432779951,
+          "absolute_error": 17.30332953497108,
+          "net_error": 12.875514327799511,
+          "mae": 2.162916191871385,
+          "rmse": 2.7016636493048587,
+          "wape": 55.81719204829381,
+          "bias": 1.6094392909749389
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 31.0,
+          "predicted_total": 43.87551432779951,
+          "absolute_error": 27.381936179285734,
+          "net_error": 12.87551432779951,
+          "mae": 0.4889631460586738,
+          "rmse": 0.6658356326693147,
+          "wape": 88.32882638479269,
+          "bias": 0.22991989871070553
+        }
+      },
+      "guests": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 275.0,
+          "predicted_total": 501.1951351244111,
+          "absolute_error": 266.84466915047653,
+          "net_error": 226.19513512441108,
+          "mae": 33.35558364380957,
+          "rmse": 39.07806617816707,
+          "wape": 97.03442514562784,
+          "bias": 28.274391890551385
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 275.0,
+          "predicted_total": 501.1951351244111,
+          "absolute_error": 446.95895705353,
+          "net_error": 226.19513512441108,
+          "mae": 7.981409947384464,
+          "rmse": 9.45738964927552,
+          "wape": 162.5305298376473,
+          "bias": 4.039198841507341
+        }
+      }
+    },
+    "arima_111": {
+      "bookings": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 31.0,
+          "predicted_total": 44.331156340106325,
+          "absolute_error": 17.42614273584854,
+          "net_error": 13.331156340106329,
+          "mae": 2.1782678419810675,
+          "rmse": 2.7026023170346254,
+          "wape": 56.21336366402755,
+          "bias": 1.666394542513291
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 31.0,
+          "predicted_total": 44.33115634010633,
+          "absolute_error": 27.529093140396448,
+          "net_error": 13.331156340106329,
+          "mae": 0.49159094893565086,
+          "rmse": 0.6623691355573018,
+          "wape": 88.80352625934339,
+          "bias": 0.23805636321618445
+        }
+      },
+      "guests": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 275.0,
+          "predicted_total": 496.4864184990632,
+          "absolute_error": 264.90901306846104,
+          "net_error": 221.48641849906318,
+          "mae": 33.11362663355763,
+          "rmse": 38.79162093689856,
+          "wape": 96.3305502067131,
+          "bias": 27.685802312382897
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 275.0,
+          "predicted_total": 496.4864184990632,
+          "absolute_error": 443.78997086503483,
+          "net_error": 221.48641849906318,
+          "mae": 7.924820908304193,
+          "rmse": 9.438380824366455,
+          "wape": 161.37817122364905,
+          "bias": 3.9551146160546997
+        }
+      }
+    },
+    "arima_selected_pair": {
+      "bookings": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 31.0,
+          "predicted_total": 43.87551432779951,
+          "absolute_error": 17.30332953497108,
+          "net_error": 12.875514327799511,
+          "mae": 2.162916191871385,
+          "rmse": 2.7016636493048587,
+          "wape": 55.81719204829381,
+          "bias": 1.6094392909749389
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 31.0,
+          "predicted_total": 43.87551432779951,
+          "absolute_error": 27.381936179285734,
+          "net_error": 12.87551432779951,
+          "mae": 0.4889631460586738,
+          "rmse": 0.6658356326693147,
+          "wape": 88.32882638479269,
+          "bias": 0.22991989871070553
+        }
+      },
+      "guests": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 275.0,
+          "predicted_total": 496.4864184990632,
+          "absolute_error": 264.90901306846104,
+          "net_error": 221.48641849906318,
+          "mae": 33.11362663355763,
+          "rmse": 38.79162093689856,
+          "wape": 96.3305502067131,
+          "bias": 27.685802312382897
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 275.0,
+          "predicted_total": 496.4864184990632,
+          "absolute_error": 443.78997086503483,
+          "net_error": 221.48641849906318,
+          "mae": 7.924820908304193,
+          "rmse": 9.438380824366455,
+          "wape": 161.37817122364905,
+          "bias": 3.9551146160546997
+        }
+      }
+    }
+  },
+  "serving_hashes": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688"
+  }
+}

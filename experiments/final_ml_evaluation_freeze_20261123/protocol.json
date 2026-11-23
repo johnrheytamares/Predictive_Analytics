@@ -1,0 +1,18 @@
+{
+  "package": "final_ml_evaluation_freeze_20261123",
+  "purpose": "Frozen offline ML evaluation summary for later Chapter IV tables/graphs",
+  "includes_graphs": false,
+  "production_baseline": {
+    "bookings": "four-week weekday mean",
+    "guests": "four-week weekday mean",
+    "postprocess": "Variant A production rules"
+  },
+  "best_offline_candidate": {
+    "bookings": "four-week weekday mean (same raw bookings as baseline)",
+    "guests": "median of four matching-weekday guest counts including zeros",
+    "postprocess": "Variant A production rules",
+    "type": "deterministic forecasting recipe, not a newly trained ML model",
+    "selection_bias_note": "Recipe previously examined in adaptive experiments that inspected reserved weeks"
+  },
+  "target_weekly_wape_10_to_20_percent_achieved": false
+}

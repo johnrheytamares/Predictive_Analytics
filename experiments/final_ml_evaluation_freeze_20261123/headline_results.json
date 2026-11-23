@@ -1,0 +1,56 @@
+{
+  "metric": "WAPE_percent_error_lower_is_better",
+  "target_weekly_wape_band_percent": [
+    10,
+    20
+  ],
+  "target_achieved": false,
+  "raw_development": {
+    "bookings_weekly_wape": {
+      "arima_211": 28.588479,
+      "four_week_weekday_baseline": 28.763441,
+      "ridge_alpha_100": 28.947491,
+      "random_forest": 30.373343
+    },
+    "guests_weekly_wape": {
+      "four_week_weekday_baseline": 33.774396,
+      "ridge_alpha_100": 38.784597,
+      "arima_111": 40.253429,
+      "random_forest": 40.490605,
+      "arima_211": 41.162877
+    }
+  },
+  "operational_development_variant_A": {
+    "current_production_baseline": {
+      "bookings_weekly_wape": 30.107527,
+      "guests_weekly_wape": 35.196824
+    },
+    "best_offline_candidate_robust_median_guests": {
+      "bookings_weekly_wape": 27.598566,
+      "guests_weekly_wape": 32.08733,
+      "type": "deterministic_recipe_not_newly_trained_ml_model"
+    }
+  },
+  "operational_reserved_variant_A_confirmatory": {
+    "current_production_baseline": {
+      "bookings_weekly_wape": 70.967742,
+      "guests_weekly_wape": 94.181818
+    },
+    "best_offline_candidate_robust_median_guests": {
+      "bookings_weekly_wape": 67.741935,
+      "guests_weekly_wape": 80.0
+    }
+  },
+  "bookings_decomposition_development": {
+    "raw_bookings_weekly_wape_identical": 28.763441,
+    "production_operational_bookings_weekly_wape": 30.107527,
+    "candidate_operational_bookings_weekly_wape": 27.598566,
+    "production_booking_minimum_activations": 21,
+    "candidate_booking_minimum_activations": 8,
+    "explanation": "Operational bookings WAPE improvement from fewer booking-minimum activations, not improved raw bookings forecasts."
+  },
+  "roles": {
+    "current_production_baseline": "four_week_weekday_baseline + Variant A",
+    "best_offline_candidate": "robust_median_guests + Variant A (offline only)"
+  }
+}

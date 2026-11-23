@@ -1,0 +1,18 @@
+{
+  "serving_hashes": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688"
+  },
+  "serving_hashes_unchanged": true,
+  "freeze_created_read_only_consolidation": true,
+  "no_retraining": true,
+  "no_database_access": true,
+  "no_production_integration": true
+}

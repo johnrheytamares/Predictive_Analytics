@@ -1,0 +1,3 @@
+role,pair,raw_bookings_weekly_wape,operational_bookings_weekly_wape,booking_minimum_activations
+production,baseline_baseline,28.763440860215052,30.107526881720432,21
+candidate,robust_median_guests,28.763440860215052,27.59856630824373,8

@@ -1,0 +1,24 @@
+{
+  "dataset": {
+    "days": 356,
+    "date_from": "2025-12-01",
+    "date_to": "2026-11-21",
+    "bookings": 519,
+    "guests": 6669,
+    "daily_demand_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7",
+    "recorded_original_export_sha256": "0af4b7c020769453ef748f2302ca8176c9ced891e77d86db4f33ec5eb2a77cf1",
+    "byte_identical_to_original_export": false,
+    "reconstruction_source": "baseline_history in trusted joblib artifacts"
+  },
+  "periods": {
+    "development": "24 weeks, 2026-04-06 through 2026-09-20",
+    "reserved": "8 weeks, 2026-09-21 through 2026-11-15; previously inspected, not untouched validation"
+  },
+  "source_experiments": {
+    "phase2": "experiments/multimodel_dataset_20261123",
+    "phase3_raw": "experiments/multimodel_compare_20261123",
+    "phase3_arima": "experiments/multimodel_compare_20261123/results/arima",
+    "phase5_operational": "experiments/postprocess_phase5_20261123"
+  },
+  "wape_definition": "100 * sum(|predicted-actual|) / sum(actual); weekly uses seven-day totals first; error measure not accuracy"
+}

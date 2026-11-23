@@ -1,0 +1,54 @@
+{
+  "provenance": {
+    "reconstruction_source": "bookings_model.joblib + guests_model.joblib baseline_history",
+    "metadata_path": "forecast_models_metadata.json",
+    "recorded_input_sha256": "0af4b7c020769453ef748f2302ca8176c9ced891e77d86db4f33ec5eb2a77cf1",
+    "byte_identical_to_original_export": false,
+    "content_match": {
+      "days": 356,
+      "bookings": 519,
+      "guests": 6669,
+      "date_from": "2025-12-01",
+      "date_to": "2026-11-21",
+      "matches_metadata_training_snapshot_totals": true
+    },
+    "verification_basis": "User-confirmed server aggregate export; source register not independently audited",
+    "zero_demand_days": {
+      "bookings": 97,
+      "guests": 97
+    },
+    "nonzero_demand_days": {
+      "bookings": 259,
+      "guests": 259
+    }
+  },
+  "reconstructed_csv_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7",
+  "note": "The reconstructed CSV matches verified totals and the continuous date range embedded in the trusted artifacts. It is not proven byte-for-byte identical to the original training export whose SHA-256 is recorded in forecast_models_metadata.json.",
+  "serving_hashes_before": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688"
+  },
+  "serving_hashes_after": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688"
+  },
+  "serving_hashes_unchanged": true
+}

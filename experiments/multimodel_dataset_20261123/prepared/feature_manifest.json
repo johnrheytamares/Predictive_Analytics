@@ -1,0 +1,121 @@
+{
+  "supervised_feature_columns": [
+    "day_of_week",
+    "is_weekend",
+    "month",
+    "dow_sin",
+    "dow_cos",
+    "bookings_lag_1",
+    "bookings_lag_7",
+    "bookings_lag_14",
+    "bookings_lag_28",
+    "bookings_roll_mean_7",
+    "bookings_roll_mean_14",
+    "bookings_roll_mean_28",
+    "bookings_trend_14",
+    "guests_lag_1",
+    "guests_lag_7",
+    "guests_lag_14",
+    "guests_lag_28",
+    "guests_roll_mean_7",
+    "guests_roll_mean_14",
+    "guests_roll_mean_28",
+    "guests_trend_14",
+    "bookings",
+    "guests"
+  ],
+  "predictor_columns": [
+    "day_of_week",
+    "is_weekend",
+    "month",
+    "dow_sin",
+    "dow_cos",
+    "bookings_lag_1",
+    "bookings_lag_7",
+    "bookings_lag_14",
+    "bookings_lag_28",
+    "bookings_roll_mean_7",
+    "bookings_roll_mean_14",
+    "bookings_roll_mean_28",
+    "bookings_trend_14",
+    "guests_lag_1",
+    "guests_lag_7",
+    "guests_lag_14",
+    "guests_lag_28",
+    "guests_roll_mean_7",
+    "guests_roll_mean_14",
+    "guests_roll_mean_28",
+    "guests_trend_14"
+  ],
+  "supervised_rows": 328,
+  "horizon_rows": 224,
+  "evaluation_cutoffs": {
+    "development": [
+      "2026-04-06",
+      "2026-04-13",
+      "2026-04-20",
+      "2026-04-27",
+      "2026-05-04",
+      "2026-05-11",
+      "2026-05-18",
+      "2026-05-25",
+      "2026-06-01",
+      "2026-06-08",
+      "2026-06-15",
+      "2026-06-22",
+      "2026-06-29",
+      "2026-07-06",
+      "2026-07-13",
+      "2026-07-20",
+      "2026-07-27",
+      "2026-08-03",
+      "2026-08-10",
+      "2026-08-17",
+      "2026-08-24",
+      "2026-08-31",
+      "2026-09-07",
+      "2026-09-14"
+    ],
+    "reserved": [
+      "2026-09-21",
+      "2026-09-28",
+      "2026-10-05",
+      "2026-10-12",
+      "2026-10-19",
+      "2026-10-26",
+      "2026-11-02",
+      "2026-11-09"
+    ],
+    "periods": {
+      "development": {
+        "weeks": 24,
+        "first_cutoff": "2026-04-06",
+        "last_cutoff": "2026-09-14",
+        "inclusive_end": "2026-09-20",
+        "note": "2026-04-06 through 2026-09-20"
+      },
+      "reserved": {
+        "weeks": 8,
+        "first_cutoff": "2026-09-21",
+        "last_cutoff": "2026-11-09",
+        "inclusive_end": "2026-11-15",
+        "note": "2026-09-21 through 2026-11-15; previously inspected, not untouched validation"
+      }
+    }
+  },
+  "static_horizon_short_lag_nulls": {
+    "bookings_lag_1": 192,
+    "guests_lag_1": 192
+  },
+  "leakage_policy": {
+    "supervised": "Features for day t use only dates strictly before t",
+    "static_horizon": "At cutoff C, rolling/trend use history before C; lag_k for day C+offset uses actual y[C+offset-k] only when that date is before C; otherwise the lag is null until Phase 3 supplies recursive predictions",
+    "arima": "Univariate pre-cutoff series only; no exogenous future targets"
+  },
+  "models_ready_for": {
+    "weekday_baseline": "daily_demand.csv",
+    "ridge": "supervised_features.csv + horizon_features_static.csv",
+    "random_forest": "supervised_features.csv + horizon_features_static.csv",
+    "arima": "arima_bookings_series.csv / arima_guests_series.csv"
+  }
+}

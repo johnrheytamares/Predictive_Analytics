@@ -1,0 +1,71 @@
+{
+  "package": "final_ml_evaluation_freeze_20261123",
+  "file_count": 13,
+  "files": [
+    {
+      "relative_path": "FINAL_EVALUATION_SUMMARY.md",
+      "sha256": "8a488994920455ef123d42ecca97aedf662c193b061ac9ad201ba54e7cc53a01",
+      "bytes": 11776
+    },
+    {
+      "relative_path": "headline_results.json",
+      "sha256": "f61eafbd5a5ff09a51c1218d86c6df8cd36b0b0dffe971f4e8b1bcdb8bd31e77",
+      "bytes": 1930
+    },
+    {
+      "relative_path": "protocol.json",
+      "sha256": "ad64f17bf5b401160ed2b83c679e9f87f8b1af2b7b5009a9da6b4d3f10b45ac9",
+      "bytes": 830
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "5ec94c3c08e2b01f50f1513f263c74f4ee06dee8b13fea0b2ab7b0ffacbe50ae",
+      "bytes": 821
+    },
+    {
+      "relative_path": "serving_integrity.json",
+      "sha256": "94107c645b5522bf72eefcb7158f68e8da10f9b22d79277a618ef9df3edbe1f0",
+      "bytes": 1093
+    },
+    {
+      "relative_path": "tables\\bookings_wape_decomposition.csv",
+      "sha256": "79dd0ecaaf1e91083886a12bd40f2e84096e20d790c452faf9a0d1ba50e22224",
+      "bytes": 239
+    },
+    {
+      "relative_path": "tables\\dataset_provenance.json",
+      "sha256": "f06149257ba9c7e8186e0044d5a8d0fe638ec8ae8ec9027e08e6aa35dbe14b91",
+      "bytes": 1102
+    },
+    {
+      "relative_path": "tables\\operational_development.csv",
+      "sha256": "a5636cd0d65206a55c030dd39b70a2132a8be486f288cb888234434841489be0",
+      "bytes": 2408
+    },
+    {
+      "relative_path": "tables\\operational_reserved.csv",
+      "sha256": "e413fca48cc1533b334a44d150e76ac5dc90b88b0dba01e024181e7474106821",
+      "bytes": 2111
+    },
+    {
+      "relative_path": "tables\\production_vs_candidate.csv",
+      "sha256": "2c3829461555fdeb8b05736e376f3d3ba4c72351bbff446e11d79ec7cb397596",
+      "bytes": 2269
+    },
+    {
+      "relative_path": "tables\\raw_development.csv",
+      "sha256": "8872dcca789fb0c55589c6df919c1e6257af2d43a162e5e3f3cae05354a07e81",
+      "bytes": 4016
+    },
+    {
+      "relative_path": "tables\\raw_development_primary.csv",
+      "sha256": "8ab513fcb80a7ce9d00e356b6b2b5a33a3f0a158f26fca68f7c3b9c3f8ce97b8",
+      "bytes": 2079
+    },
+    {
+      "relative_path": "tables\\raw_reserved.csv",
+      "sha256": "c6aed68654bf8d68098d9ae9e3be28f8a6460294a3abfd946ed963388fe4a789",
+      "bytes": 1617
+    }
+  ]
+}

@@ -1,0 +1,6486 @@
+{
+  "protocol": {
+    "development": "24 weeks: 2026-04-06 through 2026-09-20",
+    "holdout": "8 weeks: 2026-09-21 through 2026-11-15",
+    "holdout_status": "Selection-excluded in this run; previously inspected, NOT untouched independent validation",
+    "adaptive": "Choose two-week only when previous four completed weekly origins have >=10% lower absolute weekly error than four-week; otherwise four-week. Per target, all inner outcomes before outer cutoff.",
+    "robust_guests": "Four-week baseline bookings; median of four matching-weekday guest counts, including zeros; no source rows deleted",
+    "trend_adjusted": "Four-week forecast scaled by 1+0.5*(clip(mean last14 / mean preceding14,0.5,1.5)-1); factor range0.75..1.25. Both means zero =>1; older mean zero and recent positive =>1.25",
+    "operational": "Python nonnegative round; positive guests imply >=1 booking; guest floor uses pre-cutoff median nonzero-day guests/bookings rounded to2 decimals; guests>=bookings",
+    "selection": "Development operational WAPE, weekly RMSE then fixed method order for ties; one choice per target from complete same-method pairs. Mixed pair is fully re-scored; never selected from holdout.",
+    "gates": "Each target: >=5% relative weekly WAPE and MAE gains; weekly RMSE and daily WAPE <=105% control; absolute weekly bias <=control absolute bias +10% control weekly MAE; low-demand MAE <=110% control. Zero-week error must not worsen where observed.",
+    "low_demand": {
+      "bookings": 5,
+      "guests": 35
+    },
+    "output": "Isolated JSON only; no changes to serving files or data"
+  },
+  "locked_pair": [
+    "robust_guests",
+    "weighted_4week"
+  ],
+  "development": {
+    "current_4week": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 80.25,
+            "net_error": 23.75,
+            "mae": 3.34375,
+            "rmse": 4.2668172173959675,
+            "wape": 28.763440860215052,
+            "over": 14,
+            "under": 9,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 170.25,
+            "net_error": 23.75,
+            "mae": 1.0133928571428572,
+            "rmse": 1.329188124920085,
+            "wape": 61.02150537634409,
+            "over": 86,
+            "under": 65,
+            "equal": 17
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10.0,
+            "absolute_error": 5.0,
+            "net_error": 5.0,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3180.0,
+            "absolute_error": 1021.0,
+            "net_error": 157.0,
+            "mae": 42.541666666666664,
+            "rmse": 58.854870939738994,
+            "wape": 33.77439629507112,
+            "over": 11,
+            "under": 13,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3180.0,
+            "absolute_error": 2460.0,
+            "net_error": 157.0,
+            "mae": 14.642857142857142,
+            "rmse": 22.74949306080928,
+            "wape": 81.3761164406219,
+            "over": 99,
+            "under": 62,
+            "equal": 7
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 111.25,
+            "absolute_error": 86.25,
+            "net_error": 86.25,
+            "mae": 86.25,
+            "rmse": 86.25,
+            "wape": 345.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 317,
+            "absolute_error": 84,
+            "net_error": 38,
+            "mae": 3.5,
+            "rmse": 4.47213595499958,
+            "wape": 30.107526881720432,
+            "over": 14,
+            "under": 7,
+            "equal": 3
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 317,
+            "absolute_error": 168,
+            "net_error": 38,
+            "mae": 1.0,
+            "rmse": 1.35400640077266,
+            "wape": 60.215053763440864,
+            "over": 72,
+            "under": 43,
+            "equal": 53
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10,
+            "absolute_error": 5,
+            "net_error": 5,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3467,
+            "absolute_error": 1060,
+            "net_error": 444,
+            "mae": 44.166666666666664,
+            "rmse": 60.88513775955508,
+            "wape": 35.06450545815415,
+            "over": 14,
+            "under": 9,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3467,
+            "absolute_error": 2546,
+            "net_error": 444,
+            "mae": 15.154761904761905,
+            "rmse": 22.843150479071923,
+            "wape": 84.22097254383063,
+            "over": 108,
+            "under": 54,
+            "equal": 6
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 112,
+            "absolute_error": 87,
+            "net_error": 87,
+            "mae": 87.0,
+            "rmse": 87.0,
+            "wape": 348.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "short_2week": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 295.5,
+            "absolute_error": 73.5,
+            "net_error": 16.5,
+            "mae": 3.0625,
+            "rmse": 4.3505267880261735,
+            "wape": 26.344086021505376,
+            "over": 12,
+            "under": 8,
+            "equal": 4
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 295.5,
+            "absolute_error": 174.5,
+            "net_error": 16.5,
+            "mae": 1.0386904761904763,
+            "rmse": 1.4126343172547218,
+            "wape": 62.54480286738351,
+            "over": 68,
+            "under": 64,
+            "equal": 36
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 13.0,
+            "absolute_error": 8.0,
+            "net_error": 8.0,
+            "mae": 8.0,
+            "rmse": 8.0,
+            "wape": 160.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3141.5,
+            "absolute_error": 975.5,
+            "net_error": 118.5,
+            "mae": 40.645833333333336,
+            "rmse": 61.314506847890414,
+            "wape": 32.26926893814092,
+            "over": 10,
+            "under": 12,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3141.5,
+            "absolute_error": 2529.5,
+            "net_error": 118.5,
+            "mae": 15.056547619047619,
+            "rmse": 23.974099367362907,
+            "wape": 83.67515712868011,
+            "over": 82,
+            "under": 74,
+            "equal": 12
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 143.5,
+            "absolute_error": 118.5,
+            "net_error": 118.5,
+            "mae": 118.5,
+            "rmse": 118.5,
+            "wape": 474.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 315,
+            "absolute_error": 84,
+            "net_error": 36,
+            "mae": 3.5,
+            "rmse": 4.4628092796652945,
+            "wape": 30.107526881720432,
+            "over": 16,
+            "under": 7,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 315,
+            "absolute_error": 172,
+            "net_error": 36,
+            "mae": 1.0238095238095237,
+            "rmse": 1.4267845968170128,
+            "wape": 61.64874551971326,
+            "over": 67,
+            "under": 45,
+            "equal": 56
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 13,
+            "absolute_error": 8,
+            "net_error": 8,
+            "mae": 8.0,
+            "rmse": 8.0,
+            "wape": 160.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3493,
+            "absolute_error": 1020,
+            "net_error": 470,
+            "mae": 42.5,
+            "rmse": 64.31433225443092,
+            "wape": 33.74131657294079,
+            "over": 17,
+            "under": 6,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3493,
+            "absolute_error": 2578,
+            "net_error": 470,
+            "mae": 15.345238095238095,
+            "rmse": 23.993798802031765,
+            "wape": 85.27952365200132,
+            "over": 96,
+            "under": 57,
+            "equal": 15
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 152,
+            "absolute_error": 127,
+            "net_error": 127,
+            "mae": 127.0,
+            "rmse": 127.0,
+            "wape": 508.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "weighted_4week": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 298.90000000000003,
+            "absolute_error": 76.1,
+            "net_error": 19.900000000000016,
+            "mae": 3.170833333333333,
+            "rmse": 4.1733779284092325,
+            "wape": 27.275985663082434,
+            "over": 14,
+            "under": 10,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 298.90000000000003,
+            "absolute_error": 167.1,
+            "net_error": 19.90000000000001,
+            "mae": 0.9946428571428572,
+            "rmse": 1.3256400071555734,
+            "wape": 59.89247311827957,
+            "over": 88,
+            "under": 69,
+            "equal": 11
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 11.3,
+            "absolute_error": 6.300000000000001,
+            "net_error": 6.300000000000001,
+            "mae": 6.300000000000001,
+            "rmse": 6.300000000000001,
+            "wape": 126.00000000000003,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3160.3,
+            "absolute_error": 934.5,
+            "net_error": 137.3000000000001,
+            "mae": 38.9375,
+            "rmse": 57.17066919904529,
+            "wape": 30.91300033079722,
+            "over": 10,
+            "under": 13,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3160.3,
+            "absolute_error": 2424.9,
+            "net_error": 137.30000000000013,
+            "mae": 14.433928571428572,
+            "rmse": 22.93453805321323,
+            "wape": 80.21501819384717,
+            "over": 95,
+            "under": 68,
+            "equal": 5
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 125.5,
+            "absolute_error": 100.5,
+            "net_error": 100.5,
+            "mae": 100.5,
+            "rmse": 100.5,
+            "wape": 402.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 315,
+            "absolute_error": 80,
+            "net_error": 36,
+            "mae": 3.3333333333333335,
+            "rmse": 4.4628092796652945,
+            "wape": 28.67383512544803,
+            "over": 12,
+            "under": 6,
+            "equal": 6
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 315,
+            "absolute_error": 164,
+            "net_error": 36,
+            "mae": 0.9761904761904762,
+            "rmse": 1.3627702877384937,
+            "wape": 58.78136200716846,
+            "over": 67,
+            "under": 44,
+            "equal": 57
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 12,
+            "absolute_error": 7,
+            "net_error": 7,
+            "mae": 7.0,
+            "rmse": 7.0,
+            "wape": 140.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3446,
+            "absolute_error": 939,
+            "net_error": 423,
+            "mae": 39.125,
+            "rmse": 59.30254350925149,
+            "wape": 31.061859080383726,
+            "over": 13,
+            "under": 9,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3446,
+            "absolute_error": 2503,
+            "net_error": 423,
+            "mae": 14.898809523809524,
+            "rmse": 22.92131987390571,
+            "wape": 82.79854449222627,
+            "over": 105,
+            "under": 56,
+            "equal": 7
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 135,
+            "absolute_error": 110,
+            "net_error": 110,
+            "mae": 110.0,
+            "rmse": 110.0,
+            "wape": 440.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "adaptive": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 303.0,
+            "absolute_error": 83.5,
+            "net_error": 24.0,
+            "mae": 3.4791666666666665,
+            "rmse": 4.4785367774158855,
+            "wape": 29.92831541218638,
+            "over": 13,
+            "under": 9,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 303.0,
+            "absolute_error": 171.5,
+            "net_error": 24.0,
+            "mae": 1.0208333333333333,
+            "rmse": 1.3512560294566154,
+            "wape": 61.46953405017921,
+            "over": 84,
+            "under": 57,
+            "equal": 27
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 13.0,
+            "absolute_error": 8.0,
+            "net_error": 8.0,
+            "mae": 8.0,
+            "rmse": 8.0,
+            "wape": 160.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3218.25,
+            "absolute_error": 1051.75,
+            "net_error": 195.25,
+            "mae": 43.822916666666664,
+            "rmse": 62.5649454234025,
+            "wape": 34.791597750578894,
+            "over": 10,
+            "under": 13,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3218.25,
+            "absolute_error": 2394.75,
+            "net_error": 195.25,
+            "mae": 14.254464285714286,
+            "rmse": 22.64072230622555,
+            "wape": 79.2176645716176,
+            "over": 90,
+            "under": 70,
+            "equal": 8
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 111.25,
+            "absolute_error": 86.25,
+            "net_error": 86.25,
+            "mae": 86.25,
+            "rmse": 86.25,
+            "wape": 345.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 320,
+            "absolute_error": 89,
+            "net_error": 41,
+            "mae": 3.7083333333333335,
+            "rmse": 4.532291546962383,
+            "wape": 31.899641577060933,
+            "over": 14,
+            "under": 8,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 320,
+            "absolute_error": 171,
+            "net_error": 41,
+            "mae": 1.0178571428571428,
+            "rmse": 1.3779729764438502,
+            "wape": 61.29032258064516,
+            "over": 75,
+            "under": 42,
+            "equal": 51
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 13,
+            "absolute_error": 8,
+            "net_error": 8,
+            "mae": 8.0,
+            "rmse": 8.0,
+            "wape": 160.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3583,
+            "absolute_error": 1102,
+            "net_error": 560,
+            "mae": 45.916666666666664,
+            "rmse": 65.54069982334133,
+            "wape": 36.453853787628184,
+            "over": 16,
+            "under": 7,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3583,
+            "absolute_error": 2510,
+            "net_error": 560,
+            "mae": 14.94047619047619,
+            "rmse": 22.763536004508865,
+            "wape": 83.0301025471386,
+            "over": 106,
+            "under": 54,
+            "equal": 8
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 120,
+            "absolute_error": 95,
+            "net_error": 95,
+            "mae": 95.0,
+            "rmse": 95.0,
+            "wape": 380.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "robust_guests": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 80.25,
+            "net_error": 23.75,
+            "mae": 3.34375,
+            "rmse": 4.2668172173959675,
+            "wape": 28.763440860215052,
+            "over": 14,
+            "under": 9,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 170.25,
+            "net_error": 23.75,
+            "mae": 1.0133928571428572,
+            "rmse": 1.329188124920085,
+            "wape": 61.02150537634409,
+            "over": 86,
+            "under": 65,
+            "equal": 17
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10.0,
+            "absolute_error": 5.0,
+            "net_error": 5.0,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 2732.0,
+            "absolute_error": 1058.0,
+            "net_error": -291.0,
+            "mae": 44.083333333333336,
+            "rmse": 56.754588654428055,
+            "wape": 34.99834601389348,
+            "over": 8,
+            "under": 16,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 2732.0,
+            "absolute_error": 2282.0,
+            "net_error": -291.0,
+            "mae": 13.583333333333334,
+            "rmse": 22.123234392827825,
+            "wape": 75.48792590142243,
+            "over": 75,
+            "under": 80,
+            "equal": 13
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 82.5,
+            "absolute_error": 57.5,
+            "net_error": 57.5,
+            "mae": 57.5,
+            "rmse": 57.5,
+            "wape": 230.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 304,
+            "absolute_error": 77,
+            "net_error": 25,
+            "mae": 3.2083333333333335,
+            "rmse": 4.128155358833612,
+            "wape": 27.59856630824373,
+            "over": 13,
+            "under": 7,
+            "equal": 4
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 304,
+            "absolute_error": 167,
+            "net_error": 25,
+            "mae": 0.9940476190476191,
+            "rmse": 1.3562026818605375,
+            "wape": 59.85663082437276,
+            "over": 65,
+            "under": 48,
+            "equal": 55
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10,
+            "absolute_error": 5,
+            "net_error": 5,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3113,
+            "absolute_error": 958,
+            "net_error": 90,
+            "mae": 39.916666666666664,
+            "rmse": 52.368088247201335,
+            "wape": 31.690373800860073,
+            "over": 11,
+            "under": 13,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3113,
+            "absolute_error": 2364,
+            "net_error": 90,
+            "mae": 14.071428571428571,
+            "rmse": 22.13701919969396,
+            "wape": 78.20046311610983,
+            "over": 87,
+            "under": 64,
+            "equal": 17
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 92,
+            "absolute_error": 67,
+            "net_error": 67,
+            "mae": 67.0,
+            "rmse": 67.0,
+            "wape": 268.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "trend_adjusted": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 301.29233882140755,
+            "absolute_error": 78.28164914399392,
+            "net_error": 22.292338821407533,
+            "mae": 3.2617353809997467,
+            "rmse": 4.439396028435305,
+            "wape": 28.057938761288142,
+            "over": 16,
+            "under": 8,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 301.29233882140755,
+            "absolute_error": 173.09089203986758,
+            "net_error": 22.292338821407533,
+            "mae": 1.0303029288087355,
+            "rmse": 1.3497400231583956,
+            "wape": 62.039746250848594,
+            "over": 89,
+            "under": 75,
+            "equal": 4
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 12.5,
+            "absolute_error": 7.5,
+            "net_error": 7.5,
+            "mae": 7.5,
+            "rmse": 7.5,
+            "wape": 150.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3233.2338346345377,
+            "absolute_error": 951.5170729346034,
+            "net_error": 210.23383463453783,
+            "mae": 39.64654470560848,
+            "rmse": 61.349719122039765,
+            "wape": 31.475920374945535,
+            "over": 13,
+            "under": 11,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3233.2338346345377,
+            "absolute_error": 2467.447290653174,
+            "net_error": 210.23383463453783,
+            "mae": 14.68718625388794,
+            "rmse": 23.24884492013109,
+            "wape": 81.62247074605274,
+            "over": 98,
+            "under": 66,
+            "equal": 4
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 139.0625,
+            "absolute_error": 114.0625,
+            "net_error": 114.0625,
+            "mae": 114.0625,
+            "rmse": 114.0625,
+            "wape": 456.25,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 318,
+            "absolute_error": 85,
+            "net_error": 39,
+            "mae": 3.5416666666666665,
+            "rmse": 4.568916720624267,
+            "wape": 30.46594982078853,
+            "over": 16,
+            "under": 6,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 318,
+            "absolute_error": 167,
+            "net_error": 39,
+            "mae": 0.9940476190476191,
+            "rmse": 1.3649524673391518,
+            "wape": 59.85663082437276,
+            "over": 71,
+            "under": 43,
+            "equal": 54
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 13,
+            "absolute_error": 8,
+            "net_error": 8,
+            "mae": 8.0,
+            "rmse": 8.0,
+            "wape": 160.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3508,
+            "absolute_error": 989,
+            "net_error": 485,
+            "mae": 41.208333333333336,
+            "rmse": 62.88448404283312,
+            "wape": 32.71584518690043,
+            "over": 17,
+            "under": 6,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3508,
+            "absolute_error": 2539,
+            "net_error": 485,
+            "mae": 15.113095238095237,
+            "rmse": 23.237003536027043,
+            "wape": 83.9894144889183,
+            "over": 106,
+            "under": 57,
+            "equal": 5
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 142,
+            "absolute_error": 117,
+            "net_error": 117,
+            "mae": 117.0,
+            "rmse": 117.0,
+            "wape": 468.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    },
+    "locked_mixed": {
+      "raw": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 80.25,
+            "net_error": 23.75,
+            "mae": 3.34375,
+            "rmse": 4.2668172173959675,
+            "wape": 28.763440860215052,
+            "over": 14,
+            "under": 9,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 302.75,
+            "absolute_error": 170.25,
+            "net_error": 23.75,
+            "mae": 1.0133928571428572,
+            "rmse": 1.329188124920085,
+            "wape": 61.02150537634409,
+            "over": 86,
+            "under": 65,
+            "equal": 17
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10.0,
+            "absolute_error": 5.0,
+            "net_error": 5.0,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3160.3,
+            "absolute_error": 934.5,
+            "net_error": 137.3000000000001,
+            "mae": 38.9375,
+            "rmse": 57.17066919904529,
+            "wape": 30.91300033079722,
+            "over": 10,
+            "under": 13,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3160.3,
+            "absolute_error": 2424.9,
+            "net_error": 137.30000000000013,
+            "mae": 14.433928571428572,
+            "rmse": 22.93453805321323,
+            "wape": 80.21501819384717,
+            "over": 95,
+            "under": 68,
+            "equal": 5
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 125.5,
+            "absolute_error": 100.5,
+            "net_error": 100.5,
+            "mae": 100.5,
+            "rmse": 100.5,
+            "wape": 402.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 279,
+            "predicted": 316,
+            "absolute_error": 83,
+            "net_error": 37,
+            "mae": 3.4583333333333335,
+            "rmse": 4.420595736624948,
+            "wape": 29.74910394265233,
+            "over": 14,
+            "under": 7,
+            "equal": 3
+          },
+          "daily": {
+            "actual": 279,
+            "predicted": 316,
+            "absolute_error": 169,
+            "net_error": 37,
+            "mae": 1.005952380952381,
+            "rmse": 1.3562026818605375,
+            "wape": 60.57347670250896,
+            "over": 72,
+            "under": 44,
+            "equal": 52
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 5,
+            "predicted": 10,
+            "absolute_error": 5,
+            "net_error": 5,
+            "mae": 5.0,
+            "rmse": 5.0,
+            "wape": 100.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        },
+        "guests": {
+          "weeks": 24,
+          "weekly": {
+            "actual": 3023,
+            "predicted": 3464,
+            "absolute_error": 991,
+            "net_error": 441,
+            "mae": 41.291666666666664,
+            "rmse": 59.98020506800556,
+            "wape": 32.7820046311611,
+            "over": 13,
+            "under": 9,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 3023,
+            "predicted": 3464,
+            "absolute_error": 2535,
+            "net_error": 441,
+            "mae": 15.089285714285714,
+            "rmse": 23.05492923226532,
+            "wape": 83.85709560039696,
+            "over": 106,
+            "under": 55,
+            "equal": 7
+          },
+          "low_demand_weeks": 1,
+          "low_demand": {
+            "actual": 25,
+            "predicted": 128,
+            "absolute_error": 103,
+            "net_error": 103,
+            "mae": 103.0,
+            "rmse": 103.0,
+            "wape": 412.0,
+            "over": 1,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 0,
+          "zero_week_false_positive_total": 0
+        }
+      }
+    }
+  },
+  "holdout": {
+    "current_4week": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 16.75,
+            "net_error": 11.75,
+            "mae": 2.09375,
+            "rmse": 2.6794938887782522,
+            "wape": 54.03225806451613,
+            "over": 5,
+            "under": 2,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 26.25,
+            "net_error": 11.75,
+            "mae": 0.46875,
+            "rmse": 0.6589019545533962,
+            "wape": 84.6774193548387,
+            "over": 28,
+            "under": 11,
+            "equal": 17
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 22.0,
+            "absolute_error": 15.5,
+            "net_error": 11.0,
+            "mae": 3.1,
+            "rmse": 3.357826678076163,
+            "wape": 140.9090909090909,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 4.5
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 404.25,
+            "absolute_error": 229.75,
+            "net_error": 129.25,
+            "mae": 28.71875,
+            "rmse": 33.95412806272604,
+            "wape": 83.54545454545455,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 404.25,
+            "absolute_error": 411.75,
+            "net_error": 129.25,
+            "mae": 7.352678571428571,
+            "rmse": 9.890076646387962,
+            "wape": 149.72727272727272,
+            "over": 40,
+            "under": 12,
+            "equal": 4
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 167.75,
+            "absolute_error": 144.75,
+            "net_error": 144.75,
+            "mae": 36.1875,
+            "rmse": 42.42327633504984,
+            "wape": 629.3478260869565,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 31.25
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 53,
+            "absolute_error": 22,
+            "net_error": 22,
+            "mae": 2.75,
+            "rmse": 3.8078865529319543,
+            "wape": 70.96774193548387,
+            "over": 6,
+            "under": 0,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 53,
+            "absolute_error": 32,
+            "net_error": 22,
+            "mae": 0.5714285714285714,
+            "rmse": 0.823754471047914,
+            "wape": 103.2258064516129,
+            "over": 25,
+            "under": 4,
+            "equal": 27
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 32,
+            "absolute_error": 21,
+            "net_error": 21,
+            "mae": 4.2,
+            "rmse": 4.795831523312719,
+            "wape": 190.9090909090909,
+            "over": 5,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 8
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 490,
+            "absolute_error": 259,
+            "net_error": 215,
+            "mae": 32.375,
+            "rmse": 39.43507322168934,
+            "wape": 94.18181818181819,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 490,
+            "absolute_error": 479,
+            "net_error": 215,
+            "mae": 8.553571428571429,
+            "rmse": 10.538195833660117,
+            "wape": 174.1818181818182,
+            "over": 42,
+            "under": 9,
+            "equal": 5
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 222,
+            "absolute_error": 199,
+            "net_error": 199,
+            "mae": 49.75,
+            "rmse": 53.16718913013928,
+            "wape": 865.2173913043479,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 59
+        }
+      }
+    },
+    "short_2week": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 38.0,
+            "absolute_error": 14.0,
+            "net_error": 7.0,
+            "mae": 1.75,
+            "rmse": 2.318404623873926,
+            "wape": 45.16129032258065,
+            "over": 5,
+            "under": 1,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 38.0,
+            "absolute_error": 21.0,
+            "net_error": 7.0,
+            "mae": 0.375,
+            "rmse": 0.6338656910463875,
+            "wape": 67.74193548387096,
+            "over": 17,
+            "under": 8,
+            "equal": 31
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 17.0,
+            "absolute_error": 13.0,
+            "net_error": 6.0,
+            "mae": 2.6,
+            "rmse": 2.898275349237888,
+            "wape": 118.18181818181819,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 2.5
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 349.0,
+            "absolute_error": 200.0,
+            "net_error": 74.0,
+            "mae": 25.0,
+            "rmse": 29.483045975611137,
+            "wape": 72.72727272727273,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 349.0,
+            "absolute_error": 379.0,
+            "net_error": 74.0,
+            "mae": 6.767857142857143,
+            "rmse": 10.719225051946886,
+            "wape": 137.8181818181818,
+            "over": 29,
+            "under": 12,
+            "equal": 15
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 119.5,
+            "absolute_error": 96.5,
+            "net_error": 96.5,
+            "mae": 24.125,
+            "rmse": 29.894606536965828,
+            "wape": 419.5652173913044,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 6.0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 44,
+            "absolute_error": 19,
+            "net_error": 13,
+            "mae": 2.375,
+            "rmse": 2.850438562747845,
+            "wape": 61.29032258064516,
+            "over": 6,
+            "under": 1,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 44,
+            "absolute_error": 23,
+            "net_error": 13,
+            "mae": 0.4107142857142857,
+            "rmse": 0.6681531047810609,
+            "wape": 74.19354838709677,
+            "over": 17,
+            "under": 5,
+            "equal": 34
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 22,
+            "absolute_error": 17,
+            "net_error": 11,
+            "mae": 3.4,
+            "rmse": 3.5496478698597698,
+            "wape": 154.54545454545453,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 2
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 436,
+            "absolute_error": 251,
+            "net_error": 161,
+            "mae": 31.375,
+            "rmse": 36.08843304993998,
+            "wape": 91.27272727272727,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 436,
+            "absolute_error": 421,
+            "net_error": 161,
+            "mae": 7.517857142857143,
+            "rmse": 10.92588669170608,
+            "wape": 153.0909090909091,
+            "over": 32,
+            "under": 9,
+            "equal": 15
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 181,
+            "absolute_error": 158,
+            "net_error": 158,
+            "mae": 39.5,
+            "rmse": 44.10215414239989,
+            "wape": 686.9565217391304,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 14
+        }
+      }
+    },
+    "weighted_4week": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 40.5,
+            "absolute_error": 16.1,
+            "net_error": 9.5,
+            "mae": 2.0125,
+            "rmse": 2.5399311014277535,
+            "wape": 51.93548387096775,
+            "over": 5,
+            "under": 3,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 40.5,
+            "absolute_error": 23.900000000000002,
+            "net_error": 9.500000000000002,
+            "mae": 0.4267857142857143,
+            "rmse": 0.6398939644302685,
+            "wape": 77.09677419354838,
+            "over": 30,
+            "under": 11,
+            "equal": 15
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 19.7,
+            "absolute_error": 14.9,
+            "net_error": 8.7,
+            "mae": 2.98,
+            "rmse": 3.180880381278114,
+            "wape": 135.45454545454547,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 3.7
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 378.2,
+            "absolute_error": 219.40000000000003,
+            "net_error": 103.2,
+            "mae": 27.425000000000004,
+            "rmse": 31.801415062855302,
+            "wape": 79.7818181818182,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 378.2,
+            "absolute_error": 402.0,
+            "net_error": 103.20000000000002,
+            "mae": 7.178571428571429,
+            "rmse": 10.183284623061741,
+            "wape": 146.1818181818182,
+            "over": 39,
+            "under": 13,
+            "equal": 4
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 148.20000000000002,
+            "absolute_error": 125.2,
+            "net_error": 125.2,
+            "mae": 31.3,
+            "rmse": 36.5702748143899,
+            "wape": 544.3478260869565,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 21.8
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 51,
+            "absolute_error": 24,
+            "net_error": 20,
+            "mae": 3.0,
+            "rmse": 3.968626966596886,
+            "wape": 77.41935483870968,
+            "over": 5,
+            "under": 1,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 51,
+            "absolute_error": 32,
+            "net_error": 20,
+            "mae": 0.5714285714285714,
+            "rmse": 0.823754471047914,
+            "wape": 103.2258064516129,
+            "over": 24,
+            "under": 5,
+            "equal": 27
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 30,
+            "absolute_error": 23,
+            "net_error": 19,
+            "mae": 4.6,
+            "rmse": 5.0,
+            "wape": 209.0909090909091,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 8
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 468,
+            "absolute_error": 281,
+            "net_error": 193,
+            "mae": 35.125,
+            "rmse": 39.31761691659351,
+            "wape": 102.18181818181819,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 468,
+            "absolute_error": 455,
+            "net_error": 193,
+            "mae": 8.125,
+            "rmse": 10.522934137261473,
+            "wape": 165.45454545454547,
+            "over": 38,
+            "under": 10,
+            "equal": 8
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 221,
+            "absolute_error": 198,
+            "net_error": 198,
+            "mae": 49.5,
+            "rmse": 51.044098581520664,
+            "wape": 860.8695652173913,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 57
+        }
+      }
+    },
+    "adaptive": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 39.5,
+            "absolute_error": 16.0,
+            "net_error": 8.5,
+            "mae": 2.0,
+            "rmse": 2.5155764746872635,
+            "wape": 51.61290322580645,
+            "over": 5,
+            "under": 2,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 39.5,
+            "absolute_error": 24.0,
+            "net_error": 8.5,
+            "mae": 0.42857142857142855,
+            "rmse": 0.673145600891813,
+            "wape": 77.41935483870968,
+            "over": 20,
+            "under": 11,
+            "equal": 25
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 18.75,
+            "absolute_error": 14.75,
+            "net_error": 7.75,
+            "mae": 2.95,
+            "rmse": 3.148412298286233,
+            "wape": 134.0909090909091,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 2.5
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 381.75,
+            "absolute_error": 232.75,
+            "net_error": 106.75,
+            "mae": 29.09375,
+            "rmse": 35.02153355437194,
+            "wape": 84.63636363636364,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 381.75,
+            "absolute_error": 405.25,
+            "net_error": 106.75,
+            "mae": 7.236607142857143,
+            "rmse": 10.583901606415552,
+            "wape": 147.36363636363637,
+            "over": 31,
+            "under": 11,
+            "equal": 14
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 151.75,
+            "absolute_error": 128.75,
+            "net_error": 128.75,
+            "mae": 32.1875,
+            "rmse": 40.07044577990118,
+            "wape": 559.7826086956521,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 6.0
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 43,
+            "absolute_error": 18,
+            "net_error": 12,
+            "mae": 2.25,
+            "rmse": 2.8284271247461903,
+            "wape": 58.064516129032256,
+            "over": 5,
+            "under": 1,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 43,
+            "absolute_error": 24,
+            "net_error": 12,
+            "mae": 0.42857142857142855,
+            "rmse": 0.7071067811865476,
+            "wape": 77.41935483870968,
+            "over": 17,
+            "under": 5,
+            "equal": 34
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 22,
+            "absolute_error": 17,
+            "net_error": 11,
+            "mae": 3.4,
+            "rmse": 3.5496478698597698,
+            "wape": 154.54545454545453,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 2
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 432,
+            "absolute_error": 259,
+            "net_error": 157,
+            "mae": 32.375,
+            "rmse": 37.34802538287667,
+            "wape": 94.18181818181819,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 432,
+            "absolute_error": 431,
+            "net_error": 157,
+            "mae": 7.696428571428571,
+            "rmse": 10.855380496062113,
+            "wape": 156.72727272727272,
+            "over": 33,
+            "under": 10,
+            "equal": 13
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 186,
+            "absolute_error": 163,
+            "net_error": 163,
+            "mae": 40.75,
+            "rmse": 45.94834055763059,
+            "wape": 708.695652173913,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 14
+        }
+      }
+    },
+    "robust_guests": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 16.75,
+            "net_error": 11.75,
+            "mae": 2.09375,
+            "rmse": 2.6794938887782522,
+            "wape": 54.03225806451613,
+            "over": 5,
+            "under": 2,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 26.25,
+            "net_error": 11.75,
+            "mae": 0.46875,
+            "rmse": 0.6589019545533962,
+            "wape": 84.6774193548387,
+            "over": 28,
+            "under": 11,
+            "equal": 17
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 22.0,
+            "absolute_error": 15.5,
+            "net_error": 11.0,
+            "mae": 3.1,
+            "rmse": 3.357826678076163,
+            "wape": 140.9090909090909,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 4.5
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 250.5,
+            "absolute_error": 179.5,
+            "net_error": -24.5,
+            "mae": 22.4375,
+            "rmse": 27.33758859153455,
+            "wape": 65.27272727272727,
+            "over": 3,
+            "under": 5,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 250.5,
+            "absolute_error": 285.5,
+            "net_error": -24.5,
+            "mae": 5.098214285714286,
+            "rmse": 8.836561629308735,
+            "wape": 103.81818181818181,
+            "over": 32,
+            "under": 14,
+            "equal": 10
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 95.0,
+            "absolute_error": 83.0,
+            "net_error": 72.0,
+            "mae": 20.75,
+            "rmse": 24.428467000612216,
+            "wape": 360.8695652173913,
+            "over": 3,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 14.5
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 46,
+            "absolute_error": 21,
+            "net_error": 15,
+            "mae": 2.625,
+            "rmse": 3.553167600887974,
+            "wape": 67.74193548387096,
+            "over": 5,
+            "under": 1,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 46,
+            "absolute_error": 29,
+            "net_error": 15,
+            "mae": 0.5178571428571429,
+            "rmse": 0.7905694150420949,
+            "wape": 93.54838709677419,
+            "over": 20,
+            "under": 6,
+            "equal": 30
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 25,
+            "absolute_error": 20,
+            "net_error": 14,
+            "mae": 4.0,
+            "rmse": 4.47213595499958,
+            "wape": 181.8181818181818,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 7
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 335,
+            "absolute_error": 220,
+            "net_error": 60,
+            "mae": 27.5,
+            "rmse": 33.185087012090236,
+            "wape": 80.0,
+            "over": 5,
+            "under": 3,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 335,
+            "absolute_error": 350,
+            "net_error": 60,
+            "mae": 6.25,
+            "rmse": 9.548747113028568,
+            "wape": 127.27272727272727,
+            "over": 33,
+            "under": 10,
+            "equal": 13
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 162,
+            "absolute_error": 139,
+            "net_error": 139,
+            "mae": 34.75,
+            "rmse": 39.392258122631155,
+            "wape": 604.3478260869565,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 49
+        }
+      }
+    },
+    "trend_adjusted": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 39.777472527472526,
+            "absolute_error": 14.652472527472526,
+            "net_error": 8.777472527472526,
+            "mae": 1.8315590659340657,
+            "rmse": 2.38081482998085,
+            "wape": 47.26604041120169,
+            "over": 6,
+            "under": 1,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 39.777472527472526,
+            "absolute_error": 24.951923076923077,
+            "net_error": 8.777472527472527,
+            "mae": 0.4455700549450549,
+            "rmse": 0.6362204054422917,
+            "wape": 80.49007444168734,
+            "over": 34,
+            "under": 11,
+            "equal": 11
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 18.767857142857142,
+            "absolute_error": 13.642857142857142,
+            "net_error": 7.767857142857142,
+            "mae": 2.7285714285714286,
+            "rmse": 2.9781249665396063,
+            "wape": 124.02597402597402,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 3.375
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 379.64260148064494,
+            "absolute_error": 211.20238408934063,
+            "net_error": 104.64260148064496,
+            "mae": 26.40029801116758,
+            "rmse": 29.945238589547827,
+            "wape": 76.8008669415784,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 379.64260148064494,
+            "absolute_error": 395.371746580714,
+            "net_error": 104.64260148064497,
+            "mae": 7.060209760369893,
+            "rmse": 9.701915652100679,
+            "wape": 143.7715442111687,
+            "over": 41,
+            "under": 11,
+            "equal": 4
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 139.86098484848486,
+            "absolute_error": 116.86098484848485,
+            "net_error": 116.86098484848485,
+            "mae": 29.21524621212121,
+            "rmse": 33.68704375578013,
+            "wape": 508.0912384716732,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 23.4375
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 52,
+            "absolute_error": 21,
+            "net_error": 21,
+            "mae": 2.625,
+            "rmse": 3.6571847095819483,
+            "wape": 67.74193548387096,
+            "over": 5,
+            "under": 0,
+            "equal": 3
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 52,
+            "absolute_error": 31,
+            "net_error": 21,
+            "mae": 0.5535714285714286,
+            "rmse": 0.7905694150420949,
+            "wape": 100.0,
+            "over": 25,
+            "under": 4,
+            "equal": 27
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 31,
+            "absolute_error": 20,
+            "net_error": 20,
+            "mae": 4.0,
+            "rmse": 4.604345773288535,
+            "wape": 181.8181818181818,
+            "over": 4,
+            "under": 0,
+            "equal": 1
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 7
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 469,
+            "absolute_error": 254,
+            "net_error": 194,
+            "mae": 31.75,
+            "rmse": 35.975686233899694,
+            "wape": 92.36363636363636,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 469,
+            "absolute_error": 448,
+            "net_error": 194,
+            "mae": 8.0,
+            "rmse": 10.14889156509222,
+            "wape": 162.9090909090909,
+            "over": 41,
+            "under": 9,
+            "equal": 6
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 205,
+            "absolute_error": 182,
+            "net_error": 182,
+            "mae": 45.5,
+            "rmse": 46.95742752749558,
+            "wape": 791.304347826087,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 50
+        }
+      }
+    },
+    "locked_mixed": {
+      "raw": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 16.75,
+            "net_error": 11.75,
+            "mae": 2.09375,
+            "rmse": 2.6794938887782522,
+            "wape": 54.03225806451613,
+            "over": 5,
+            "under": 2,
+            "equal": 1
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 42.75,
+            "absolute_error": 26.25,
+            "net_error": 11.75,
+            "mae": 0.46875,
+            "rmse": 0.6589019545533962,
+            "wape": 84.6774193548387,
+            "over": 28,
+            "under": 11,
+            "equal": 17
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 22.0,
+            "absolute_error": 15.5,
+            "net_error": 11.0,
+            "mae": 3.1,
+            "rmse": 3.357826678076163,
+            "wape": 140.9090909090909,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 4.5
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 378.2,
+            "absolute_error": 219.40000000000003,
+            "net_error": 103.2,
+            "mae": 27.425000000000004,
+            "rmse": 31.801415062855302,
+            "wape": 79.7818181818182,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 378.2,
+            "absolute_error": 402.0,
+            "net_error": 103.20000000000002,
+            "mae": 7.178571428571429,
+            "rmse": 10.183284623061741,
+            "wape": 146.1818181818182,
+            "over": 39,
+            "under": 13,
+            "equal": 4
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 148.20000000000002,
+            "absolute_error": 125.2,
+            "net_error": 125.2,
+            "mae": 31.3,
+            "rmse": 36.5702748143899,
+            "wape": 544.3478260869565,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 21.8
+        }
+      },
+      "operational": {
+        "bookings": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 31,
+            "predicted": 52,
+            "absolute_error": 23,
+            "net_error": 21,
+            "mae": 2.875,
+            "rmse": 3.9210967853395307,
+            "wape": 74.19354838709677,
+            "over": 5,
+            "under": 1,
+            "equal": 2
+          },
+          "daily": {
+            "actual": 31,
+            "predicted": 52,
+            "absolute_error": 31,
+            "net_error": 21,
+            "mae": 0.5535714285714286,
+            "rmse": 0.8128433340529315,
+            "wape": 100.0,
+            "over": 24,
+            "under": 4,
+            "equal": 28
+          },
+          "low_demand_weeks": 5,
+          "low_demand": {
+            "actual": 11,
+            "predicted": 31,
+            "absolute_error": 22,
+            "net_error": 20,
+            "mae": 4.4,
+            "rmse": 4.9396356140913875,
+            "wape": 200.0,
+            "over": 4,
+            "under": 1,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 8
+        },
+        "guests": {
+          "weeks": 8,
+          "weekly": {
+            "actual": 275,
+            "predicted": 475,
+            "absolute_error": 274,
+            "net_error": 200,
+            "mae": 34.25,
+            "rmse": 38.768543949960254,
+            "wape": 99.63636363636364,
+            "over": 6,
+            "under": 2,
+            "equal": 0
+          },
+          "daily": {
+            "actual": 275,
+            "predicted": 475,
+            "absolute_error": 462,
+            "net_error": 200,
+            "mae": 8.25,
+            "rmse": 10.564428184106458,
+            "wape": 168.0,
+            "over": 39,
+            "under": 10,
+            "equal": 7
+          },
+          "low_demand_weeks": 4,
+          "low_demand": {
+            "actual": 23,
+            "predicted": 221,
+            "absolute_error": 198,
+            "net_error": 198,
+            "mae": 49.5,
+            "rmse": 51.044098581520664,
+            "wape": 860.8695652173913,
+            "over": 4,
+            "under": 0,
+            "equal": 0
+          },
+          "zero_demand_weeks": 1,
+          "zero_week_false_positive_total": 57
+        }
+      }
+    }
+  },
+  "holdout_weekly_details": {
+    "current_4week": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.25,
+            0.75,
+            1.25
+          ],
+          [
+            6.0,
+            12.5,
+            13.5,
+            11.25,
+            14.0,
+            5.0,
+            8.25
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            12,
+            14,
+            11,
+            14,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.0,
+            12.75,
+            13.0,
+            12.0,
+            6.75,
+            6.0,
+            13.75
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            13,
+            13,
+            12,
+            7,
+            7,
+            14
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.25,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.5,
+            12.25,
+            11.0,
+            5.5,
+            6.75,
+            9.5,
+            14.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            12,
+            11,
+            7,
+            7,
+            10,
+            14
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.75
+          ],
+          [
+            10.75,
+            13.25,
+            4.75,
+            6.25,
+            14.0,
+            9.0,
+            11.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            11,
+            13,
+            7,
+            7,
+            14,
+            9,
+            12
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.75,
+            0.75,
+            0.75,
+            1.25,
+            0.75,
+            0.75,
+            0.5
+          ],
+          [
+            9.5,
+            4.25,
+            4.0,
+            5.5,
+            11.75,
+            6.75,
+            10.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            10,
+            7,
+            7,
+            7,
+            12,
+            7,
+            10
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.5,
+            0.5,
+            1.75,
+            0.5,
+            0.5,
+            0.25
+          ],
+          [
+            1.75,
+            3.0,
+            2.25,
+            6.0,
+            10.5,
+            5.75,
+            2.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            10,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.25,
+            0.25,
+            1.5,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            1.25,
+            1.0,
+            1.75,
+            5.0,
+            8.75,
+            0.5,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            9,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.0,
+            0.0,
+            1.75,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            4.75,
+            9.0,
+            0.5,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            14,
+            9,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      }
+    ],
+    "short_2week": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.5,
+            0.5,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            8.5,
+            18.0,
+            17.5,
+            6.0,
+            7.5,
+            6.5,
+            8.0
+          ]
+        ],
+        "operational": [
+          [
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            14,
+            18,
+            18,
+            7,
+            8,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            18.0,
+            20.5,
+            5.0,
+            6.5,
+            7.0,
+            6.5,
+            19.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            18,
+            20,
+            7,
+            7,
+            7,
+            7,
+            19
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            16.5,
+            6.5,
+            4.5,
+            5.0,
+            6.0,
+            12.5,
+            20.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            16,
+            7,
+            7,
+            7,
+            7,
+            12,
+            20
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.5
+          ],
+          [
+            3.5,
+            6.0,
+            4.5,
+            6.0,
+            21.0,
+            11.5,
+            4.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            21,
+            12,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.5,
+            0.5,
+            1.5,
+            0.5,
+            0.5,
+            0.0
+          ],
+          [
+            2.5,
+            2.0,
+            3.5,
+            6.0,
+            17.5,
+            1.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            18,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            2.5,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            6.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.0,
+            0.0,
+            1.0,
+            0.5,
+            0.5,
+            0.0
+          ],
+          [
+            2.0,
+            0.0,
+            0.0,
+            3.5,
+            18.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            7,
+            18,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      }
+    ],
+    "weighted_4week": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.1,
+            0.7000000000000001,
+            1.0,
+            1.0,
+            1.1,
+            0.9,
+            1.1
+          ],
+          [
+            6.3,
+            16.8,
+            13.7,
+            10.6,
+            10.200000000000001,
+            6.2,
+            7.800000000000001
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            17,
+            14,
+            11,
+            10,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.1,
+            0.8,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            16.3,
+            13.799999999999999,
+            11.100000000000001,
+            8.5,
+            6.6,
+            5.8,
+            17.3
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            16,
+            14,
+            11,
+            8,
+            7,
+            7,
+            17
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.1,
+            0.9,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.299999999999999,
+            11.9,
+            6.7,
+            5.3,
+            6.7,
+            11.8,
+            15.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            12,
+            7,
+            7,
+            7,
+            12,
+            15
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.6
+          ],
+          [
+            9.3,
+            8.6,
+            5.1000000000000005,
+            6.300000000000001,
+            18.0,
+            8.8,
+            9.4
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            9,
+            9,
+            7,
+            7,
+            18,
+            9,
+            9
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.6,
+            0.6,
+            0.6,
+            1.4000000000000001,
+            0.6,
+            0.6,
+            0.30000000000000004
+          ],
+          [
+            5.0,
+            3.3,
+            3.2,
+            5.4,
+            12.4,
+            5.2,
+            4.800000000000001
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            12,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.30000000000000004,
+            0.30000000000000004,
+            0.30000000000000004,
+            2.1,
+            0.30000000000000004,
+            0.30000000000000004,
+            0.1
+          ],
+          [
+            1.2,
+            1.6,
+            1.6,
+            6.4,
+            7.7,
+            2.5,
+            0.8
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            8,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            1.4,
+            0.1,
+            0.1,
+            0.0
+          ],
+          [
+            0.5,
+            0.4,
+            0.7000000000000001,
+            4.0,
+            3.5,
+            0.2,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            7,
+            7,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.4,
+            0.0,
+            0.0,
+            1.6,
+            0.4,
+            0.4,
+            0.0
+          ],
+          [
+            1.6,
+            0.0,
+            0.0,
+            4.800000000000001,
+            14.4,
+            0.8,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            14,
+            14,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "weighted_4week",
+          "weighted_4week"
+        ]
+      }
+    ],
+    "adaptive": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.25,
+            0.75,
+            1.25
+          ],
+          [
+            8.5,
+            18.0,
+            17.5,
+            6.0,
+            7.5,
+            6.5,
+            8.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            18,
+            18,
+            7,
+            8,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            18.0,
+            20.5,
+            5.0,
+            6.5,
+            7.0,
+            6.5,
+            19.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            18,
+            20,
+            7,
+            7,
+            7,
+            7,
+            19
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.25,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.5,
+            12.25,
+            11.0,
+            5.5,
+            6.75,
+            9.5,
+            14.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            12,
+            11,
+            7,
+            7,
+            10,
+            14
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.75
+          ],
+          [
+            10.75,
+            13.25,
+            4.75,
+            6.25,
+            14.0,
+            9.0,
+            11.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            11,
+            13,
+            7,
+            7,
+            14,
+            9,
+            12
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.75,
+            0.75,
+            0.75,
+            1.25,
+            0.75,
+            0.75,
+            0.5
+          ],
+          [
+            9.5,
+            4.25,
+            4.0,
+            5.5,
+            11.75,
+            6.75,
+            10.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            10,
+            7,
+            7,
+            7,
+            12,
+            7,
+            10
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "current_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            2.5,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            6.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.0,
+            0.0,
+            1.0,
+            0.5,
+            0.5,
+            0.0
+          ],
+          [
+            2.0,
+            0.0,
+            0.0,
+            3.5,
+            18.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            7,
+            18,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "short_2week",
+          "short_2week"
+        ]
+      }
+    ],
+    "robust_guests": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.25,
+            0.75,
+            1.25
+          ],
+          [
+            6.0,
+            7.0,
+            9.5,
+            6.0,
+            8.0,
+            5.5,
+            8.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            10,
+            7,
+            8,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            8.5,
+            7.5,
+            8.5,
+            6.5,
+            6.5,
+            5.5,
+            8.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            8,
+            8,
+            7,
+            7,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.25,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            8.5,
+            6.5,
+            5.0,
+            5.5,
+            6.5,
+            6.5,
+            9.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            7,
+            7,
+            7,
+            7,
+            7,
+            9
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.75
+          ],
+          [
+            5.0,
+            6.5,
+            5.0,
+            6.5,
+            8.0,
+            6.5,
+            7.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            8,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.75,
+            0.75,
+            0.75,
+            1.25,
+            0.75,
+            0.75,
+            0.5
+          ],
+          [
+            3.5,
+            4.5,
+            4.5,
+            5.0,
+            6.0,
+            3.0,
+            4.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.5,
+            0.5,
+            1.75,
+            0.5,
+            0.5,
+            0.25
+          ],
+          [
+            1.0,
+            2.0,
+            1.0,
+            6.0,
+            3.5,
+            1.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            7,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.25,
+            0.25,
+            1.5,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            6.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.0,
+            0.0,
+            1.75,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            5.5,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "median_4week"
+        ]
+      }
+    ],
+    "trend_adjusted": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.25,
+            0.75,
+            1.25
+          ],
+          [
+            6.130434782608696,
+            12.771739130434783,
+            13.793478260869566,
+            11.494565217391305,
+            14.304347826086957,
+            5.108695652173914,
+            8.429347826086957
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            13,
+            14,
+            11,
+            14,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          1.0,
+          1.0217391304347827
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0384615384615383,
+            0.7788461538461537,
+            1.0384615384615383,
+            1.0384615384615383,
+            1.0384615384615383,
+            1.0384615384615383,
+            1.0384615384615383
+          ],
+          [
+            13.071428571428573,
+            13.88839285714286,
+            14.160714285714288,
+            13.071428571428573,
+            7.352678571428572,
+            6.5357142857142865,
+            14.977678571428573
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            13,
+            14,
+            14,
+            13,
+            7,
+            7,
+            15
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          1.0384615384615383,
+          1.0892857142857144
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.25,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.413194444444443,
+            12.164930555555555,
+            10.92361111111111,
+            5.461805555555555,
+            6.703124999999999,
+            9.434027777777777,
+            13.902777777777777
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            12,
+            11,
+            7,
+            7,
+            9,
+            14
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          1.0,
+          0.9930555555555555
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.9642857142857143,
+            0.9642857142857143,
+            0.9642857142857143,
+            0.9642857142857143,
+            0.9642857142857143,
+            0.9642857142857143,
+            0.7232142857142857
+          ],
+          [
+            9.056060606060607,
+            11.162121212121212,
+            4.001515151515151,
+            5.265151515151515,
+            11.793939393939393,
+            7.581818181818182,
+            9.687878787878788
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            9,
+            11,
+            7,
+            7,
+            12,
+            8,
+            10
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          0.9642857142857143,
+          0.8424242424242424
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5892857142857143,
+            0.5892857142857143,
+            0.5892857142857143,
+            0.9821428571428571,
+            0.5892857142857143,
+            0.5892857142857143,
+            0.39285714285714285
+          ],
+          [
+            7.125,
+            3.1875,
+            3.0,
+            4.125,
+            8.8125,
+            5.0625,
+            7.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            9,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          0.7857142857142857,
+          0.75
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.375,
+            0.375,
+            0.375,
+            1.3125,
+            0.375,
+            0.375,
+            0.1875
+          ],
+          [
+            1.3125,
+            2.25,
+            1.6875,
+            4.5,
+            7.875,
+            4.3125,
+            1.5
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            8,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          0.75,
+          0.75
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.1875,
+            0.1875,
+            0.1875,
+            1.125,
+            0.1875,
+            0.1875,
+            0.0
+          ],
+          [
+            0.9375,
+            0.75,
+            1.3125,
+            3.75,
+            6.5625,
+            0.375,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            7,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          0.75,
+          0.75
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.0,
+            0.0,
+            1.75,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            1.25,
+            0.0,
+            0.0,
+            5.9375,
+            11.25,
+            0.625,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            14,
+            11,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          1.0,
+          1.25
+        ]
+      }
+    ],
+    "locked_mixed": [
+      {
+        "cutoff": "2026-09-21",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            5,
+            7,
+            6,
+            5,
+            4,
+            32
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.25,
+            0.75,
+            1.25
+          ],
+          [
+            6.3,
+            16.8,
+            13.7,
+            10.6,
+            10.200000000000001,
+            6.2,
+            7.800000000000001
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            17,
+            14,
+            11,
+            10,
+            7,
+            8
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-09-28",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            8,
+            2,
+            4,
+            7,
+            21,
+            8
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            16.3,
+            13.799999999999999,
+            11.100000000000001,
+            8.5,
+            6.6,
+            5.8,
+            17.3
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            16,
+            14,
+            11,
+            8,
+            7,
+            7,
+            17
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-05",
+        "actual": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            5,
+            4,
+            7,
+            8,
+            35,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.25,
+            0.75,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            12.299999999999999,
+            11.9,
+            6.7,
+            5.3,
+            6.7,
+            11.8,
+            15.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            12,
+            7,
+            7,
+            7,
+            12,
+            15
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-12",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.75
+          ],
+          [
+            9.3,
+            8.6,
+            5.1000000000000005,
+            6.300000000000001,
+            18.0,
+            8.8,
+            9.4
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            9,
+            9,
+            7,
+            7,
+            18,
+            9,
+            9
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-19",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.75,
+            0.75,
+            0.75,
+            1.25,
+            0.75,
+            0.75,
+            0.5
+          ],
+          [
+            5.0,
+            3.3,
+            3.2,
+            5.4,
+            12.4,
+            5.2,
+            4.800000000000001
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            12,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-10-26",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.5,
+            0.5,
+            0.5,
+            1.75,
+            0.5,
+            0.5,
+            0.25
+          ],
+          [
+            1.2,
+            1.6,
+            1.6,
+            6.4,
+            7.7,
+            2.5,
+            0.8
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            7,
+            7,
+            14,
+            8,
+            7,
+            7
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-02",
+        "actual": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            7,
+            36,
+            2,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.25,
+            0.25,
+            1.5,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            0.5,
+            0.4,
+            0.7000000000000001,
+            4.0,
+            3.5,
+            0.2,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            0,
+            0,
+            1,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            14,
+            7,
+            0,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      },
+      {
+        "cutoff": "2026-11-09",
+        "actual": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ]
+        ],
+        "raw": [
+          [
+            0.25,
+            0.0,
+            0.0,
+            1.75,
+            0.25,
+            0.25,
+            0.0
+          ],
+          [
+            1.6,
+            0.0,
+            0.0,
+            4.800000000000001,
+            14.4,
+            0.8,
+            0.0
+          ]
+        ],
+        "operational": [
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            14,
+            14,
+            7,
+            0
+          ]
+        ],
+        "party_size": 7.0,
+        "decisions": [
+          "current_4week",
+          "weighted_4week"
+        ]
+      }
+    ]
+  },
+  "gates": {
+    "current_4week": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    },
+    "short_2week": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": true,
+          "weekly_mae": true,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": true,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    },
+    "weighted_4week": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    },
+    "adaptive": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": true,
+          "weekly_mae": true,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": true,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    },
+    "robust_guests": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": true,
+          "weekly_mae": true,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": true,
+        "independent_validation_pass": false
+      }
+    },
+    "trend_adjusted": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    },
+    "locked_mixed": {
+      "bookings": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      },
+      "guests": {
+        "checks": {
+          "weekly_wape": false,
+          "weekly_mae": false,
+          "weekly_rmse": true,
+          "daily_wape": true,
+          "bias": true,
+          "low_demand": true,
+          "zero_weeks": true
+        },
+        "numerical_gates_pass": false,
+        "independent_validation_pass": false
+      }
+    }
+  },
+  "input_sha256": "0af4b7c020769453ef748f2302ca8176c9ced891e77d86db4f33ec5eb2a77cf1",
+  "serving_files_unchanged": true
+}

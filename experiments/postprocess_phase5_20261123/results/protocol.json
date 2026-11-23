@@ -1,0 +1,28 @@
+{
+  "phase": 5,
+  "variants": {
+    "A": "production: round/clamp, booking min when guests>0, party-size floor 7.0, guests>=bookings",
+    "B": "no guest floor: round/clamp, booking min when guests>0, guests>=bookings",
+    "C": "forecast pair robust_median_guests regenerated from verified series (prior recipe)"
+  },
+  "pairs": {
+    "baseline_baseline": "weekday baseline bookings + guests",
+    "arima211_baseline": "ARIMA(2,1,1) bookings + baseline guests",
+    "rf_baseline": "random forest bookings + baseline guests",
+    "robust_median_guests": "4-week bookings + median-of-four weekday guests"
+  },
+  "selection_rule": "Lowest average of bookings and guests development weekly WAPE; ties broken by summed weekly MAE then RMSE",
+  "high_demand_day_threshold_guests": 30,
+  "party_size": 7.0,
+  "prediction_hashes": {
+    "phase3_daily_predictions_sha256": "f000f17195d3409a17dbd941db84a034c46cb11893b15d587a39ce0fdaa1b698",
+    "phase3_arima_daily_predictions_sha256": "d0ff2dd66e4ef983d19e9c1045b3cf1b1fe5387a1bb395fa204d168546eeabeb",
+    "phase2_daily_demand_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7"
+  },
+  "serving_hashes_unchanged": true,
+  "limitations": [
+    "No Phase 4 standalone directory; used Phase 3 saved raw predictions",
+    "Ridge reserved predictions were not invented and were not used",
+    "Config C is regenerated deterministically from the verified series"
+  ]
+}

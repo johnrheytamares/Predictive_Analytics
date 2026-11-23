@@ -1,0 +1,56 @@
+{
+  "phase": 4,
+  "raw_only": true,
+  "selection": {
+    "ridge": {
+      "bookings": "ridge_alpha_100",
+      "guests": "ridge_alpha_10"
+    },
+    "arima": {
+      "bookings": "arima_211",
+      "guests": "arima_111"
+    }
+  },
+  "limitations": [
+    "Ridge has no saved reserved predictions; no reserved Ridge comparison possible",
+    "Reserved weeks previously examined, not independent validation",
+    "Outcome strata are descriptive, not inputs or tuned selection criteria",
+    "Alignment checks do not independently prove original model training was leakage-free"
+  ],
+  "day_strata": "zero=0; low-positive bookings1 / guests1-10; high bookings>=3 / guests>=30; middle remainder",
+  "week_strata": "low bookings<=5 / guests<=35; high bookings>=20 / guests>=150; zeros retained",
+  "validation": {
+    "input_rows": 3920,
+    "selected_rows": 1680,
+    "baseline_keys": 448,
+    "alignment": true,
+    "saved_weekly_totals_match": true,
+    "protected_hashes_unchanged": true
+  },
+  "hashes": {
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\daily_predictions.csv": "f000f17195d3409a17dbd941db84a034c46cb11893b15d587a39ce0fdaa1b698",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\weekly_predictions.csv": "36a3dde15623c7fd1900de21219cd322874ce147a3ebc9cbbfa5f85ac2026094",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\results.json": "a0f11a9e56d3b0e06a397281c6a33fbd0dc27818d2959ee62452e36155a9c837",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\arima\\daily_predictions.csv": "d0ff2dd66e4ef983d19e9c1045b3cf1b1fe5387a1bb395fa204d168546eeabeb",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\arima\\weekly_predictions.csv": "4007e8f5c004af76c66a04141182d479222ddf1769eb09720b7c700b9449fe42",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_compare_20261123\\results\\arima\\results.json": "bdc7da5fabeee4d77a3ab168caf7bc72743e094b975532399fd31df9ec491f91",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\generate_bookings.py": "295f74b3eadab16e6705a660e8516238be1458ac6f1a21f61928c285e7245207",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\generate_summaries.py": "0f284d5a6f75544601552a273ed19728b44ac486982a5558d197d3ea75033ceb",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\test_forecast_evaluation.py": "40f01c21fb2d9a5ce3a4b480fe27460bd456e2b8108d92cad30f28853fe1f1cd",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\test_weekly_forecasts.py": "27f112a7eea411d9921632e9c2a057ee425af3e5caa7e59732519711f90f43c8",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a"
+  }
+}

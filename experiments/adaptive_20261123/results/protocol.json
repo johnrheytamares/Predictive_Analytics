@@ -1,0 +1,16 @@
+{
+  "development": "24 weeks: 2026-04-06 through 2026-09-20",
+  "holdout": "8 weeks: 2026-09-21 through 2026-11-15",
+  "holdout_status": "Selection-excluded in this run; previously inspected, NOT untouched independent validation",
+  "adaptive": "Choose two-week only when previous four completed weekly origins have >=10% lower absolute weekly error than four-week; otherwise four-week. Per target, all inner outcomes before outer cutoff.",
+  "robust_guests": "Four-week baseline bookings; median of four matching-weekday guest counts, including zeros; no source rows deleted",
+  "trend_adjusted": "Four-week forecast scaled by 1+0.5*(clip(mean last14 / mean preceding14,0.5,1.5)-1); factor range0.75..1.25. Both means zero =>1; older mean zero and recent positive =>1.25",
+  "operational": "Python nonnegative round; positive guests imply >=1 booking; guest floor uses pre-cutoff median nonzero-day guests/bookings rounded to2 decimals; guests>=bookings",
+  "selection": "Development operational WAPE, weekly RMSE then fixed method order for ties; one choice per target from complete same-method pairs. Mixed pair is fully re-scored; never selected from holdout.",
+  "gates": "Each target: >=5% relative weekly WAPE and MAE gains; weekly RMSE and daily WAPE <=105% control; absolute weekly bias <=control absolute bias +10% control weekly MAE; low-demand MAE <=110% control. Zero-week error must not worsen where observed.",
+  "low_demand": {
+    "bookings": 5,
+    "guests": 35
+  },
+  "output": "Isolated JSON only; no changes to serving files or data"
+}

@@ -1,0 +1,719 @@
+{
+  "protocol": {
+    "phase": 3,
+    "forecast_type": "raw",
+    "dataset_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7",
+    "dataset_totals": {
+      "days": 356,
+      "bookings": 519,
+      "guests": 6669
+    },
+    "development": "24 weeks: 2026-04-06 through 2026-09-20",
+    "reserved": "8 weeks: 2026-09-21 through 2026-11-15; previously inspected",
+    "wape_definition": {
+      "formula": "100 * sum(|predicted - actual|) / sum(actual)",
+      "weekly": "seven-day totals aggregated first, then WAPE across weeks",
+      "daily": "WAPE across all daily points in the period",
+      "note": "WAPE is an error measure, not an accuracy percentage"
+    },
+    "ridge_alphas": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "random_forest": {
+      "n_estimators": 100,
+      "max_depth": 6,
+      "min_samples_leaf": 5,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": 1
+    },
+    "arima": {
+      "available": false,
+      "dependency": "statsmodels",
+      "orders_planned": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          1
+        ]
+      ],
+      "ran": false,
+      "reason": "statsmodels is not installed in this environment. No ARIMA fits were run. Approve installation before Phase 3 ARIMA results."
+    },
+    "selection_rule": "Per target, lowest development weekly WAPE; ties broken by weekly MAE then RMSE",
+    "serving_hashes_unchanged": true
+  },
+  "selection": {
+    "bookings": {
+      "method": "weekday_baseline",
+      "development_weekly_wape": 28.763440860215052,
+      "development_daily_wape": 61.02150537634409,
+      "development_weekly_mae": 3.34375
+    },
+    "guests": {
+      "method": "weekday_baseline",
+      "development_weekly_wape": 33.77439629507112,
+      "development_daily_wape": 81.3761164406219,
+      "development_weekly_mae": 42.541666666666664
+    }
+  },
+  "comparison": [
+    {
+      "period": "development",
+      "method": "weekday_baseline",
+      "target": "bookings",
+      "weekly_wape": 28.763440860215052,
+      "daily_wape": 61.02150537634409,
+      "weekly_mae": 3.34375,
+      "daily_mae": 1.0133928571428572,
+      "weekly_rmse": 4.2668172173959675,
+      "daily_rmse": 1.329188124920085,
+      "weekly_bias": 0.9895833333333334,
+      "daily_bias": 0.14136904761904762
+    },
+    {
+      "period": "development",
+      "method": "weekday_baseline",
+      "target": "guests",
+      "weekly_wape": 33.77439629507112,
+      "daily_wape": 81.3761164406219,
+      "weekly_mae": 42.541666666666664,
+      "daily_mae": 14.642857142857142,
+      "weekly_rmse": 58.854870939738994,
+      "daily_rmse": 22.74949306080928,
+      "weekly_bias": 6.541666666666667,
+      "daily_bias": 0.9345238095238095
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_0.1",
+      "target": "bookings",
+      "weekly_wape": 33.26176714603844,
+      "daily_wape": 65.96338216622273,
+      "weekly_mae": 3.866680430726969,
+      "daily_mae": 1.0954633109747702,
+      "weekly_rmse": 4.849429050736662,
+      "daily_rmse": 1.3933030877259753,
+      "weekly_bias": 2.099702590548118,
+      "daily_bias": 0.2999575129354455
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_0.1",
+      "target": "guests",
+      "weekly_wape": 39.37016576060249,
+      "daily_wape": 98.03705229625338,
+      "weekly_mae": 49.59000462262555,
+      "daily_mae": 17.640833874498448,
+      "weekly_rmse": 70.85536243091838,
+      "daily_rmse": 26.062705079670582,
+      "weekly_bias": -2.964791134269961,
+      "daily_bias": -0.4235415906099946
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_1",
+      "target": "bookings",
+      "weekly_wape": 32.913114182357795,
+      "daily_wape": 65.86435923282168,
+      "weekly_mae": 3.8261495236990934,
+      "daily_mae": 1.0938188229736459,
+      "weekly_rmse": 4.794726129887186,
+      "daily_rmse": 1.3842244999298914,
+      "weekly_bias": 2.0151751238770825,
+      "daily_bias": 0.28788216055386895
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_1",
+      "target": "guests",
+      "weekly_wape": 39.07941464614757,
+      "daily_wape": 97.55234255870131,
+      "weekly_mae": 49.22377936471003,
+      "daily_mae": 17.55361497350917,
+      "weekly_rmse": 69.93893841752566,
+      "daily_rmse": 25.877067070813204,
+      "weekly_bias": -1.965291334347758,
+      "daily_bias": -0.2807559049068226
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_10",
+      "target": "bookings",
+      "weekly_wape": 31.750166266150007,
+      "daily_wape": 64.47116308487885,
+      "weekly_mae": 3.6909568284399388,
+      "daily_mae": 1.0706818155167381,
+      "weekly_rmse": 4.629124164746917,
+      "daily_rmse": 1.3499982199586698,
+      "weekly_bias": 1.7461407411357002,
+      "daily_bias": 0.24944867730510004
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_10",
+      "target": "guests",
+      "weekly_wape": 38.14155295739189,
+      "daily_wape": 94.3388708783069,
+      "weekly_mae": 48.04246441258153,
+      "daily_mae": 16.975381349114393,
+      "weekly_rmse": 67.02347364211967,
+      "daily_rmse": 25.135925469294698,
+      "weekly_bias": 2.1464607798518727,
+      "daily_bias": 0.30663725426455374
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_100",
+      "target": "bookings",
+      "weekly_wape": 28.94749099954473,
+      "daily_wape": 61.56955740797759,
+      "weekly_mae": 3.365145828697075,
+      "daily_mae": 1.0224944355253422,
+      "weekly_rmse": 4.42902699360791,
+      "daily_rmse": 1.3039259079766534,
+      "weekly_bias": 1.303639332147824,
+      "daily_bias": 0.18623419030683197
+    },
+    {
+      "period": "development",
+      "method": "ridge_alpha_100",
+      "target": "guests",
+      "weekly_wape": 38.78459691973744,
+      "daily_wape": 91.10487033424002,
+      "weekly_mae": 48.85243187015262,
+      "daily_mae": 16.39345375121474,
+      "weekly_rmse": 65.79907832569343,
+      "daily_rmse": 23.933645379590768,
+      "weekly_bias": 16.256563209104858,
+      "daily_bias": 2.3223661727292653
+    },
+    {
+      "period": "development",
+      "method": "random_forest",
+      "target": "bookings",
+      "weekly_wape": 30.37334256526595,
+      "daily_wape": 59.50986930355354,
+      "weekly_mae": 3.530901073212167,
+      "daily_mae": 0.9882889009340142,
+      "weekly_rmse": 4.389556956780166,
+      "daily_rmse": 1.2716725275722076,
+      "weekly_bias": 1.059936760984509,
+      "daily_bias": 0.15141953728350124
+    },
+    {
+      "period": "development",
+      "method": "random_forest",
+      "target": "guests",
+      "weekly_wape": 40.4906054901177,
+      "daily_wape": 89.99662137303237,
+      "weekly_mae": 51.001291831927425,
+      "daily_mae": 16.19403490539743,
+      "weekly_rmse": 65.08215869248596,
+      "daily_rmse": 23.12547389768487,
+      "weekly_bias": 22.766024411510454,
+      "daily_bias": 3.2522892016443503
+    },
+    {
+      "period": "reserved",
+      "method": "weekday_baseline",
+      "target": "bookings",
+      "weekly_wape": 54.03225806451613,
+      "daily_wape": 84.6774193548387,
+      "weekly_mae": 2.09375,
+      "daily_mae": 0.46875,
+      "weekly_rmse": 2.6794938887782522,
+      "daily_rmse": 0.6589019545533962,
+      "weekly_bias": 1.46875,
+      "daily_bias": 0.20982142857142858
+    },
+    {
+      "period": "reserved",
+      "method": "weekday_baseline",
+      "target": "guests",
+      "weekly_wape": 83.54545454545455,
+      "daily_wape": 149.72727272727272,
+      "weekly_mae": 28.71875,
+      "daily_mae": 7.352678571428571,
+      "weekly_rmse": 33.95412806272604,
+      "daily_rmse": 9.890076646387962,
+      "weekly_bias": 16.15625,
+      "daily_bias": 2.3080357142857144
+    },
+    {
+      "period": "reserved",
+      "method": "random_forest",
+      "target": "bookings",
+      "weekly_wape": 70.22020956236783,
+      "daily_wape": 98.09305832161033,
+      "weekly_mae": 2.7210331205417533,
+      "daily_mae": 0.5430151442803429,
+      "weekly_rmse": 3.205785419912889,
+      "daily_rmse": 0.7126089591018459,
+      "weekly_bias": 1.9152959548770634,
+      "daily_bias": 0.2736137078395805
+    },
+    {
+      "period": "reserved",
+      "method": "random_forest",
+      "target": "guests",
+      "weekly_wape": 103.6291503010683,
+      "daily_wape": 158.20669624047528,
+      "weekly_mae": 35.62252041599223,
+      "daily_mae": 7.769078833237626,
+      "weekly_rmse": 41.051576349387744,
+      "daily_rmse": 9.687617489685271,
+      "weekly_bias": 25.444145931756584,
+      "daily_bias": 3.6348779902509407
+    }
+  ],
+  "development_summaries": {
+    "weekday_baseline": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 302.75,
+          "absolute_error": 80.25,
+          "net_error": 23.75,
+          "mae": 3.34375,
+          "rmse": 4.2668172173959675,
+          "wape": 28.763440860215052,
+          "bias": 0.9895833333333334
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 302.75,
+          "absolute_error": 170.25,
+          "net_error": 23.75,
+          "mae": 1.0133928571428572,
+          "rmse": 1.329188124920085,
+          "wape": 61.02150537634409,
+          "bias": 0.14136904761904762
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3180.0,
+          "absolute_error": 1021.0,
+          "net_error": 157.0,
+          "mae": 42.541666666666664,
+          "rmse": 58.854870939738994,
+          "wape": 33.77439629507112,
+          "bias": 6.541666666666667
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3180.0,
+          "absolute_error": 2460.0,
+          "net_error": 157.0,
+          "mae": 14.642857142857142,
+          "rmse": 22.74949306080928,
+          "wape": 81.3761164406219,
+          "bias": 0.9345238095238095
+        }
+      }
+    },
+    "ridge_alpha_0.1": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 329.3928621731548,
+          "absolute_error": 92.80033033744725,
+          "net_error": 50.39286217315483,
+          "mae": 3.866680430726969,
+          "rmse": 4.849429050736662,
+          "wape": 33.26176714603844,
+          "bias": 2.099702590548118
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 329.39286217315487,
+          "absolute_error": 184.0378362437614,
+          "net_error": 50.39286217315484,
+          "mae": 1.0954633109747702,
+          "rmse": 1.3933030877259753,
+          "wape": 65.96338216622273,
+          "bias": 0.2999575129354455
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 2951.845012777521,
+          "absolute_error": 1190.1601109430133,
+          "net_error": -71.15498722247906,
+          "mae": 49.59000462262555,
+          "rmse": 70.85536243091838,
+          "wape": 39.37016576060249,
+          "bias": -2.964791134269961
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 2951.845012777521,
+          "absolute_error": 2963.660090915739,
+          "net_error": -71.1549872224791,
+          "mae": 17.640833874498448,
+          "rmse": 26.062705079670582,
+          "wape": 98.03705229625338,
+          "bias": -0.4235415906099946
+        }
+      }
+    },
+    "ridge_alpha_1": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 327.36420297305,
+          "absolute_error": 91.82758856877824,
+          "net_error": 48.364202973049984,
+          "mae": 3.8261495236990934,
+          "rmse": 4.794726129887186,
+          "wape": 32.913114182357795,
+          "bias": 2.0151751238770825
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 327.36420297305,
+          "absolute_error": 183.7615622595725,
+          "net_error": 48.364202973049984,
+          "mae": 1.0938188229736459,
+          "rmse": 1.3842244999298914,
+          "wape": 65.86435923282168,
+          "bias": 0.28788216055386895
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 2975.833007975654,
+          "absolute_error": 1181.3707047530409,
+          "net_error": -47.16699202434619,
+          "mae": 49.22377936471003,
+          "rmse": 69.93893841752566,
+          "wape": 39.07941464614757,
+          "bias": -1.965291334347758
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 2975.833007975654,
+          "absolute_error": 2949.0073155495406,
+          "net_error": -47.1669920243462,
+          "mae": 17.55361497350917,
+          "rmse": 25.877067070813204,
+          "wape": 97.55234255870131,
+          "bias": -0.2807559049068226
+        }
+      }
+    },
+    "ridge_alpha_10": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 320.9073777872568,
+          "absolute_error": 88.58296388255853,
+          "net_error": 41.907377787256806,
+          "mae": 3.6909568284399388,
+          "rmse": 4.629124164746917,
+          "wape": 31.750166266150007,
+          "bias": 1.7461407411357002
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 320.9073777872568,
+          "absolute_error": 179.874545006812,
+          "net_error": 41.907377787256806,
+          "mae": 1.0706818155167381,
+          "rmse": 1.3499982199586698,
+          "wape": 64.47116308487885,
+          "bias": 0.24944867730510004
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3074.515058716445,
+          "absolute_error": 1153.0191459019568,
+          "net_error": 51.51505871644495,
+          "mae": 48.04246441258153,
+          "rmse": 67.02347364211967,
+          "wape": 38.14155295739189,
+          "bias": 2.1464607798518727
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3074.515058716445,
+          "absolute_error": 2851.864066651218,
+          "net_error": 51.515058716445026,
+          "mae": 16.975381349114393,
+          "rmse": 25.135925469294698,
+          "wape": 94.3388708783069,
+          "bias": 0.30663725426455374
+        }
+      }
+    },
+    "ridge_alpha_100": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 310.2873439715478,
+          "absolute_error": 80.7634998887298,
+          "net_error": 31.287343971547774,
+          "mae": 3.365145828697075,
+          "rmse": 4.42902699360791,
+          "wape": 28.94749099954473,
+          "bias": 1.303639332147824
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 310.2873439715478,
+          "absolute_error": 171.7790651682575,
+          "net_error": 31.28734397154777,
+          "mae": 1.0224944355253422,
+          "rmse": 1.3039259079766534,
+          "wape": 61.56955740797759,
+          "bias": 0.18623419030683197
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3413.1575170185165,
+          "absolute_error": 1172.4583648836629,
+          "net_error": 390.1575170185166,
+          "mae": 48.85243187015262,
+          "rmse": 65.79907832569343,
+          "wape": 38.78459691973744,
+          "bias": 16.256563209104858
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3413.1575170185165,
+          "absolute_error": 2754.100230204076,
+          "net_error": 390.15751701851656,
+          "mae": 16.39345375121474,
+          "rmse": 23.933645379590768,
+          "wape": 91.10487033424002,
+          "bias": 2.3223661727292653
+        }
+      }
+    },
+    "random_forest": {
+      "bookings": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 279.0,
+          "predicted_total": 304.4384822636282,
+          "absolute_error": 84.74162575709201,
+          "net_error": 25.438482263628213,
+          "mae": 3.530901073212167,
+          "rmse": 4.389556956780166,
+          "wape": 30.37334256526595,
+          "bias": 1.059936760984509
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 279.0,
+          "predicted_total": 304.4384822636282,
+          "absolute_error": 166.0325353569144,
+          "net_error": 25.43848226362821,
+          "mae": 0.9882889009340142,
+          "rmse": 1.2716725275722076,
+          "wape": 59.50986930355354,
+          "bias": 0.15141953728350124
+        }
+      },
+      "guests": {
+        "weeks": 24,
+        "weekly": {
+          "n": 24,
+          "actual_total": 3023.0,
+          "predicted_total": 3569.384585876251,
+          "absolute_error": 1224.0310039662581,
+          "net_error": 546.3845858762509,
+          "mae": 51.001291831927425,
+          "rmse": 65.08215869248596,
+          "wape": 40.4906054901177,
+          "bias": 22.766024411510454
+        },
+        "daily": {
+          "n": 168,
+          "actual_total": 3023.0,
+          "predicted_total": 3569.384585876251,
+          "absolute_error": 2720.597864106768,
+          "net_error": 546.3845858762509,
+          "mae": 16.19403490539743,
+          "rmse": 23.12547389768487,
+          "wape": 89.99662137303237,
+          "bias": 3.2522892016443503
+        }
+      }
+    }
+  },
+  "reserved_summaries": {
+    "weekday_baseline": {
+      "bookings": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 31.0,
+          "predicted_total": 42.75,
+          "absolute_error": 16.75,
+          "net_error": 11.75,
+          "mae": 2.09375,
+          "rmse": 2.6794938887782522,
+          "wape": 54.03225806451613,
+          "bias": 1.46875
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 31.0,
+          "predicted_total": 42.75,
+          "absolute_error": 26.25,
+          "net_error": 11.75,
+          "mae": 0.46875,
+          "rmse": 0.6589019545533962,
+          "wape": 84.6774193548387,
+          "bias": 0.20982142857142858
+        }
+      },
+      "guests": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 275.0,
+          "predicted_total": 404.25,
+          "absolute_error": 229.75,
+          "net_error": 129.25,
+          "mae": 28.71875,
+          "rmse": 33.95412806272604,
+          "wape": 83.54545454545455,
+          "bias": 16.15625
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 275.0,
+          "predicted_total": 404.25,
+          "absolute_error": 411.75,
+          "net_error": 129.25,
+          "mae": 7.352678571428571,
+          "rmse": 9.890076646387962,
+          "wape": 149.72727272727272,
+          "bias": 2.3080357142857144
+        }
+      }
+    },
+    "random_forest": {
+      "bookings": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 31.0,
+          "predicted_total": 46.322367639016505,
+          "absolute_error": 21.768264964334026,
+          "net_error": 15.322367639016507,
+          "mae": 2.7210331205417533,
+          "rmse": 3.205785419912889,
+          "wape": 70.22020956236783,
+          "bias": 1.9152959548770634
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 31.0,
+          "predicted_total": 46.322367639016505,
+          "absolute_error": 30.4088480796992,
+          "net_error": 15.322367639016507,
+          "mae": 0.5430151442803429,
+          "rmse": 0.7126089591018459,
+          "wape": 98.09305832161033,
+          "bias": 0.2736137078395805
+        }
+      },
+      "guests": {
+        "weeks": 8,
+        "weekly": {
+          "n": 8,
+          "actual_total": 275.0,
+          "predicted_total": 478.55316745405264,
+          "absolute_error": 284.9801633279378,
+          "net_error": 203.55316745405267,
+          "mae": 35.62252041599223,
+          "rmse": 41.051576349387744,
+          "wape": 103.6291503010683,
+          "bias": 25.444145931756584
+        },
+        "daily": {
+          "n": 56,
+          "actual_total": 275.0,
+          "predicted_total": 478.55316745405264,
+          "absolute_error": 435.06841466130703,
+          "net_error": 203.55316745405267,
+          "mae": 7.769078833237626,
+          "rmse": 9.687617489685271,
+          "wape": 158.20669624047528,
+          "bias": 3.6348779902509407
+        }
+      }
+    }
+  },
+  "serving_hashes": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+    "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688"
+  }
+}

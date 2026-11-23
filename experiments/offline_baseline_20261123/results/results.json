@@ -1,0 +1,2421 @@
+{
+  "summary": [
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 310,
+        "predicted": 345.5,
+        "absolute_error": 97.0,
+        "net_error": 35.5,
+        "mae": 3.03125,
+        "rmse": 3.930549420882531,
+        "wape": 31.29032258064516,
+        "over": 19,
+        "under": 11,
+        "equal": 2
+      },
+      "daily": {
+        "actual": 310,
+        "predicted": 345.5,
+        "absolute_error": 196.5,
+        "net_error": 35.5,
+        "mae": 0.8772321428571429,
+        "rmse": 1.197327753791751,
+        "wape": 63.38709677419355,
+        "over": 114,
+        "under": 76,
+        "equal": 34
+      }
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 31,
+        "predicted": 42.75,
+        "absolute_error": 16.75,
+        "net_error": 11.75,
+        "mae": 2.09375,
+        "rmse": 2.6794938887782522,
+        "wape": 54.03225806451613,
+        "over": 5,
+        "under": 2,
+        "equal": 1
+      },
+      "daily": {
+        "actual": 31,
+        "predicted": 42.75,
+        "absolute_error": 26.25,
+        "net_error": 11.75,
+        "mae": 0.46875,
+        "rmse": 0.6589019545533962,
+        "wape": 84.6774193548387,
+        "over": 28,
+        "under": 11,
+        "equal": 17
+      }
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 310,
+        "predicted": 333.5,
+        "absolute_error": 87.5,
+        "net_error": 23.5,
+        "mae": 2.734375,
+        "rmse": 3.9419617578053696,
+        "wape": 28.225806451612904,
+        "over": 17,
+        "under": 9,
+        "equal": 6
+      },
+      "daily": {
+        "actual": 310,
+        "predicted": 333.5,
+        "absolute_error": 195.5,
+        "net_error": 23.5,
+        "mae": 0.8727678571428571,
+        "rmse": 1.2637635120091553,
+        "wape": 63.064516129032256,
+        "over": 85,
+        "under": 72,
+        "equal": 67
+      }
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 31,
+        "predicted": 38.0,
+        "absolute_error": 14.0,
+        "net_error": 7.0,
+        "mae": 1.75,
+        "rmse": 2.318404623873926,
+        "wape": 45.16129032258065,
+        "over": 5,
+        "under": 1,
+        "equal": 2
+      },
+      "daily": {
+        "actual": 31,
+        "predicted": 38.0,
+        "absolute_error": 21.0,
+        "net_error": 7.0,
+        "mae": 0.375,
+        "rmse": 0.6338656910463875,
+        "wape": 67.74193548387096,
+        "over": 17,
+        "under": 8,
+        "equal": 31
+      }
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 310,
+        "predicted": 339.40000000000003,
+        "absolute_error": 92.2,
+        "net_error": 29.400000000000016,
+        "mae": 2.88125,
+        "rmse": 3.8308778367366405,
+        "wape": 29.741935483870968,
+        "over": 19,
+        "under": 13,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 310,
+        "predicted": 339.40000000000003,
+        "absolute_error": 191.0,
+        "net_error": 29.400000000000013,
+        "mae": 0.8526785714285714,
+        "rmse": 1.191787373174067,
+        "wape": 61.61290322580645,
+        "over": 118,
+        "under": 80,
+        "equal": 26
+      }
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 31,
+        "predicted": 40.5,
+        "absolute_error": 16.1,
+        "net_error": 9.5,
+        "mae": 2.0125,
+        "rmse": 2.5399311014277535,
+        "wape": 51.93548387096775,
+        "over": 5,
+        "under": 3,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 31,
+        "predicted": 40.5,
+        "absolute_error": 23.900000000000002,
+        "net_error": 9.500000000000002,
+        "mae": 0.4267857142857143,
+        "rmse": 0.6398939644302685,
+        "wape": 77.09677419354838,
+        "over": 30,
+        "under": 11,
+        "equal": 15
+      }
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 3298,
+        "predicted": 3584.25,
+        "absolute_error": 1250.75,
+        "net_error": 286.25,
+        "mae": 39.0859375,
+        "rmse": 53.7228310695276,
+        "wape": 37.92449969678593,
+        "over": 17,
+        "under": 15,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 3298,
+        "predicted": 3584.25,
+        "absolute_error": 2871.75,
+        "net_error": 286.25,
+        "mae": 12.8203125,
+        "rmse": 20.312754119289544,
+        "wape": 87.07550030321407,
+        "over": 139,
+        "under": 74,
+        "equal": 11
+      }
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 275,
+        "predicted": 404.25,
+        "absolute_error": 229.75,
+        "net_error": 129.25,
+        "mae": 28.71875,
+        "rmse": 33.95412806272604,
+        "wape": 83.54545454545455,
+        "over": 6,
+        "under": 2,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 275,
+        "predicted": 404.25,
+        "absolute_error": 411.75,
+        "net_error": 129.25,
+        "mae": 7.352678571428571,
+        "rmse": 9.890076646387962,
+        "wape": 149.72727272727272,
+        "over": 40,
+        "under": 12,
+        "equal": 4
+      }
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 3298,
+        "predicted": 3490.5,
+        "absolute_error": 1175.5,
+        "net_error": 192.5,
+        "mae": 36.734375,
+        "rmse": 55.10820322329517,
+        "wape": 35.64281382656155,
+        "over": 16,
+        "under": 14,
+        "equal": 2
+      },
+      "daily": {
+        "actual": 3298,
+        "predicted": 3490.5,
+        "absolute_error": 2908.5,
+        "net_error": 192.5,
+        "mae": 12.984375,
+        "rmse": 21.442796617645616,
+        "wape": 88.18981200727714,
+        "over": 111,
+        "under": 86,
+        "equal": 27
+      }
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 275,
+        "predicted": 349.0,
+        "absolute_error": 200.0,
+        "net_error": 74.0,
+        "mae": 25.0,
+        "rmse": 29.483045975611137,
+        "wape": 72.72727272727273,
+        "over": 6,
+        "under": 2,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 275,
+        "predicted": 349.0,
+        "absolute_error": 379.0,
+        "net_error": 74.0,
+        "mae": 6.767857142857143,
+        "rmse": 10.719225051946886,
+        "wape": 137.8181818181818,
+        "over": 29,
+        "under": 12,
+        "equal": 15
+      }
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "period": "overall_32weeks",
+      "weekly": {
+        "actual": 3298,
+        "predicted": 3538.5,
+        "absolute_error": 1153.9,
+        "net_error": 240.50000000000009,
+        "mae": 36.059375,
+        "rmse": 52.00188998969172,
+        "wape": 34.987871437234695,
+        "over": 16,
+        "under": 15,
+        "equal": 1
+      },
+      "daily": {
+        "actual": 3298,
+        "predicted": 3538.5,
+        "absolute_error": 2826.9,
+        "net_error": 240.5000000000001,
+        "mae": 12.620089285714286,
+        "rmse": 20.504136124555107,
+        "wape": 85.71558520315342,
+        "over": 134,
+        "under": 81,
+        "equal": 9
+      }
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "period": "latest_8weeks",
+      "weekly": {
+        "actual": 275,
+        "predicted": 378.2,
+        "absolute_error": 219.40000000000003,
+        "net_error": 103.2,
+        "mae": 27.425000000000004,
+        "rmse": 31.801415062855302,
+        "wape": 79.7818181818182,
+        "over": 6,
+        "under": 2,
+        "equal": 0
+      },
+      "daily": {
+        "actual": 275,
+        "predicted": 378.2,
+        "absolute_error": 402.0,
+        "net_error": 103.20000000000002,
+        "mae": 7.178571428571429,
+        "rmse": 10.183284623061741,
+        "wape": 146.1818181818182,
+        "over": 39,
+        "under": 13,
+        "equal": 4
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "period": "overall_32weeks",
+      "better_weeks": 15,
+      "worse_weeks": 13,
+      "tied_weeks": 4,
+      "absolute_error_change": -9.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "period": "latest_8weeks",
+      "better_weeks": 4,
+      "worse_weeks": 1,
+      "tied_weeks": 3,
+      "absolute_error_change": -2.75
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "period": "overall_32weeks",
+      "better_weeks": 16,
+      "worse_weeks": 15,
+      "tied_weeks": 1,
+      "absolute_error_change": -4.800000000000001
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "period": "latest_8weeks",
+      "better_weeks": 4,
+      "worse_weeks": 3,
+      "tied_weeks": 1,
+      "absolute_error_change": -0.6500000000000004
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "period": "overall_32weeks",
+      "better_weeks": 20,
+      "worse_weeks": 12,
+      "tied_weeks": 0,
+      "absolute_error_change": -75.25
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "period": "latest_8weeks",
+      "better_weeks": 5,
+      "worse_weeks": 3,
+      "tied_weeks": 0,
+      "absolute_error_change": -29.75
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "period": "overall_32weeks",
+      "better_weeks": 22,
+      "worse_weeks": 10,
+      "tied_weeks": 0,
+      "absolute_error_change": -96.84999999999997
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "period": "latest_8weeks",
+      "better_weeks": 5,
+      "worse_weeks": 3,
+      "tied_weeks": 0,
+      "absolute_error_change": -10.349999999999977
+    }
+  ],
+  "weekly": [
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 15,
+      "predicted": 15.75,
+      "error": 0.75,
+      "absolute_error": 0.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 18,
+      "predicted": 15.5,
+      "error": -2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 21,
+      "predicted": 17.25,
+      "error": -3.75,
+      "absolute_error": 3.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 19,
+      "predicted": 18.0,
+      "error": -1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 15,
+      "predicted": 18.25,
+      "error": 3.25,
+      "absolute_error": 3.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 17,
+      "predicted": 18.25,
+      "error": 1.25,
+      "absolute_error": 1.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 16,
+      "predicted": 18.0,
+      "error": 2.0,
+      "absolute_error": 2.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 25,
+      "predicted": 16.75,
+      "error": -8.25,
+      "absolute_error": 8.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 11,
+      "predicted": 18.25,
+      "error": 7.25,
+      "absolute_error": 7.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 8,
+      "predicted": 17.25,
+      "error": 9.25,
+      "absolute_error": 9.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 7,
+      "predicted": 15.0,
+      "error": 8.0,
+      "absolute_error": 8.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 7,
+      "predicted": 12.75,
+      "error": 5.75,
+      "absolute_error": 5.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 12,
+      "predicted": 8.25,
+      "error": -3.75,
+      "absolute_error": 3.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 14,
+      "predicted": 8.5,
+      "error": -5.5,
+      "absolute_error": 5.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 5,
+      "predicted": 10.0,
+      "error": 5.0,
+      "absolute_error": 5.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 12,
+      "predicted": 9.5,
+      "error": -2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 8,
+      "predicted": 10.75,
+      "error": 2.75,
+      "absolute_error": 2.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 8,
+      "predicted": 9.75,
+      "error": 1.75,
+      "absolute_error": 1.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 6,
+      "predicted": 8.25,
+      "error": 2.25,
+      "absolute_error": 2.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 7,
+      "predicted": 8.5,
+      "error": 1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 8,
+      "predicted": 7.25,
+      "error": -0.75,
+      "absolute_error": 0.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 6,
+      "predicted": 7.25,
+      "error": 1.25,
+      "absolute_error": 1.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 7,
+      "predicted": 6.75,
+      "error": -0.25,
+      "absolute_error": 0.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 7,
+      "predicted": 6.75,
+      "error": -0.25,
+      "absolute_error": 0.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 6,
+      "predicted": 7.0,
+      "error": 1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 2,
+      "predicted": 6.75,
+      "error": 4.75,
+      "absolute_error": 4.75
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 3,
+      "predicted": 5.5,
+      "error": 2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 4.5,
+      "error": 4.5,
+      "absolute_error": 4.5
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 5,
+      "predicted": 2.75,
+      "error": -2.25,
+      "absolute_error": 2.25
+    },
+    {
+      "target": "bookings",
+      "method": "current_4week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 1,
+      "predicted": 2.5,
+      "error": 1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 15,
+      "predicted": 18.0,
+      "error": 3.0,
+      "absolute_error": 3.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 18,
+      "predicted": 16.5,
+      "error": -1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 21,
+      "predicted": 16.5,
+      "error": -4.5,
+      "absolute_error": 4.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 19,
+      "predicted": 19.5,
+      "error": 0.5,
+      "absolute_error": 0.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 15,
+      "predicted": 20.0,
+      "error": 5.0,
+      "absolute_error": 5.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 17,
+      "predicted": 17.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 16,
+      "predicted": 16.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 25,
+      "predicted": 16.5,
+      "error": -8.5,
+      "absolute_error": 8.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 11,
+      "predicted": 20.5,
+      "error": 9.5,
+      "absolute_error": 9.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 8,
+      "predicted": 18.0,
+      "error": 10.0,
+      "absolute_error": 10.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 7,
+      "predicted": 9.5,
+      "error": 2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 7,
+      "predicted": 7.5,
+      "error": 0.5,
+      "absolute_error": 0.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 12,
+      "predicted": 7.0,
+      "error": -5.0,
+      "absolute_error": 5.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 14,
+      "predicted": 9.5,
+      "error": -4.5,
+      "absolute_error": 4.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 5,
+      "predicted": 13.0,
+      "error": 8.0,
+      "absolute_error": 8.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 12,
+      "predicted": 9.5,
+      "error": -2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 8,
+      "predicted": 8.5,
+      "error": 0.5,
+      "absolute_error": 0.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 8,
+      "predicted": 10.0,
+      "error": 2.0,
+      "absolute_error": 2.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 6,
+      "predicted": 8.0,
+      "error": 2.0,
+      "absolute_error": 2.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 8,
+      "predicted": 6.5,
+      "error": -1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 6,
+      "predicted": 7.5,
+      "error": 1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 7,
+      "predicted": 6.5,
+      "error": -0.5,
+      "absolute_error": 0.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 7,
+      "predicted": 7.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 6,
+      "predicted": 7.0,
+      "error": 1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 2,
+      "predicted": 6.5,
+      "error": 4.5,
+      "absolute_error": 4.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 3,
+      "predicted": 4.0,
+      "error": 1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 2.5,
+      "error": 2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 5,
+      "predicted": 1.5,
+      "error": -3.5,
+      "absolute_error": 3.5
+    },
+    {
+      "target": "bookings",
+      "method": "short_2week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 1,
+      "predicted": 2.5,
+      "error": 1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 15,
+      "predicted": 16.400000000000002,
+      "error": 1.4000000000000021,
+      "absolute_error": 1.4000000000000021
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 18,
+      "predicted": 16.1,
+      "error": -1.8999999999999986,
+      "absolute_error": 1.8999999999999986
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 21,
+      "predicted": 17.1,
+      "error": -3.8999999999999986,
+      "absolute_error": 3.8999999999999986
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 19,
+      "predicted": 18.6,
+      "error": -0.3999999999999986,
+      "absolute_error": 0.3999999999999986
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 15,
+      "predicted": 19.0,
+      "error": 4.0,
+      "absolute_error": 4.0
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 17,
+      "predicted": 17.7,
+      "error": 0.6999999999999993,
+      "absolute_error": 0.6999999999999993
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 16,
+      "predicted": 17.2,
+      "error": 1.1999999999999993,
+      "absolute_error": 1.1999999999999993
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 25,
+      "predicted": 16.400000000000002,
+      "error": -8.599999999999998,
+      "absolute_error": 8.599999999999998
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 11,
+      "predicted": 19.700000000000003,
+      "error": 8.700000000000003,
+      "absolute_error": 8.700000000000003
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 8,
+      "predicted": 16.8,
+      "error": 8.8,
+      "absolute_error": 8.8
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 7,
+      "predicted": 13.100000000000001,
+      "error": 6.100000000000001,
+      "absolute_error": 6.100000000000001
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 7,
+      "predicted": 9.9,
+      "error": 2.9000000000000004,
+      "absolute_error": 2.9000000000000004
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 12,
+      "predicted": 7.6000000000000005,
+      "error": -4.3999999999999995,
+      "absolute_error": 4.3999999999999995
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 14,
+      "predicted": 9.100000000000001,
+      "error": -4.899999999999999,
+      "absolute_error": 4.899999999999999
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 5,
+      "predicted": 11.3,
+      "error": 6.300000000000001,
+      "absolute_error": 6.300000000000001
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 12,
+      "predicted": 9.299999999999999,
+      "error": -2.700000000000001,
+      "absolute_error": 2.700000000000001
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 8,
+      "predicted": 10.3,
+      "error": 2.3000000000000007,
+      "absolute_error": 2.3000000000000007
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 8,
+      "predicted": 9.2,
+      "error": 1.1999999999999993,
+      "absolute_error": 1.1999999999999993
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 6,
+      "predicted": 8.5,
+      "error": 2.5,
+      "absolute_error": 2.5
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 7,
+      "predicted": 7.6000000000000005,
+      "error": 0.6000000000000005,
+      "absolute_error": 0.6000000000000005
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 8,
+      "predicted": 7.0,
+      "error": -1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 6,
+      "predicted": 7.300000000000001,
+      "error": 1.3000000000000007,
+      "absolute_error": 1.3000000000000007
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 7,
+      "predicted": 6.800000000000001,
+      "error": -0.1999999999999993,
+      "absolute_error": 0.1999999999999993
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 7,
+      "predicted": 6.9,
+      "error": -0.09999999999999964,
+      "absolute_error": 0.09999999999999964
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 7,
+      "predicted": 6.9,
+      "error": -0.09999999999999964,
+      "absolute_error": 0.09999999999999964
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 7,
+      "predicted": 6.9,
+      "error": -0.09999999999999964,
+      "absolute_error": 0.09999999999999964
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 6,
+      "predicted": 7.0,
+      "error": 1.0,
+      "absolute_error": 1.0
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 2,
+      "predicted": 6.6,
+      "error": 4.6,
+      "absolute_error": 4.6
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 3,
+      "predicted": 4.7,
+      "error": 1.7000000000000002,
+      "absolute_error": 1.7000000000000002
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 3.7,
+      "error": 3.7,
+      "absolute_error": 3.7
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 5,
+      "predicted": 1.9,
+      "error": -3.1,
+      "absolute_error": 3.1
+    },
+    {
+      "target": "bookings",
+      "method": "weighted_4week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 1,
+      "predicted": 2.8000000000000003,
+      "error": 1.8000000000000003,
+      "absolute_error": 1.8000000000000003
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 162,
+      "predicted": 124.0,
+      "error": -38.0,
+      "absolute_error": 38.0
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 192,
+      "predicted": 138.5,
+      "error": -53.5,
+      "absolute_error": 53.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 310,
+      "predicted": 160.25,
+      "error": -149.75,
+      "absolute_error": 149.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 239,
+      "predicted": 208.25,
+      "error": -30.75,
+      "absolute_error": 30.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 104,
+      "predicted": 225.75,
+      "error": 121.75,
+      "absolute_error": 121.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 217,
+      "predicted": 211.25,
+      "error": -5.75,
+      "absolute_error": 5.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 165,
+      "predicted": 217.5,
+      "error": 52.5,
+      "absolute_error": 52.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 188,
+      "predicted": 181.25,
+      "error": -6.75,
+      "absolute_error": 6.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 212,
+      "predicted": 168.5,
+      "error": -43.5,
+      "absolute_error": 43.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 129,
+      "predicted": 195.5,
+      "error": 66.5,
+      "absolute_error": 66.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 100,
+      "predicted": 173.5,
+      "error": 73.5,
+      "absolute_error": 73.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 58,
+      "predicted": 157.25,
+      "error": 99.25,
+      "absolute_error": 99.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 109,
+      "predicted": 124.75,
+      "error": 15.75,
+      "absolute_error": 15.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 178,
+      "predicted": 99.0,
+      "error": -79.0,
+      "absolute_error": 79.0
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 25,
+      "predicted": 111.25,
+      "error": 86.25,
+      "absolute_error": 86.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 91,
+      "predicted": 92.5,
+      "error": 1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 82,
+      "predicted": 100.75,
+      "error": 18.75,
+      "absolute_error": 18.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 54,
+      "predicted": 94.0,
+      "error": 40.0,
+      "absolute_error": 40.0
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 66,
+      "predicted": 63.0,
+      "error": -3.0,
+      "absolute_error": 3.0
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 60,
+      "predicted": 73.25,
+      "error": 13.25,
+      "absolute_error": 13.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 67,
+      "predicted": 65.5,
+      "error": -1.5,
+      "absolute_error": 1.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 71,
+      "predicted": 61.75,
+      "error": -9.25,
+      "absolute_error": 9.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 69,
+      "predicted": 66.0,
+      "error": -3.0,
+      "absolute_error": 3.0
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 75,
+      "predicted": 66.75,
+      "error": -8.25,
+      "absolute_error": 8.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 90,
+      "predicted": 70.5,
+      "error": -19.5,
+      "absolute_error": 19.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 52,
+      "predicted": 76.25,
+      "error": 24.25,
+      "absolute_error": 24.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 61,
+      "predicted": 71.5,
+      "error": 10.5,
+      "absolute_error": 10.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 4,
+      "predicted": 69.5,
+      "error": 65.5,
+      "absolute_error": 65.5
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 8,
+      "predicted": 51.75,
+      "error": 43.75,
+      "absolute_error": 43.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 31.25,
+      "error": 31.25,
+      "absolute_error": 31.25
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 49,
+      "predicted": 18.25,
+      "error": -30.75,
+      "absolute_error": 30.75
+    },
+    {
+      "target": "guests",
+      "method": "current_4week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 11,
+      "predicted": 15.25,
+      "error": 4.25,
+      "absolute_error": 4.25
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 162,
+      "predicted": 143.5,
+      "error": -18.5,
+      "absolute_error": 18.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 192,
+      "predicted": 165.5,
+      "error": -26.5,
+      "absolute_error": 26.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 310,
+      "predicted": 177.0,
+      "error": -133.0,
+      "absolute_error": 133.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 239,
+      "predicted": 251.0,
+      "error": 12.0,
+      "absolute_error": 12.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 104,
+      "predicted": 274.5,
+      "error": 170.5,
+      "absolute_error": 170.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 217,
+      "predicted": 171.5,
+      "error": -45.5,
+      "absolute_error": 45.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 165,
+      "predicted": 160.5,
+      "error": -4.5,
+      "absolute_error": 4.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 188,
+      "predicted": 191.0,
+      "error": 3.0,
+      "absolute_error": 3.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 212,
+      "predicted": 176.5,
+      "error": -35.5,
+      "absolute_error": 35.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 129,
+      "predicted": 200.0,
+      "error": 71.0,
+      "absolute_error": 71.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 100,
+      "predicted": 170.5,
+      "error": 70.5,
+      "absolute_error": 70.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 58,
+      "predicted": 114.5,
+      "error": 56.5,
+      "absolute_error": 56.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 109,
+      "predicted": 79.0,
+      "error": -30.0,
+      "absolute_error": 30.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 178,
+      "predicted": 83.5,
+      "error": -94.5,
+      "absolute_error": 94.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 25,
+      "predicted": 143.5,
+      "error": 118.5,
+      "absolute_error": 118.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 91,
+      "predicted": 101.5,
+      "error": 10.5,
+      "absolute_error": 10.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 82,
+      "predicted": 58.0,
+      "error": -24.0,
+      "absolute_error": 24.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 54,
+      "predicted": 86.5,
+      "error": 32.5,
+      "absolute_error": 32.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 66,
+      "predicted": 68.0,
+      "error": 2.0,
+      "absolute_error": 2.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 60,
+      "predicted": 60.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 67,
+      "predicted": 63.0,
+      "error": -4.0,
+      "absolute_error": 4.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 71,
+      "predicted": 63.5,
+      "error": -7.5,
+      "absolute_error": 7.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 69,
+      "predicted": 69.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 75,
+      "predicted": 70.0,
+      "error": -5.0,
+      "absolute_error": 5.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 90,
+      "predicted": 72.0,
+      "error": -18.0,
+      "absolute_error": 18.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 52,
+      "predicted": 82.5,
+      "error": 30.5,
+      "absolute_error": 30.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 61,
+      "predicted": 71.0,
+      "error": 10.0,
+      "absolute_error": 10.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 4,
+      "predicted": 56.5,
+      "error": 52.5,
+      "absolute_error": 52.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 8,
+      "predicted": 32.5,
+      "error": 24.5,
+      "absolute_error": 24.5
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 6.0,
+      "error": 6.0,
+      "absolute_error": 6.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 49,
+      "predicted": 4.0,
+      "error": -45.0,
+      "absolute_error": 45.0
+    },
+    {
+      "target": "guests",
+      "method": "short_2week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 11,
+      "predicted": 24.5,
+      "error": 13.5,
+      "absolute_error": 13.5
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-04-06",
+      "end": "2026-04-12",
+      "actual": 162,
+      "predicted": 134.4,
+      "error": -27.599999999999994,
+      "absolute_error": 27.599999999999994
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-04-13",
+      "end": "2026-04-19",
+      "actual": 192,
+      "predicted": 149.6,
+      "error": -42.400000000000006,
+      "absolute_error": 42.400000000000006
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-04-20",
+      "end": "2026-04-26",
+      "actual": 310,
+      "predicted": 171.0,
+      "error": -139.0,
+      "absolute_error": 139.0
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-04-27",
+      "end": "2026-05-03",
+      "actual": 239,
+      "predicted": 230.9,
+      "error": -8.099999999999994,
+      "absolute_error": 8.099999999999994
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-05-04",
+      "end": "2026-05-10",
+      "actual": 104,
+      "predicted": 243.2,
+      "error": 139.2,
+      "absolute_error": 139.2
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-05-11",
+      "end": "2026-05-17",
+      "actual": 217,
+      "predicted": 194.5,
+      "error": -22.5,
+      "absolute_error": 22.5
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-05-18",
+      "end": "2026-05-24",
+      "actual": 165,
+      "predicted": 196.8,
+      "error": 31.80000000000001,
+      "absolute_error": 31.80000000000001
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "actual": 188,
+      "predicted": 175.8,
+      "error": -12.199999999999989,
+      "absolute_error": 12.199999999999989
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "actual": 212,
+      "predicted": 178.5,
+      "error": -33.5,
+      "absolute_error": 33.5
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "actual": 129,
+      "predicted": 195.9,
+      "error": 66.9,
+      "absolute_error": 66.9
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "actual": 100,
+      "predicted": 169.3,
+      "error": 69.30000000000001,
+      "absolute_error": 69.30000000000001
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "actual": 58,
+      "predicted": 139.9,
+      "error": 81.9,
+      "absolute_error": 81.9
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "actual": 109,
+      "predicted": 100.2,
+      "error": -8.799999999999997,
+      "absolute_error": 8.799999999999997
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "actual": 178,
+      "predicted": 93.9,
+      "error": -84.1,
+      "absolute_error": 84.1
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "actual": 25,
+      "predicted": 125.5,
+      "error": 100.5,
+      "absolute_error": 100.5
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "actual": 91,
+      "predicted": 91.0,
+      "error": 0.0,
+      "absolute_error": 0.0
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "actual": 82,
+      "predicted": 90.4,
+      "error": 8.400000000000006,
+      "absolute_error": 8.400000000000006
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "actual": 54,
+      "predicted": 82.9,
+      "error": 28.900000000000006,
+      "absolute_error": 28.900000000000006
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "actual": 66,
+      "predicted": 66.9,
+      "error": 0.9000000000000057,
+      "absolute_error": 0.9000000000000057
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-08-17",
+      "end": "2026-08-23",
+      "actual": 60,
+      "predicted": 68.10000000000001,
+      "error": 8.100000000000009,
+      "absolute_error": 8.100000000000009
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "actual": 67,
+      "predicted": 62.800000000000004,
+      "error": -4.199999999999996,
+      "absolute_error": 4.199999999999996
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "actual": 71,
+      "predicted": 63.400000000000006,
+      "error": -7.599999999999994,
+      "absolute_error": 7.599999999999994
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "actual": 69,
+      "predicted": 67.1,
+      "error": -1.9000000000000057,
+      "absolute_error": 1.9000000000000057
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "actual": 75,
+      "predicted": 68.30000000000001,
+      "error": -6.699999999999989,
+      "absolute_error": 6.699999999999989
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "actual": 90,
+      "predicted": 71.6,
+      "error": -18.400000000000006,
+      "absolute_error": 18.400000000000006
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "actual": 52,
+      "predicted": 79.4,
+      "error": 27.400000000000006,
+      "absolute_error": 27.400000000000006
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "actual": 61,
+      "predicted": 69.7,
+      "error": 8.700000000000003,
+      "absolute_error": 8.700000000000003
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "actual": 4,
+      "predicted": 65.5,
+      "error": 61.5,
+      "absolute_error": 61.5
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "actual": 8,
+      "predicted": 39.300000000000004,
+      "error": 31.300000000000004,
+      "absolute_error": 31.300000000000004
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "actual": 0,
+      "predicted": 21.8,
+      "error": 21.8,
+      "absolute_error": 21.8
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "actual": 49,
+      "predicted": 9.3,
+      "error": -39.7,
+      "absolute_error": 39.7
+    },
+    {
+      "target": "guests",
+      "method": "weighted_4week",
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "actual": 11,
+      "predicted": 21.6,
+      "error": 10.600000000000001,
+      "absolute_error": 10.600000000000001
+    }
+  ],
+  "protocol": {
+    "cutoffs": "32 complete Monday-Sunday weeks, 2026-04-06 through 2026-11-15",
+    "latest_8weeks": "2026-09-21 through 2026-11-15",
+    "methods": {
+      "current_4week": [
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "short_2week": [
+        [
+          2,
+          1
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "weighted_4week": [
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          0.1,
+          0.2,
+          0.3,
+          0.4
+        ]
+      ]
+    },
+    "input_sha256": "0af4b7c020769453ef748f2302ca8176c9ced891e77d86db4f33ec5eb2a77cf1",
+    "snapshot": {
+      "days": 356,
+      "bookings": 519,
+      "guests": 6669
+    },
+    "output_scale": "Raw unrounded expected counts; no dashboard guest floors",
+    "limitations": "Retrospective development experiment; not untouched prospective validation",
+    "serving_hashes_unchanged": true,
+    "serving_hashes": {
+      "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+      "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+      "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+      "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+      "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+      "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+      "api.py": "d0892fd13795dc411f6816aa321b497f6d5b0d53c9bec7723d7195223da11c0a",
+      "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+      "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688",
+      "generate_bookings.py": "295f74b3eadab16e6705a660e8516238be1458ac6f1a21f61928c285e7245207",
+      "generate_summaries.py": "0f284d5a6f75544601552a273ed19728b44ac486982a5558d197d3ea75033ceb",
+      "load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
+      "predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
+      "predict_real.py": "631f2c92a14742425a3ab68ae25e2e50fcd96b027d2410f3bf1d8358d04e1e5b",
+      "prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
+      "test_forecast_evaluation.py": "40f01c21fb2d9a5ce3a4b480fe27460bd456e2b8108d92cad30f28853fe1f1cd",
+      "test_weekly_forecasts.py": "27f112a7eea411d9921632e9c2a057ee425af3e5caa7e59732519711f90f43c8",
+      "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40"
+    }
+  }
+}

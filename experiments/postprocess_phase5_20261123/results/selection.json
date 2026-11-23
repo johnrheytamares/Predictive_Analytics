@@ -1,0 +1,19 @@
+{
+  "development_choice": {
+    "pair": "robust_median_guests",
+    "variant": "A",
+    "bookings_weekly_wape": 27.59856630824373,
+    "guests_weekly_wape": 32.087330466424085,
+    "average_weekly_wape": 29.842948387333905
+  },
+  "reserved_of_selected": {
+    "bookings_weekly_wape": 67.74193548387096,
+    "guests_weekly_wape": 80.0
+  },
+  "production_reference_development": {
+    "pair": "baseline_baseline",
+    "variant": "A",
+    "bookings_weekly_wape": 30.107526881720432,
+    "guests_weekly_wape": 35.19682434667549
+  }
+}

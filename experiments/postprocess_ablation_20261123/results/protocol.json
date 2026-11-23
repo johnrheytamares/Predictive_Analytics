@@ -1,0 +1,23 @@
+{
+  "A": "Raw nonnegative model expectations; no operational adjustment",
+  "B": "Existing operational: Python round/clamp, positive-guests booking minimum, historical party-size floor and guests>=bookings",
+  "C": "Python round and nonnegative clamp only; no consistency repair",
+  "D": "C plus booking>=1 when rounded guests>0; no guest floor or silent guest consistency repair",
+  "E": "C plus existing positive-guests booking rule, then historical party-size floor and guests>=bookings; equivalent to B",
+  "configurations": {
+    "current_pair": "four-week bookings + four-week guests",
+    "robust_pair": "four-week bookings + median-of-four-matching-weekdays guests"
+  },
+  "periods": {
+    "development": "2026-04-06 through 2026-09-20 (24 weeks)",
+    "reserved": "2026-09-21 through 2026-11-15 (8 weeks)",
+    "overall": "all 32 weeks"
+  },
+  "limitations": [
+    "Reserved period has been inspected previously; NOT untouched independent validation",
+    "All source imports/zeros retained. Input availability reconstructed by arrival date, not original booking creation time",
+    "Refreshed recipe comparison, not replay of a frozen live artifact",
+    "Low-demand thresholds remain <=5 bookings/week and <=35 guests/week",
+    "Error contributions are sequential and order-dependent; not independent causal effects"
+  ]
+}

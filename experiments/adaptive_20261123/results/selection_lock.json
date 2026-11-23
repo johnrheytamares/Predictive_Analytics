@@ -1,0 +1,5 @@
+{
+  "bookings": "robust_guests",
+  "guests": "weighted_4week",
+  "basis": "development operational WAPE only"
+}
