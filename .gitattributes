@@ -4,3 +4,10 @@
 /predict_real.py -text
 /Dockerfile -text
 /requirements.txt -text
+# These files are byte-hashed by the frozen v3.1 release manifest. Preserve the
+# tested bytes in Git as well as in Windows and Linux checkouts.
+/forecast_models_metadata.json -text
+/bookings_model_metadata.json -text
+/evaluate_forecasts.py -text
+/experiments/reserVision_v3_1_two_stage_rc_20261124/** -text
+/production_v31/** -text
