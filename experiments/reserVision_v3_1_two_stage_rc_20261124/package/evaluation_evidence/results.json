@@ -1,0 +1,1467 @@
+{
+  "dataset_sha256": "7017de3fb24a1105e3a09872526367aa40ce1b05384e28065de99a1464ca1cf7",
+  "source": "C:\\Users\\John Rhey Tamares\\Predictive_Analytics\\experiments\\multimodel_dataset_20261123\\prepared\\data\\daily_demand.csv",
+  "provenance": "Existing artifact-reconstructed historical export; totals match recorded snapshot; source register not independently audited",
+  "protocol": "Fixed origin per window, expanding history; nested past-only tuning minimizes pooled daily MAE (equivalent to WAPE with shared denominator); raw expected counts",
+  "limitations": [
+    "Previously inspected retrospective periods, not untouched prospective validation",
+    "28-day holdout overlaps rolling evaluation; never pool protocols",
+    "Weekly scores sum seven forecast days within each origin; signed bias is predicted minus actual",
+    "First four prior weekly origins omitted for all methods to guarantee 120-day inner training minimum",
+    "No gaps filled, no zero filtering, no rounding or operational adjustments"
+  ],
+  "profiles": {
+    "full": {
+      "days": 356,
+      "bookings": 519.0,
+      "zero_days": 97,
+      "zero_pct": 27.247191011235955,
+      "average_inter_demand_interval": 1.3745173745173744,
+      "positive_size_cv_squared": 0.4259562445936863,
+      "longest_zero_run": 10,
+      "mean_positive_size": 2.003861003861004
+    },
+    "holdout": {
+      "days": 28,
+      "bookings": 8.0,
+      "zero_days": 22,
+      "zero_pct": 78.57142857142857,
+      "average_inter_demand_interval": 4.666666666666667,
+      "positive_size_cv_squared": 0.12500000000000003,
+      "longest_zero_run": 8,
+      "mean_positive_size": 1.3333333333333333
+    },
+    "earlier": {
+      "days": 328,
+      "bookings": 511.0,
+      "zero_days": 75,
+      "zero_pct": 22.865853658536587,
+      "average_inter_demand_interval": 1.2964426877470356,
+      "positive_size_cv_squared": 0.4252511287870374,
+      "longest_zero_run": 6,
+      "mean_positive_size": 2.0197628458498023
+    }
+  },
+  "wape_cause": {
+    "actual_total": 8.0,
+    "prediction_total": 14.25,
+    "absolute_error": 16.25,
+    "zero_day_absolute_error": 11.25,
+    "positive_day_absolute_error": 5.0
+  },
+  "results": [
+    {
+      "protocol": "original_holdout_28day",
+      "method": "current_weekday",
+      "daily": {
+        "n": 28,
+        "actual_total": 8.0,
+        "mae": 0.5803571428571429,
+        "rmse": 0.9724631220820272,
+        "bias": 0.22321428571428573,
+        "wape": 203.125
+      },
+      "weekly": {
+        "n": 4,
+        "actual_total": 8.0,
+        "mae": 2.0625,
+        "rmse": 2.5890393971509975,
+        "bias": 1.5625,
+        "wape": 103.125
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "method": "optimized_weekday",
+      "daily": {
+        "n": 28,
+        "actual_total": 8.0,
+        "mae": 0.6670918367346941,
+        "rmse": 0.7147320034353393,
+        "bias": 0.39285714285714285,
+        "wape": 233.48214285714292
+      },
+      "weekly": {
+        "n": 4,
+        "actual_total": 8.0,
+        "mae": 2.875,
+        "rmse": 3.3260336739125176,
+        "bias": 2.75,
+        "wape": 143.75
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "method": "tsb",
+      "daily": {
+        "n": 28,
+        "actual_total": 8.0,
+        "mae": 0.6885119017283455,
+        "rmse": 0.7229467068352009,
+        "bias": 0.41918154231031896,
+        "wape": 240.97916560492095
+      },
+      "weekly": {
+        "n": 4,
+        "actual_total": 8.0,
+        "mae": 2.967135398086117,
+        "rmse": 3.4799346409479064,
+        "bias": 2.9342707961722336,
+        "wape": 148.35676990430585
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "method": "two_stage",
+      "daily": {
+        "n": 28,
+        "actual_total": 8.0,
+        "mae": 0.6704400510204084,
+        "rmse": 0.7027741471577232,
+        "bias": 0.39285714285714274,
+        "wape": 234.65401785714292
+      },
+      "weekly": {
+        "n": 4,
+        "actual_total": 8.0,
+        "mae": 2.875,
+        "rmse": 3.3260336739125176,
+        "bias": 2.75,
+        "wape": 143.75
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "method": "zero_reference",
+      "daily": {
+        "n": 28,
+        "actual_total": 8.0,
+        "mae": 0.2857142857142857,
+        "rmse": 0.6546536707079771,
+        "bias": -0.2857142857142857,
+        "wape": 100.0
+      },
+      "weekly": {
+        "n": 4,
+        "actual_total": 8.0,
+        "mae": 2.0,
+        "rmse": 2.7386127875258306,
+        "bias": -2.0,
+        "wape": 100.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "method": "current_weekday",
+      "daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8418367346938775,
+        "rmse": 1.1638693383428802,
+        "bias": 0.21428571428571427,
+        "wape": 69.62025316455696
+      },
+      "weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.1785714285714284,
+        "rmse": 4.107919181288746,
+        "bias": 1.5,
+        "wape": 37.552742616033754
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "method": "optimized_weekday",
+      "daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8115200658403342,
+        "rmse": 1.1685147131148346,
+        "bias": 0.17098894927098354,
+        "wape": 67.11305185852552
+      },
+      "weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.0890959571748167,
+        "rmse": 4.194770512476712,
+        "bias": 1.1969226448968848,
+        "wape": 36.495648439196145
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "method": "tsb",
+      "daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.9048057585153444,
+        "rmse": 1.2851173599281804,
+        "bias": 0.24311679388529936,
+        "wape": 74.82781800380063
+      },
+      "weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.354222579209284,
+        "rmse": 4.597726669228586,
+        "bias": 1.7018175571970962,
+        "wape": 39.62794608348521
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "method": "two_stage",
+      "daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7852193510115989,
+        "rmse": 1.142205608375311,
+        "bias": 0.1343366912071779,
+        "wape": 64.93797164484108
+      },
+      "weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.769713019566857,
+        "rmse": 3.909415622750741,
+        "bias": 0.9403568384502454,
+        "wape": 32.72234791049451
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "method": "zero_reference",
+      "daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 1.2091836734693877,
+        "rmse": 1.799943309764879,
+        "bias": -1.2091836734693877,
+        "wape": 100.0
+      },
+      "weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 8.464285714285714,
+        "rmse": 9.948079498792001,
+        "bias": -8.464285714285714,
+        "wape": 100.0
+      }
+    }
+  ],
+  "production_hashes_unchanged": true,
+  "production_hashes": {
+    "api.py": "4047334b10f4e64854352b874c996e919632e3d1fb68d1ffb8116659be380be6",
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "generate_bookings.py": "295f74b3eadab16e6705a660e8516238be1458ac6f1a21f61928c285e7245207",
+    "generate_summaries.py": "0f284d5a6f75544601552a273ed19728b44ac486982a5558d197d3ea75033ceb",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+    "load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
+    "predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
+    "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+    "prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
+    "test_forecast_evaluation.py": "40f01c21fb2d9a5ce3a4b480fe27460bd456e2b8108d92cad30f28853fe1f1cd",
+    "test_weekly_forecasts.py": "27f112a7eea411d9921632e9c2a057ee425af3e5caa7e59732519711f90f43c8",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "verify_release_git.py": "a95631834f012b8d9bb45fd5a49957ee71a923e005a4c322a4e420cc7410cac8"
+  },
+  "selections": [
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 0.7,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 12,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 12,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 12,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 12,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 12,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.05,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.1
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.1
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.5,
+        "beta": 0.1
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.1
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.5,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 8,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 8,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 8,
+        "decay": 1.0,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.02
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 0.7,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 2,
+        "decay": 0.7,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.3,
+        "beta": 0.3
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "zero_reference",
+      "parameters": {}
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "current_weekday",
+      "parameters": {}
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "optimized_weekday",
+      "parameters": {
+        "weeks": 4,
+        "decay": 1.0,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "tsb",
+      "parameters": {
+        "alpha": 0.1,
+        "beta": 0.05
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "zero_reference",
+      "parameters": {}
+    }
+  ]
+}

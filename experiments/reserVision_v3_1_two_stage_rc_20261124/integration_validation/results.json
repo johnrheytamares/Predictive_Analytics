@@ -1,0 +1,194 @@
+{
+  "tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "protected_files": 56,
+  "protected_files_unchanged": true,
+  "weekly_performance": {
+    "bookings": {
+      "raw": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.769713019566857,
+        "rmse": 3.909415622750741,
+        "bias": 0.9403568384502454,
+        "wape": 32.72234791049451
+      },
+      "operational_floor_round": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.5357142857142856,
+        "rmse": 3.8683699040145725,
+        "bias": -0.4642857142857143,
+        "wape": 29.957805907172997
+      },
+      "variant_a": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      }
+    },
+    "guests": {
+      "raw": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.214285714285715,
+        "rmse": 44.33718207425585,
+        "bias": -0.7142857142857143,
+        "wape": 38.83089770354906
+      },
+      "operational_floor_round": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.17857142857143,
+        "rmse": 44.34483381087684,
+        "bias": -0.6071428571428571,
+        "wape": 38.78914405010438
+      },
+      "variant_a": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.785714285714285,
+        "rmse": 50.06210428771733,
+        "bias": 16.142857142857142,
+        "wape": 43.0062630480167
+      }
+    },
+    "evaluation_scope": "retrospective_rolling_28_origins",
+    "evaluation_horizon_days": 7,
+    "source": "package/postprocess_evidence/daily_predictions.csv",
+    "long_horizon_accuracy_evaluated": false
+  },
+  "responses": {
+    "range_7": {
+      "days": 7,
+      "bookings": 2,
+      "guests": 3,
+      "compatible_keys": true
+    },
+    "range_30": {
+      "days": 30,
+      "bookings": 9,
+      "guests": 14,
+      "compatible_keys": true
+    },
+    "range_90": {
+      "days": 90,
+      "bookings": 25,
+      "guests": 38,
+      "compatible_keys": true
+    },
+    "health": {
+      "service": "predictive-analytics-v3.1-shadow",
+      "bookings": "two_stage",
+      "guests": "robust_median_guests",
+      "postprocess": "floor_round",
+      "weekly_performance": {
+        "bookings": {
+          "raw": {
+            "n": 28,
+            "actual_total": 237.0,
+            "mae": 2.769713019566857,
+            "rmse": 3.909415622750741,
+            "bias": 0.9403568384502454,
+            "wape": 32.72234791049451
+          },
+          "operational_floor_round": {
+            "n": 28,
+            "actual_total": 237.0,
+            "mae": 2.5357142857142856,
+            "rmse": 3.8683699040145725,
+            "bias": -0.4642857142857143,
+            "wape": 29.957805907172997
+          },
+          "variant_a": {
+            "n": 28,
+            "actual_total": 237.0,
+            "mae": 3.25,
+            "rmse": 4.55521678957215,
+            "bias": 1.25,
+            "wape": 38.39662447257384
+          }
+        },
+        "guests": {
+          "raw": {
+            "n": 28,
+            "actual_total": 2395.0,
+            "mae": 33.214285714285715,
+            "rmse": 44.33718207425585,
+            "bias": -0.7142857142857143,
+            "wape": 38.83089770354906
+          },
+          "operational_floor_round": {
+            "n": 28,
+            "actual_total": 2395.0,
+            "mae": 33.17857142857143,
+            "rmse": 44.34483381087684,
+            "bias": -0.6071428571428571,
+            "wape": 38.78914405010438
+          },
+          "variant_a": {
+            "n": 28,
+            "actual_total": 2395.0,
+            "mae": 36.785714285714285,
+            "rmse": 50.06210428771733,
+            "bias": 16.142857142857142,
+            "wape": 43.0062630480167
+          }
+        },
+        "evaluation_scope": "retrospective_rolling_28_origins",
+        "evaluation_horizon_days": 7,
+        "source": "package/postprocess_evidence/daily_predictions.csv",
+        "long_horizon_accuracy_evaluated": false
+      },
+      "evaluation_scope": "retrospective_rolling_28_origins",
+      "prospective_validation": "not_run_required_before_production"
+    },
+    "production_untouched": true,
+    "variant_a_comparison_7d": {
+      "floor_round": {
+        "bookings_sum": 2,
+        "guests_sum": 3
+      },
+      "variant_a": {
+        "bookings_sum": 2,
+        "guests_sum": 14
+      },
+      "guest_reduction_vs_variant_a": 11,
+      "explanation": "Variant A rounds then applies a ~7 guests-per-booking party floor and booking-minimum consistency, inflating guest totals whenever bookings>0. floor_round floors both series and only enforces guests>=bookings / booking-min when guests remain >0 \u2014 it does not multiply by party size. The substantial guest reduction is therefore an intentional ops-policy difference, not a change to the Robust Median guest model."
+    },
+    "variant_a_comparison_30d": {
+      "floor_round": {
+        "bookings_sum": 9,
+        "guests_sum": 14
+      },
+      "variant_a": {
+        "bookings_sum": 9,
+        "guests_sum": 63
+      },
+      "guest_reduction_vs_variant_a": 49,
+      "explanation": "Variant A rounds then applies a ~7 guests-per-booking party floor and booking-minimum consistency, inflating guest totals whenever bookings>0. floor_round floors both series and only enforces guests>=bookings / booking-min when guests remain >0 \u2014 it does not multiply by party size. The substantial guest reduction is therefore an intentional ops-policy difference, not a change to the Robust Median guest model."
+    },
+    "variant_a_comparison_90d": {
+      "floor_round": {
+        "bookings_sum": 25,
+        "guests_sum": 38
+      },
+      "variant_a": {
+        "bookings_sum": 25,
+        "guests_sum": 175
+      },
+      "guest_reduction_vs_variant_a": 137,
+      "explanation": "Variant A rounds then applies a ~7 guests-per-booking party floor and booking-minimum consistency, inflating guest totals whenever bookings>0. floor_round floors both series and only enforces guests>=bookings / booking-min when guests remain >0 \u2014 it does not multiply by party size. The substantial guest reduction is therefore an intentional ops-policy difference, not a change to the Robust Median guest model."
+    }
+  },
+  "local_loopback_test_passed": true,
+  "historical_frozen_origins_replayed": 28,
+  "no_runtime_optimization": true,
+  "prospective_validation": "not_run",
+  "production_replaced": false
+}

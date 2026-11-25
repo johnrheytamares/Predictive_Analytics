@@ -1,0 +1,1549 @@
+{
+  "protocol": {
+    "experiment": "v3_1_postprocessing_optimization_20261124",
+    "models_frozen": true,
+    "bookings_models": [
+      "two_stage",
+      "production_baseline"
+    ],
+    "guests_for_two_stage": "robust_median_guests",
+    "guests_for_baseline": "weekday_baseline",
+    "rolling": "28 origins 2026-05-04..2026-11-09",
+    "selection": "past-only nested folds; SELECTABLE ops catalog; no holdout-specific optimization",
+    "ablations": [
+      "consistency_only",
+      "book_min_only",
+      "party_floor_only",
+      "variant_b",
+      "variant_a",
+      "no_book_min_party",
+      "soft_book_min",
+      "soft_book_min_party",
+      "aggregate_round",
+      "aggregate_round_party",
+      "floor_round",
+      "ceil_book_round_guest"
+    ],
+    "selectable": [
+      {
+        "mode": "consistency_only"
+      },
+      {
+        "mode": "variant_b"
+      },
+      {
+        "mode": "variant_a"
+      },
+      {
+        "mode": "no_book_min_party"
+      },
+      {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      },
+      {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.5
+      },
+      {
+        "mode": "soft_book_min_party",
+        "book_min_threshold": 0.5
+      },
+      {
+        "mode": "aggregate_round"
+      },
+      {
+        "mode": "aggregate_round_party"
+      },
+      {
+        "mode": "floor_round"
+      }
+    ],
+    "limitations": [
+      "Retrospective previously inspected periods",
+      "Primary optimization target is bookings weekly fidelity under operational integers",
+      "Guest metrics reported diagnostically; Robust Median recipe unchanged"
+    ],
+    "production_hashes_before": {
+      "api.py": "4047334b10f4e64854352b874c996e919632e3d1fb68d1ffb8116659be380be6",
+      "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+      "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+      "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+      "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+      "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688",
+      "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+      "generate_bookings.py": "295f74b3eadab16e6705a660e8516238be1458ac6f1a21f61928c285e7245207",
+      "generate_summaries.py": "0f284d5a6f75544601552a273ed19728b44ac486982a5558d197d3ea75033ceb",
+      "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+      "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+      "load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
+      "predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
+      "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+      "prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
+      "test_forecast_evaluation.py": "40f01c21fb2d9a5ce3a4b480fe27460bd456e2b8108d92cad30f28853fe1f1cd",
+      "test_weekly_forecasts.py": "27f112a7eea411d9921632e9c2a057ee425af3e5caa7e59732519711f90f43c8",
+      "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+      "verify_release_git.py": "a95631834f012b8d9bb45fd5a49957ee71a923e005a4c322a4e420cc7410cac8"
+    },
+    "v31_freeze_sha256": "5ad39ecd072f17d487bc2ea337bdf7cb649db998dfd1cbbf42212711218f9089",
+    "intermittent_results_sha256": "d1431349e46fe5d6dc48b6f6e7d46fcafdb2fd95ee631d4c79b28fb06d98e7a9"
+  },
+  "raw_two_stage_weekly_reproduced": {
+    "n": 28,
+    "actual_total": 237.0,
+    "mae": 2.769713019566857,
+    "rmse": 3.909415622750741,
+    "bias": 0.9403568384502454,
+    "wape": 32.72234791049451
+  },
+  "summary": [
+    {
+      "model": "production_baseline",
+      "ops": "aggregate_round",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8367346938775511,
+        "rmse": 1.1866605518454392,
+        "bias": 0.32653061224489793,
+        "wape": 69.19831223628692
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5,
+        "rmse": 4.503966505838413,
+        "bias": 2.2857142857142856,
+        "wape": 41.35021097046413
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.168367346938776,
+        "rmse": 19.259108632180318,
+        "bias": 2.8520408163265305,
+        "wape": 99.58246346555323
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.035714285714285,
+        "rmse": 48.17935242404157,
+        "bias": 19.964285714285715,
+        "wape": 40.96033402922756
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "aggregate_round_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8214285714285714,
+        "rmse": 1.1930923634635762,
+        "bias": 0.20918367346938777,
+        "wape": 67.9324894514768
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.107142857142857,
+        "rmse": 4.075186235884546,
+        "bias": 1.4642857142857142,
+        "wape": 36.70886075949367
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.275510204081632,
+        "rmse": 19.29761537557616,
+        "bias": 3.204081632653061,
+        "wape": 100.45929018789144
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.357142857142854,
+        "rmse": 51.048996072400875,
+        "bias": 22.428571428571427,
+        "wape": 42.505219206680586
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "book_min_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8571428571428571,
+        "rmse": 1.2079667518062687,
+        "bias": 0.336734693877551,
+        "wape": 70.88607594936708
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5714285714285716,
+        "rmse": 4.5591352563522705,
+        "bias": 2.357142857142857,
+        "wape": 42.19409282700422
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.183673469387756,
+        "rmse": 19.271423276500386,
+        "bias": 2.857142857142857,
+        "wape": 99.70772442588726
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.142857142857146,
+        "rmse": 48.30557495184765,
+        "bias": 20.0,
+        "wape": 41.085594989561585
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "ceil_book_round_guest",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.9285714285714286,
+        "rmse": 1.305404777321219,
+        "bias": 0.5816326530612245,
+        "wape": 76.79324894514768
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 4.785714285714286,
+        "rmse": 5.80640040940045,
+        "bias": 4.071428571428571,
+        "wape": 56.540084388185655
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.173469387755102,
+        "rmse": 19.268246057242703,
+        "bias": 2.86734693877551,
+        "wape": 99.62421711899792
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.142857142857146,
+        "rmse": 48.28634826295553,
+        "bias": 20.071428571428573,
+        "wape": 41.085594989561585
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "consistency_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8571428571428571,
+        "rmse": 1.2079667518062687,
+        "bias": 0.336734693877551,
+        "wape": 70.88607594936708
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5714285714285716,
+        "rmse": 4.5591352563522705,
+        "bias": 2.357142857142857,
+        "wape": 42.19409282700422
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.183673469387756,
+        "rmse": 19.271423276500386,
+        "bias": 2.857142857142857,
+        "wape": 99.70772442588726
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.142857142857146,
+        "rmse": 48.30557495184765,
+        "bias": 20.0,
+        "wape": 41.085594989561585
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "floor_round",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7755102040816326,
+        "rmse": 1.124858267715973,
+        "bias": 0.19387755102040816,
+        "wape": 64.13502109704642
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.9285714285714284,
+        "rmse": 4.0178174601214955,
+        "bias": 1.3571428571428572,
+        "wape": 34.59915611814346
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.020408163265307,
+        "rmse": 19.21521505984043,
+        "bias": 2.5,
+        "wape": 98.37160751565762
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 34.642857142857146,
+        "rmse": 47.11308583761902,
+        "bias": 17.5,
+        "wape": 40.50104384133612
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "no_book_min_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.826530612244898,
+        "rmse": 1.2163847404233143,
+        "bias": 0.16326530612244897,
+        "wape": 68.35443037974683
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.857142857142857,
+        "rmse": 3.909694909544003,
+        "bias": 1.1428571428571428,
+        "wape": 33.755274261603375
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.214285714285714,
+        "rmse": 19.32535608352669,
+        "bias": 2.816326530612245,
+        "wape": 99.95824634655533
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.42857142857143,
+        "rmse": 49.55372265099191,
+        "bias": 19.714285714285715,
+        "wape": 41.419624217119
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "party_floor_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8571428571428571,
+        "rmse": 1.2079667518062687,
+        "bias": 0.336734693877551,
+        "wape": 70.88607594936708
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5714285714285716,
+        "rmse": 4.5591352563522705,
+        "bias": 2.357142857142857,
+        "wape": 42.19409282700422
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.75,
+        "rmse": 19.348442957973624,
+        "bias": 4.239795918367347,
+        "wape": 104.34237995824634
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 39.82142857142857,
+        "rmse": 53.58604562490393,
+        "bias": 29.678571428571427,
+        "wape": 46.5553235908142
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "raw_float",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8418367346938775,
+        "rmse": 1.1638693383428802,
+        "bias": 0.21428571428571427,
+        "wape": 69.62025316455696
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.1785714285714284,
+        "rmse": 4.107919181288746,
+        "bias": 1.5,
+        "wape": 37.552742616033754
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.167091836734693,
+        "rmse": 19.27732125571181,
+        "bias": 2.8482142857142856,
+        "wape": 99.57202505219206
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 34.955357142857146,
+        "rmse": 48.062343256292806,
+        "bias": 19.9375,
+        "wape": 40.86638830897704
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "selected_past_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8214285714285714,
+        "rmse": 1.184508853698357,
+        "bias": 0.1989795918367347,
+        "wape": 67.9324894514768
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.107142857142857,
+        "rmse": 4.048809348790968,
+        "bias": 1.3928571428571428,
+        "wape": 36.70886075949367
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.193877551020408,
+        "rmse": 19.391508766594153,
+        "bias": 2.693877551020408,
+        "wape": 99.79123173277662
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 34.214285714285715,
+        "rmse": 47.60627209577686,
+        "bias": 18.857142857142858,
+        "wape": 40.0
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "soft_book_min",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8520408163265306,
+        "rmse": 1.2100767390069582,
+        "bias": 0.2602040816326531,
+        "wape": 70.46413502109705
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.392857142857143,
+        "rmse": 4.403732183370957,
+        "bias": 1.8214285714285714,
+        "wape": 40.08438818565401
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.158163265306122,
+        "rmse": 19.344223416612948,
+        "bias": 2.607142857142857,
+        "wape": 99.49895615866389
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.107142857142854,
+        "rmse": 48.34511350695125,
+        "bias": 18.25,
+        "wape": 41.04384133611691
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "soft_book_min_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8520408163265306,
+        "rmse": 1.2100767390069582,
+        "bias": 0.2602040816326531,
+        "wape": 70.46413502109705
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.392857142857143,
+        "rmse": 4.403732183370957,
+        "bias": 1.8214285714285714,
+        "wape": 40.08438818565401
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.551020408163266,
+        "rmse": 19.38571954942554,
+        "bias": 3.683673469387755,
+        "wape": 102.71398747390397
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 38.07142857142857,
+        "rmse": 52.720963572377926,
+        "bias": 25.785714285714285,
+        "wape": 44.50939457202505
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "variant_a",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8571428571428571,
+        "rmse": 1.2079667518062687,
+        "bias": 0.336734693877551,
+        "wape": 70.88607594936708
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5714285714285716,
+        "rmse": 4.5591352563522705,
+        "bias": 2.357142857142857,
+        "wape": 42.19409282700422
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.75,
+        "rmse": 19.348442957973624,
+        "bias": 4.239795918367347,
+        "wape": 104.34237995824634
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 39.82142857142857,
+        "rmse": 53.58604562490393,
+        "bias": 29.678571428571427,
+        "wape": 46.5553235908142
+      }
+    },
+    {
+      "model": "production_baseline",
+      "ops": "variant_b",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8571428571428571,
+        "rmse": 1.2079667518062687,
+        "bias": 0.336734693877551,
+        "wape": 70.88607594936708
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.5714285714285716,
+        "rmse": 4.5591352563522705,
+        "bias": 2.357142857142857,
+        "wape": 42.19409282700422
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 12.183673469387756,
+        "rmse": 19.271423276500386,
+        "bias": 2.857142857142857,
+        "wape": 99.70772442588726
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.142857142857146,
+        "rmse": 48.30557495184765,
+        "bias": 20.0,
+        "wape": 41.085594989561585
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "aggregate_round",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.826530612244898,
+        "rmse": 1.2205719636167902,
+        "bias": 0.1836734693877551,
+        "wape": 68.35443037974683
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.9285714285714284,
+        "rmse": 4.0970372570571385,
+        "bias": 1.2857142857142858,
+        "wape": 34.59915611814346
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.831632653061224,
+        "rmse": 18.917247286483285,
+        "bias": -0.05612244897959184,
+        "wape": 88.64300626304802
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.17857142857143,
+        "rmse": 44.416454479972046,
+        "bias": -0.39285714285714285,
+        "wape": 38.78914405010438
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "aggregate_round_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8061224489795918,
+        "rmse": 1.212183053462653,
+        "bias": 0.1326530612244898,
+        "wape": 66.66666666666667
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.7142857142857144,
+        "rmse": 3.927922024247863,
+        "bias": 0.9285714285714286,
+        "wape": 32.06751054852321
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 11.464285714285714,
+        "rmse": 18.908884641018542,
+        "bias": 2.0255102040816326,
+        "wape": 93.8204592901879
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.107142857142854,
+        "rmse": 47.9378317645439,
+        "bias": 14.178571428571429,
+        "wape": 42.21294363256785
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "book_min_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8112244897959183,
+        "rmse": 1.2016145600900516,
+        "bias": 0.17857142857142858,
+        "wape": 67.0886075949367
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.826530612244898,
+        "rmse": 18.91441519161553,
+        "bias": -0.05102040816326531,
+        "wape": 88.60125260960334
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.142857142857146,
+        "rmse": 44.414444239941325,
+        "bias": -0.35714285714285715,
+        "wape": 38.74739039665971
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "ceil_book_round_guest",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8979591836734694,
+        "rmse": 1.2576297758327863,
+        "bias": 0.4897959183673469,
+        "wape": 74.26160337552743
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 4.214285714285714,
+        "rmse": 5.230405611149374,
+        "bias": 3.4285714285714284,
+        "wape": 49.78902953586498
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.826530612244898,
+        "rmse": 18.910638405351605,
+        "bias": -0.02040816326530612,
+        "wape": 88.60125260960334
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.07142857142857,
+        "rmse": 44.388705127060675,
+        "bias": -0.14285714285714285,
+        "wape": 38.66388308977035
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "consistency_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8112244897959183,
+        "rmse": 1.2016145600900516,
+        "bias": 0.17857142857142858,
+        "wape": 67.0886075949367
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.826530612244898,
+        "rmse": 18.91441519161553,
+        "bias": -0.05102040816326531,
+        "wape": 88.60125260960334
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.142857142857146,
+        "rmse": 44.414444239941325,
+        "bias": -0.35714285714285715,
+        "wape": 38.74739039665971
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "floor_round",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7193877551020408,
+        "rmse": 1.1316413941253471,
+        "bias": -0.0663265306122449,
+        "wape": 59.49367088607595
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.5357142857142856,
+        "rmse": 3.8683699040145725,
+        "bias": -0.4642857142857143,
+        "wape": 29.957805907172997
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.821428571428571,
+        "rmse": 18.918326068246362,
+        "bias": -0.08673469387755102,
+        "wape": 88.55949895615866
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.17857142857143,
+        "rmse": 44.34483381087684,
+        "bias": -0.6071428571428571,
+        "wape": 38.78914405010438
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "no_book_min_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7857142857142857,
+        "rmse": 1.1909522857523618,
+        "bias": 0.14285714285714285,
+        "wape": 64.9789029535865
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.142857142857143,
+        "rmse": 4.44007721940573,
+        "bias": 1.0,
+        "wape": 37.130801687763714
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 11.341836734693878,
+        "rmse": 18.958197839091206,
+        "bias": 2.056122448979592,
+        "wape": 92.81837160751566
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.464285714285715,
+        "rmse": 49.02003963395262,
+        "bias": 14.392857142857142,
+        "wape": 41.46137787056367
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "party_floor_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8112244897959183,
+        "rmse": 1.2016145600900516,
+        "bias": 0.17857142857142858,
+        "wape": 67.0886075949367
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 11.520408163265307,
+        "rmse": 18.981731281655517,
+        "bias": 2.306122448979592,
+        "wape": 94.27974947807934
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.785714285714285,
+        "rmse": 50.06210428771733,
+        "bias": 16.142857142857142,
+        "wape": 43.0062630480167
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "raw_float",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7852193510115989,
+        "rmse": 1.142205608375311,
+        "bias": 0.1343366912071779,
+        "wape": 64.93797164484108
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.769713019566857,
+        "rmse": 3.909415622750741,
+        "bias": 0.9403568384502454,
+        "wape": 32.72234791049451
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.826530612244898,
+        "rmse": 18.921696864840055,
+        "bias": -0.10204081632653061,
+        "wape": 88.60125260960334
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.214285714285715,
+        "rmse": 44.33718207425585,
+        "bias": -0.7142857142857143,
+        "wape": 38.83089770354906
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "selected_past_only",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8010204081632653,
+        "rmse": 1.2142857142857142,
+        "bias": 0.1377551020408163,
+        "wape": 66.24472573839662
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.9642857142857144,
+        "rmse": 4.187566630599958,
+        "bias": 0.9642857142857143,
+        "wape": 35.0210970464135
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.964285714285714,
+        "rmse": 19.007651520546418,
+        "bias": 0.12755102040816327,
+        "wape": 89.72860125260961
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.464285714285715,
+        "rmse": 45.34353001571133,
+        "bias": 0.8928571428571429,
+        "wape": 39.1231732776618
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "soft_book_min",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7857142857142857,
+        "rmse": 1.1909522857523618,
+        "bias": 0.14285714285714285,
+        "wape": 64.9789029535865
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.142857142857143,
+        "rmse": 4.44007721940573,
+        "bias": 1.0,
+        "wape": 37.130801687763714
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.78061224489796,
+        "rmse": 18.92102275356214,
+        "bias": -0.15816326530612246,
+        "wape": 88.22546972860125
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 32.82142857142857,
+        "rmse": 44.02799434126299,
+        "bias": -1.1071428571428572,
+        "wape": 38.37160751565762
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "soft_book_min_party",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.7857142857142857,
+        "rmse": 1.1909522857523618,
+        "bias": 0.14285714285714285,
+        "wape": 64.9789029535865
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.142857142857143,
+        "rmse": 4.44007721940573,
+        "bias": 1.0,
+        "wape": 37.130801687763714
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 11.341836734693878,
+        "rmse": 18.958197839091206,
+        "bias": 2.056122448979592,
+        "wape": 92.81837160751566
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 35.464285714285715,
+        "rmse": 49.02003963395262,
+        "bias": 14.392857142857142,
+        "wape": 41.46137787056367
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "variant_a",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8112244897959183,
+        "rmse": 1.2016145600900516,
+        "bias": 0.17857142857142858,
+        "wape": 67.0886075949367
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 11.520408163265307,
+        "rmse": 18.981731281655517,
+        "bias": 2.306122448979592,
+        "wape": 94.27974947807934
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.785714285714285,
+        "rmse": 50.06210428771733,
+        "bias": 16.142857142857142,
+        "wape": 43.0062630480167
+      }
+    },
+    {
+      "model": "two_stage",
+      "ops": "variant_b",
+      "bookings_daily": {
+        "n": 196,
+        "actual_total": 237.0,
+        "mae": 0.8112244897959183,
+        "rmse": 1.2016145600900516,
+        "bias": 0.17857142857142858,
+        "wape": 67.0886075949367
+      },
+      "bookings_weekly": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      },
+      "guests_daily": {
+        "n": 196,
+        "actual_total": 2395.0,
+        "mae": 10.826530612244898,
+        "rmse": 18.91441519161553,
+        "bias": -0.05102040816326531,
+        "wape": 88.60125260960334
+      },
+      "guests_weekly": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.142857142857146,
+        "rmse": 44.414444239941325,
+        "bias": -0.35714285714285715,
+        "wape": 38.74739039665971
+      }
+    }
+  ],
+  "selections": [
+    {
+      "origin": "2026-05-04",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-05-04",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-05-11",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-05-11",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-05-18",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-05-18",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-05-25",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-05-25",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-06-01",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-06-01",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-06-08",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-06-08",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-06-15",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-06-15",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-06-22",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-06-22",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-06-29",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.5
+      }
+    },
+    {
+      "origin": "2026-06-29",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-07-06",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.5
+      }
+    },
+    {
+      "origin": "2026-07-06",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-07-13",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-07-13",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-07-20",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-07-20",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-07-27",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round"
+      }
+    },
+    {
+      "origin": "2026-07-27",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-03",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-03",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-08-10",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-10",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-08-17",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-17",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-08-24",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-24",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-08-31",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-08-31",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-09-07",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-09-07",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-09-14",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-09-14",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-09-21",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-09-21",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-09-28",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-09-28",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "floor_round"
+      }
+    },
+    {
+      "origin": "2026-10-05",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-05",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-12",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-12",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-19",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-19",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "soft_book_min",
+        "book_min_threshold": 0.0
+      }
+    },
+    {
+      "origin": "2026-10-26",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-10-26",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-11-02",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-11-02",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    },
+    {
+      "origin": "2026-11-09",
+      "model": "two_stage",
+      "parameters": {
+        "mode": "aggregate_round_party"
+      }
+    },
+    {
+      "origin": "2026-11-09",
+      "model": "production_baseline",
+      "parameters": {
+        "mode": "no_book_min_party"
+      }
+    }
+  ],
+  "production_hashes_unchanged": true,
+  "production_hashes": {
+    "api.py": "4047334b10f4e64854352b874c996e919632e3d1fb68d1ffb8116659be380be6",
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "bookings_model.unverified.joblib": "71356ee77e0814e21f08b04689740cc018dbc3cda9b99148157dc689156f6ca4",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+    "evaluate_forecasts.py": "46fd0372f873a2d94a0906780ed1df01b1952cbaa8ee7cd65d84fe6a85b8d0c8",
+    "evaluate_weekly_forecasts.py": "ee4d8bb85c48a4bb42369df9bd7cd12b6cba1b0daf8c87fdcc215fc00e6d7688",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "generate_bookings.py": "295f74b3eadab16e6705a660e8516238be1458ac6f1a21f61928c285e7245207",
+    "generate_summaries.py": "0f284d5a6f75544601552a273ed19728b44ac486982a5558d197d3ea75033ceb",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
+    "load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
+    "predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
+    "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+    "prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
+    "test_forecast_evaluation.py": "40f01c21fb2d9a5ce3a4b480fe27460bd456e2b8108d92cad30f28853fe1f1cd",
+    "test_weekly_forecasts.py": "27f112a7eea411d9921632e9c2a057ee425af3e5caa7e59732519711f90f43c8",
+    "train_real_model.py": "2051d4dc67265040dff845067d65a059b03f6ba5b2447f21968bc752aa34be40",
+    "verify_release_git.py": "a95631834f012b8d9bb45fd5a49957ee71a923e005a4c322a4e420cc7410cac8"
+  }
+}

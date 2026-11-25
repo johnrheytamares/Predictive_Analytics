@@ -1,0 +1,17 @@
+**
+!requirements.txt
+!api.py
+!predict_real.py
+!evaluate_forecasts.py
+!bookings_model.joblib
+!guests_model.joblib
+!forecast_models_metadata.json
+!bookings_model_metadata.json
+!Dockerfile
+!production_v31/
+!production_v31/**
+!experiments/
+!experiments/reserVision_v3_1_two_stage_rc_20261124/
+!experiments/reserVision_v3_1_two_stage_rc_20261124/**
+**/__pycache__/**
+**/*.pyc

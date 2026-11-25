@@ -1,0 +1,23 @@
+{
+  "experiment": "v3_1_postprocessing_optimization_20261124",
+  "models_frozen": {
+    "bookings": "two_stage (intermittent_bookings_20261124)",
+    "guests": "robust_median_guests"
+  },
+  "best_operational_configuration": {
+    "mode": "floor_round",
+    "description": "Floor bookings and guests to nonnegative integers, then enforce guests>=bookings and booking-min only if guests remain >0 after flooring.",
+    "party_size_floor": false,
+    "aggregate_preserving": false,
+    "rolling_bookings_weekly": {
+      "wape": 29.957805907172997,
+      "mae": 2.5357142857142856,
+      "rmse": 3.8683699040145725,
+      "bias": -0.4642857142857143
+    },
+    "compared_to_raw_weekly_wape": 32.72234791049451,
+    "compared_to_variant_a_weekly_wape": 38.39662447257384
+  },
+  "variant_a_primary_error_driver": "booking_minimum_or_consistency_when_positive_guests_and_zero_rounded_bookings",
+  "production_approved": false
+}

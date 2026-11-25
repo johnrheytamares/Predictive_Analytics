@@ -1,0 +1,104 @@
+RESERVISION VERSION 3.1 — ISOLATED FASTAPI INTEGRATION
+
+SELECTED CONFIGURATION
+Original two_stage bookings + robust_median_guests + floor_round, unchanged.
+No optimization, training, model rebuilding or production replacement performed.
+The existing forward parameters (prob_days=14, size_days=84, shrink=0) were copied
+from existing horizon verification, not reselected. All 28 retrospective replay
+origins use their previously frozen configurations. Other historical starts are
+rejected explicitly; no new tuning is allowed in a serving request.
+
+MODIFIED EXISTING FILES (all inside this candidate directory)
+- shadow_predict.py: immutable dependency checks; frozen parameter dispatch;
+  complete separate weekly metric blocks from saved predictions; raw-output and
+  saved-history validation; explicit metric/interval scope and history date.
+- shadow_api.py: exposes complete booking and guest weekly performance on health.
+- prepare_shadow_serving.py: refuses rebuilding an existing frozen artifact set.
+- verify_shadow_fastapi.py: no longer prepares/rewrites artifacts on import;
+  standalone output goes to integration_validation/legacy_regression.json instead
+  of overwriting historical verification_shadow_fastapi.json.
+- SHADOW_SERVING.md: corrected launch command, frozen-inference semantics,
+  validation results and API compatibility limitations.
+
+NEW FILES
+- serving_snapshot.json: references existing forward parameters and SHA-256
+  verification for 56 existing frozen/canonical evidence/dependency files.
+- test_shadow_serving.py: combined existing regression plus integration tests.
+- integration_validation/results.json: actual combined test results and metrics.
+- integration_validation/legacy_regression.json: separate legacy-suite rerun.
+- integration_validation/FINDINGS.txt: this report.
+
+ACTUAL VALIDATION
+17 tests passed, zero failures and zero errors (5 existing regression cases and
+12 added cases). Combined run completed in 22.308 seconds locally.
+
+Coverage:
+- Real ASGI endpoint/query/response handling, existing request-parameter schemas.
+- Temporary Uvicorn HTTP listener on an unused loopback port: startup, /health,
+  90-day forecast and clean shutdown; no persistent service left running.
+- Seven-, thirty- and ninety-day row counts; nonnegative integer bookings/guests,
+  guest mix sums, bounds consistency and guests>=bookings.
+- Prefix stability: first 7/30 rows are identical in longer horizon requests.
+- Optional shared-key authentication; invalid keys, dates, range lengths and
+  historical policy rejection.
+- All 28 saved historical origins replay all 196 integer booking and guest
+  forecasts exactly, with the tuning function patched to fail if invoked.
+- Missing guest-weekday history produces structured unsupported-date errors,
+  without recursive or mean fallback.
+- Simulated configuration/integrity failures fail closed without touching files.
+- Canonical FastAPI output before/after shadow requests is unchanged.
+- Existing artifacts and package history hashes remain unchanged. Original
+  verification JSON, package manifest, frozen selection and saved evidence remain
+  preserved. Root Python/models/metadata/CSVs are also hash-verified unchanged.
+
+RETROSPECTIVE PERFORMANCE (28 rolling seven-day origins, not prospective proof)
+Target/policy                 Weekly WAPE     MAE      RMSE      Bias
+Bookings raw                       32.72%    2.770     3.909    +0.940
+Bookings floor_round               29.96%    2.536     3.868    -0.464
+Guests raw                         38.83%   33.214    44.337    -0.714
+Guests floor_round                 38.79%   33.179    44.345    -0.607
+Guests Variant A                   43.01%   36.786    50.062   +16.143
+
+The historical nested-postprocessing selection WAPE of 35.02% is preserved as
+evidence; it is not relabeled as the selected floor_round score. Existing sparse
+holdout evidence also remains untouched. No additional model search or new
+evaluation protocol was run; complete guest metrics are arithmetic aggregation of the
+already saved predictions, not new forecasts or invented metadata.
+
+VARIANT A GUEST COMPARISON (same raw models, policy only)
+Forecast start: 2026-11-22; saved history ends 2026-11-21.
+Days   Bookings floor_round    Guests floor_round    Guests Variant A
+  7                       2                     3                  14
+ 30                       9                    14                  63
+ 90                      25                    38                 175
+
+Variant A rounds and applies a seven-guests-per-booking party-size floor.
+floor_round floors the two series and enforces only basic booking/guest
+consistency. Sparse robust medians remain sparse, without multiplying each
+positive booking by seven. The guest-model bytes and recorded history are
+unchanged. Reduction is about 78%, explained by the policy difference; it is
+not proof that these future totals will be accurate and is not a comparison to
+the current production service's distinct selected models.
+
+API COMPATIBILITY
+GET /health and GET /forecast remain available. Existing start_date, end_date,
+allow_historical and X-API-Key schemas and required forecast/row keys are retained.
+Additional metric blocks and compare_variant_a diagnostics are additive. Service
+identity and model_version intentionally identify an isolated 3.1 shadow.
+Original frozen model_metadata is returned unchanged; complete scores are exposed
+separately, with weekly retrospective scope. model_ready means loadable shadow
+artifacts, not production approval. production_approved remains false.
+
+Historical behavior is deliberately limited to saved origin parameters; no
+arbitrary historical request may silently retune. Thirty/ninety-day responses
+are structurally supported, but their accuracy was not evaluated by the saved
+seven-day backtest. Bounds remain uncalibrated / Not evaluated.
+
+SHADOW READINESS
+Ready to start as a separate local shadow process using existing artifacts:
+  python -B -m uvicorn experiments.reserVision_v3_1_two_stage_rc_20261124.shadow_api:app --host 127.0.0.1 --port 8002
+Use an unused port; retain existing shared-key settings if configured. Do not
+change production URLs or rebuild artifacts. Canonical services and code are
+untouched. No live database/Dokploy integration, prospective outcome collection,
+staging approval, push or deployment was performed. Saved-history forecasts alone
+do not collect new real shadow outcomes; prospective validation remains required.

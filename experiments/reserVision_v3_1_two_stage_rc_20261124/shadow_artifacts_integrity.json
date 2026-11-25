@@ -1,0 +1,18 @@
+{
+  "shadow_artifacts": {
+    "bookings_model.joblib": "f20043e01bf66cfeef9724d8c5ca880248910f3b3dbf5fdcfd22947d1438f967",
+    "bookings_model_metadata.json": "7ace5bfc6c5d4f591aa992355e73c3c272fc6193df3c8fc1c32b9a3697f04e04",
+    "forecast_models_metadata.json": "bcac650fea7ecd20da05804ac14b3d7706ba3e8b41fd7151b4dea8d140848368",
+    "frozen_selection.json": "46ae2ff5a4701dc45ad23241d130e4d4a1ed1ab97b49715aed013f9b5829479c",
+    "guests_model.joblib": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+    "ops.py": "53bb997baf6763f6c93b36e8a4bc82d3f53d0ac79a927c881a09e7eb7605e57e"
+  },
+  "canonical_production_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "package_guests_joblib_sha256": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+  "prepared_at_utc": "2026-11-24T13:29:15Z"
+}

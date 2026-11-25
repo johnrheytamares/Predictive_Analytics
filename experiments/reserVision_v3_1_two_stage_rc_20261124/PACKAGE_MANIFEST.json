@@ -1,0 +1,280 @@
+{
+  "package": "reserVision_v3_1_two_stage_rc_20261124",
+  "reservision_version": "3.1",
+  "release_candidate_id": "reservision_v3_1_two_stage_rc_20261124",
+  "deployment_scope": "release-candidate-not-deployed",
+  "production_approved": false,
+  "selected_bookings_model": "two_stage",
+  "selected_guests_model": "robust_median_guests",
+  "selected_postprocess": "floor_round",
+  "shadow_serving": {
+    "isolated": true,
+    "module": "shadow_api.py",
+    "suggested_port": 8002,
+    "replaces_production_api": false,
+    "verify_suite": "verify_shadow_fastapi.py",
+    "tests_passed": 5,
+    "failures": 0
+  },
+  "updated_at_utc": "2026-11-24T13:30:17Z",
+  "reproduced_raw_rolling_weekly": {
+    "wape": 32.72234791049451,
+    "mae": 2.769713019566857,
+    "rmse": 3.909415622750741,
+    "bias": 0.9403568384502454
+  },
+  "reproduced_floor_round_rolling_weekly": {
+    "wape": 29.957805907173,
+    "mae": 2.5357142857142856,
+    "rmse": 3.868369904014573,
+    "bias": -0.4642857142857143
+  },
+  "nested_past_only_selected_weekly_wape": 35.0210970464135,
+  "guests_weekly_wape": {
+    "note": "Floor_round barely changes guest weekly WAPE vs raw Robust Median; Variant A worsens guests.",
+    "raw_weekly_wape": 38.83089770354906,
+    "floor_round_weekly_wape": 38.78914405010438,
+    "variant_a_weekly_wape": 43.0062630480167
+  },
+  "verification": {
+    "floor_round_passed": true,
+    "shadow_fastapi_passed": true,
+    "horizons": [
+      "7",
+      "30",
+      "90"
+    ],
+    "prospective_validation": "not_run_required_before_production"
+  },
+  "canonical_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "canonical_unchanged": true,
+  "package_files": [
+    {
+      "relative_path": "artifacts\\bookings_model.joblib",
+      "sha256": "f20043e01bf66cfeef9724d8c5ca880248910f3b3dbf5fdcfd22947d1438f967",
+      "bytes": 11450
+    },
+    {
+      "relative_path": "artifacts\\bookings_model_metadata.json",
+      "sha256": "7ace5bfc6c5d4f591aa992355e73c3c272fc6193df3c8fc1c32b9a3697f04e04",
+      "bytes": 348
+    },
+    {
+      "relative_path": "artifacts\\forecast_models_metadata.json",
+      "sha256": "bcac650fea7ecd20da05804ac14b3d7706ba3e8b41fd7151b4dea8d140848368",
+      "bytes": 4588
+    },
+    {
+      "relative_path": "artifacts\\frozen_selection.json",
+      "sha256": "46ae2ff5a4701dc45ad23241d130e4d4a1ed1ab97b49715aed013f9b5829479c",
+      "bytes": 11284
+    },
+    {
+      "relative_path": "artifacts\\guests_model.joblib",
+      "sha256": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+      "bytes": 59385
+    },
+    {
+      "relative_path": "artifacts\\ops.py",
+      "sha256": "53bb997baf6763f6c93b36e8a4bc82d3f53d0ac79a927c881a09e7eb7605e57e",
+      "bytes": 7730
+    },
+    {
+      "relative_path": "package\\evaluation_evidence\\comparison.csv",
+      "sha256": "e74d5e74c7e8307675ff51514e1b6ed0756fccb363db5a2e114256886d15347b",
+      "bytes": 1931
+    },
+    {
+      "relative_path": "package\\evaluation_evidence\\daily_predictions.csv",
+      "sha256": "a82fb9fb2db3762b719170cb9cfd1ee1b684d0ef26b89f8c8bab863062abb654",
+      "bytes": 75071
+    },
+    {
+      "relative_path": "package\\evaluation_evidence\\intermittent_experiment.py",
+      "sha256": "ba62e7b1ab6df3578cbbd98c93ff8f88a48f76c2cd14ffc9e9156a8c414de8ed",
+      "bytes": 8899
+    },
+    {
+      "relative_path": "package\\evaluation_evidence\\intermittent_REPORT.md",
+      "sha256": "26f9df37bde9e1d21de426e38179cd349c87cf1ca80be152e974c604ffbacf54",
+      "bytes": 7064
+    },
+    {
+      "relative_path": "package\\evaluation_evidence\\results.json",
+      "sha256": "d1431349e46fe5d6dc48b6f6e7d46fcafdb2fd95ee631d4c79b28fb06d98e7a9",
+      "bytes": 35470
+    },
+    {
+      "relative_path": "package\\frozen_selection.json",
+      "sha256": "46ae2ff5a4701dc45ad23241d130e4d4a1ed1ab97b49715aed013f9b5829479c",
+      "bytes": 11284
+    },
+    {
+      "relative_path": "package\\frozen_selection_before_floor_round.json",
+      "sha256": "b2c94b2eb927908aabb08f5b77585f0ca877ea55944a1706d5e0f56242ab8fb5",
+      "bytes": 11287
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\best_config.json",
+      "sha256": "2598be7bca1bd20ae0eaa6ae543c1f330bef3a7b46d7508310e050f08c3f28ae",
+      "bytes": 945
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\bookings_ops_ranking.csv",
+      "sha256": "4a8935255df412a453a143f0d8de9425ac1ccd13ca6b6320fbe43760d665edc6",
+      "bytes": 5001
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\comparison.csv",
+      "sha256": "a1ca9dd0c5f4a08c0f4e808556df07c462d08752f044df074f40ec02caec5cd0",
+      "bytes": 10485
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\daily_predictions.csv",
+      "sha256": "6c401ad29960a58457e9f6a45022b872ad7fd2739b9e8c16f840e72497b35bc9",
+      "bytes": 423766
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\ops.py",
+      "sha256": "53bb997baf6763f6c93b36e8a4bc82d3f53d0ac79a927c881a09e7eb7605e57e",
+      "bytes": 7730
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\postprocess_REPORT.md",
+      "sha256": "3c0a1fcb721734c39594997945a7b5ce5ac67db6ce7d4fbe0f3b2a166075af7b",
+      "bytes": 4463
+    },
+    {
+      "relative_path": "package\\postprocess_evidence\\results.json",
+      "sha256": "6bd9c97b527d6b53d5a9d5fffe5db5a4626a6df7cdee4e3f84fd3f5cdf2eabb9",
+      "bytes": 43038
+    },
+    {
+      "relative_path": "package\\robust_median_artifacts\\bookings_model.joblib",
+      "sha256": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+      "bytes": 59370
+    },
+    {
+      "relative_path": "package\\robust_median_artifacts\\bookings_model_metadata.json",
+      "sha256": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48",
+      "bytes": 446
+    },
+    {
+      "relative_path": "package\\robust_median_artifacts\\forecast_models_metadata.json",
+      "sha256": "a7d6aad702df9fed3d5cf0306f5723073b3714c0df6810647e5ba203fcf4196d",
+      "bytes": 6522
+    },
+    {
+      "relative_path": "package\\robust_median_artifacts\\guests_model.joblib",
+      "sha256": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+      "bytes": 59385
+    },
+    {
+      "relative_path": "prepare_freeze.py",
+      "sha256": "6e19662ca297905b9d02927dc9008e137e0d8e36109b5bf311d59fc7663bb220",
+      "bytes": 6140
+    },
+    {
+      "relative_path": "prepare_shadow_serving.py",
+      "sha256": "be3e81dc17689472072a5991798cf1b7bd9c27b390d042f5ed43aa7647cf3b53",
+      "bytes": 8635
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "4dd5648dee21dbe6b885cffe09e4d38c8e83548614e7507873f1011e35d00c2d",
+      "bytes": 899
+    },
+    {
+      "relative_path": "RELEASE_CANDIDATE.md",
+      "sha256": "759a9412b31fccddd2d2ecc167dea43eb65643fd37268dfdd3e9923f1a8b54bc",
+      "bytes": 5638
+    },
+    {
+      "relative_path": "shadow_api.py",
+      "sha256": "4b51277d4c0b4cc2108a707115b132e256e68f60d9e2b9a7bd5fcf6c3ff5bf67",
+      "bytes": 7327
+    },
+    {
+      "relative_path": "shadow_artifacts_integrity.json",
+      "sha256": "bb8363694b995950de2fc5627bc51f1c96aa994a17a15413c29d6fcc913de634",
+      "bytes": 1216
+    },
+    {
+      "relative_path": "shadow_predict.py",
+      "sha256": "4158f6b4a6f4b69b5f8e95e79ef613cc80d6a702de7a86204c3f6cfdc001d033",
+      "bytes": 15427
+    },
+    {
+      "relative_path": "SHADOW_SERVING.md",
+      "sha256": "05083ef002ceeb61bae07b908f0472958013013f6d90204faa472b3971024c7a",
+      "bytes": 1847
+    },
+    {
+      "relative_path": "SHADOW_VALIDATION.md",
+      "sha256": "fb4122add53df3f88760e2484fcd742d3e2f5a0361e5e61573b398c9a8cdc512",
+      "bytes": 2528
+    },
+    {
+      "relative_path": "source_integrity.json",
+      "sha256": "005b399d276554fc35caea03890647d7213891bdab27014d10c54f7696b09d8f",
+      "bytes": 1010
+    },
+    {
+      "relative_path": "update_floor_round_freeze.py",
+      "sha256": "ce9981b7aa25ef5ce222ac2dd693a5ba2d65006a9739e478690f13cd2d6dea3d",
+      "bytes": 5487
+    },
+    {
+      "relative_path": "verification_floor_round.json",
+      "sha256": "b7f998371b0196e328af312319441240ccb98e9e798d7e42b1c8d61c3a1482b4",
+      "bytes": 1562
+    },
+    {
+      "relative_path": "verification_horizons_postprocess.json",
+      "sha256": "c56bbf58d19fc31c4e59f8f041ae6d70b3328ab9d9ef2a72983597f4c85f312c",
+      "bytes": 2066
+    },
+    {
+      "relative_path": "verification_reproduce.json",
+      "sha256": "bf4eb71de95aa6453531316b0b8aaf897d0075769ba418a1c6e377e5359afc5d",
+      "bytes": 109
+    },
+    {
+      "relative_path": "verification_shadow_fastapi.json",
+      "sha256": "ca0f69958afc19e1a0cdad774f8f3e368351926c95b8b621018e4554b4759af2",
+      "bytes": 4967
+    },
+    {
+      "relative_path": "verify_floor_round_rc.py",
+      "sha256": "b427edf25eb34b1a0b002f02465df770eeaeac56d41ee8e996d7542ef44c58a4",
+      "bytes": 9900
+    },
+    {
+      "relative_path": "verify_horizons_postprocess.py",
+      "sha256": "55c1caf194e3da35a77be9fe5598015e4981eaf7b41adc51f401ff6907cf3105",
+      "bytes": 6764
+    },
+    {
+      "relative_path": "verify_reproduce.py",
+      "sha256": "2122efd56223a9813842f05e7dca4f66b061861cf4cfc89b61b09af525cb7d20",
+      "bytes": 4900
+    },
+    {
+      "relative_path": "verify_shadow_fastapi.py",
+      "sha256": "066864ed15e8a3d4c4b98661acb1a985f3fa0487ed49fe67031e2735f9dfcbf2",
+      "bytes": 13403
+    }
+  ],
+  "readiness": {
+    "experimental_shadow_go": true,
+    "isolated_fastapi_shadow_go": true,
+    "production_go": false,
+    "evaluation_scope": "retrospective_only",
+    "prospective_shadow_required": true
+  }
+}

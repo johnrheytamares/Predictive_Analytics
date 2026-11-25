@@ -1,0 +1,61 @@
+{
+  "tests_run": 8,
+  "failures": 0,
+  "passed": true,
+  "retrospective": {
+    "raw_weekly_wape": 32.72234791049451,
+    "floor_round_weekly_wape": 29.957805907172997,
+    "floor_round_weekly_mae": 2.5357142857142856,
+    "floor_round_weekly_rmse": 3.8683699040145725,
+    "floor_round_weekly_bias": -0.4642857142857143,
+    "nested_selected_weekly_wape": 35.0210970464135
+  },
+  "guest_impact": {
+    "raw": {
+      "n": 28.0,
+      "actual_total": 2395.0,
+      "mae": 33.214285714285715,
+      "rmse": 44.33718207425585,
+      "bias": -0.7142857142857143,
+      "wape": 38.83089770354906
+    },
+    "floor_round": {
+      "n": 28.0,
+      "actual_total": 2395.0,
+      "mae": 33.17857142857143,
+      "rmse": 44.34483381087684,
+      "bias": -0.6071428571428571,
+      "wape": 38.78914405010438
+    },
+    "variant_a": {
+      "n": 28.0,
+      "actual_total": 2395.0,
+      "mae": 36.785714285714285,
+      "rmse": 50.06210428771733,
+      "bias": 16.142857142857142,
+      "wape": 43.0062630480167
+    }
+  },
+  "horizons": {
+    "7": {
+      "bookings_sum": 2,
+      "guests_sum": 3,
+      "start": "2026-11-22",
+      "end": "2026-11-28"
+    },
+    "30": {
+      "bookings_sum": 9,
+      "guests_sum": 14,
+      "start": "2026-11-22",
+      "end": "2026-12-21"
+    },
+    "90": {
+      "bookings_sum": 25,
+      "guests_sum": 38,
+      "start": "2026-11-22",
+      "end": "2027-02-19"
+    }
+  },
+  "prospective_validation": "not_run_required_before_production",
+  "production_approved": false
+}

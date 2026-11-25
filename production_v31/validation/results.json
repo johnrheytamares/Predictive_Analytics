@@ -1,0 +1,70 @@
+{
+  "tests_run": 19,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "production_and_frozen_hashes_unchanged": true,
+  "performance": {
+    "bookings": {
+      "raw": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.769713019566857,
+        "rmse": 3.909415622750741,
+        "bias": 0.9403568384502454,
+        "wape": 32.72234791049451
+      },
+      "operational_floor_round": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 2.5357142857142856,
+        "rmse": 3.8683699040145725,
+        "bias": -0.4642857142857143,
+        "wape": 29.957805907172997
+      },
+      "variant_a": {
+        "n": 28,
+        "actual_total": 237.0,
+        "mae": 3.25,
+        "rmse": 4.55521678957215,
+        "bias": 1.25,
+        "wape": 38.39662447257384
+      }
+    },
+    "guests": {
+      "raw": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.214285714285715,
+        "rmse": 44.33718207425585,
+        "bias": -0.7142857142857143,
+        "wape": 38.83089770354906
+      },
+      "operational_floor_round": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 33.17857142857143,
+        "rmse": 44.34483381087684,
+        "bias": -0.6071428571428571,
+        "wape": 38.78914405010438
+      },
+      "variant_a": {
+        "n": 28,
+        "actual_total": 2395.0,
+        "mae": 36.785714285714285,
+        "rmse": 50.06210428771733,
+        "bias": 16.142857142857142,
+        "wape": 43.0062630480167
+      }
+    },
+    "evaluation_scope": "retrospective_rolling_28_origins",
+    "evaluation_horizon_days": 7,
+    "source": "package/postprocess_evidence/daily_predictions.csv",
+    "long_horizon_accuracy_evaluated": false
+  },
+  "docker_image_built": true,
+  "docker_daemon_available": true,
+  "prospective_accuracy_validated": false,
+  "history_refresh_supported": true,
+  "docker_smoke_passed": true
+}

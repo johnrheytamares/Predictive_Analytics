@@ -1,0 +1,15 @@
+{
+  "release_candidate_id": "reservision_v3_1_two_stage_rc_20261124",
+  "canonical_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "canonical_unchanged_at_prepare": true,
+  "previous_results_sha256": "d1431349e46fe5d6dc48b6f6e7d46fcafdb2fd95ee631d4c79b28fb06d98e7a9",
+  "robust_rc_manifest_sha256": "39775500a65e15dc3419aee69baa0e8cf8e0dac9819ac82eac80cbbd3665c45f",
+  "floor_round_update_at_utc": "2026-11-24T13:18:33Z",
+  "postprocess_experiment_results_sha256": "6bd9c97b527d6b53d5a9d5fffe5db5a4626a6df7cdee4e3f84fd3f5cdf2eabb9",
+  "ops_module_sha256": "53bb997baf6763f6c93b36e8a4bc82d3f53d0ac79a927c881a09e7eb7605e57e"
+}

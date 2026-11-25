@@ -1,0 +1,68 @@
+{
+  "raw_rolling_weekly": {
+    "n": 28,
+    "actual_total": 237.0,
+    "mae": 2.769713019566857,
+    "rmse": 3.909415622750741,
+    "bias": 0.9403568384502454,
+    "wape": 32.72234791049451
+  },
+  "operational_variant_a_rolling_weekly": {
+    "n": 28,
+    "actual_total": 237.0,
+    "mae": 3.25,
+    "rmse": 4.55521678957215,
+    "bias": 1.25,
+    "wape": 38.39662447257384
+  },
+  "postprocess_changes_reported_wape": true,
+  "postprocess_delta_weekly_wape_pp": 5.674276562079328,
+  "interpretation": "Reported Version 3.1 headline metrics are raw expected booking counts from the intermittent experiment. Variant A (booking-min + guest floor) changes integer operational bookings when paired with Robust Median guests; operational weekly WAPE therefore differs and must be tracked separately. Raw headline 32.72% remains valid for the experimental selection protocol.",
+  "horizons": {
+    "7": {
+      "days": 7,
+      "start": "2026-11-22",
+      "end": "2026-11-28",
+      "raw_bookings_sum": 1.1458333333333333,
+      "raw_guests_sum": 3.0,
+      "operational_bookings_sum": 2,
+      "operational_guests_sum": 14,
+      "cfg": {
+        "prob_days": 14,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    "30": {
+      "days": 30,
+      "start": "2026-11-22",
+      "end": "2026-12-21",
+      "raw_bookings_sum": 5.15625,
+      "raw_guests_sum": 14.0,
+      "operational_bookings_sum": 9,
+      "operational_guests_sum": 63,
+      "cfg": {
+        "prob_days": 14,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    "90": {
+      "days": 90,
+      "start": "2026-11-22",
+      "end": "2027-02-19",
+      "raw_bookings_sum": 14.322916666666664,
+      "raw_guests_sum": 38.0,
+      "operational_bookings_sum": 25,
+      "operational_guests_sum": 175,
+      "cfg": {
+        "prob_days": 14,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    }
+  },
+  "canonical_unchanged": true,
+  "guests_model": "robust_median_guests",
+  "bookings_model": "two_stage"
+}

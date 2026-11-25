@@ -1,0 +1,131 @@
+﻿{
+    "suite":  "docker_v31_smoke",
+    "image":  "reservision-predictive:3.1-prepared",
+    "container":  "reservision-v31-smoke-test",
+    "port":  8012,
+    "passed":  true,
+    "checks":  [
+                   {
+                       "name":  "artifacts_present",
+                       "ok":  true,
+                       "detail":  "/app/api.py\n/app/bookings_model.joblib\n/app/experiments/reserVision_v3_1_two_stage_rc_20261124/artifacts/forecast_models_metadata.json\n/app/production_v31/api.py\n/app/production_v31/serve.py"
+                   },
+                   {
+                       "name":  "no_shadow_env",
+                       "ok":  true,
+                       "detail":  "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nHOSTNAME=9bad91c24c1f\nPREDICTION_API_KEY=local-smoke-only-key\nPREDICTION_HISTORY_DIR=/tmp/runtime_history\nLANG=C.UTF-8\nGPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\nPYTHON_VERSION=3.12.16\nPYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c\nPYTHONDONTWRITEBYTECODE=1\nPYTHONUNBUFFERED=1\nPIP_NO_CACHE_DIR=1\nPORT=8001\nPREDICTION_ARTIFACT_DIR=/app/experiments/reserVision_v3_1_two_stage_rc_20261124/artifacts\nHOME=/root"
+                   },
+                   {
+                       "name":  "artifact_dir_set",
+                       "ok":  true,
+                       "detail":  "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nHOSTNAME=9bad91c24c1f\nPREDICTION_API_KEY=local-smoke-only-key\nPREDICTION_HISTORY_DIR=/tmp/runtime_history\nLANG=C.UTF-8\nGPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\nPYTHON_VERSION=3.12.16\nPYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c\nPYTHONDONTWRITEBYTECODE=1\nPYTHONUNBUFFERED=1\nPIP_NO_CACHE_DIR=1\nPORT=8001\nPREDICTION_ARTIFACT_DIR=/app/experiments/reserVision_v3_1_two_stage_rc_20261124/artifacts\nHOME=/root"
+                   },
+                   {
+                       "name":  "cmd_production_serve",
+                       "ok":  true,
+                       "detail":  "[\"python\",\"-B\",\"-m\",\"production_v31.serve\"]"
+                   },
+                   {
+                       "name":  "health_ok",
+                       "ok":  true,
+                       "detail":  "http=200; status=ok; ready=True"
+                   },
+                   {
+                       "name":  "version_3_1",
+                       "ok":  true,
+                       "detail":  "3.1"
+                   },
+                   {
+                       "name":  "champions",
+                       "ok":  true,
+                       "detail":  "b=two_stage; g=robust_median_guests; p=floor_round"
+                   },
+                   {
+                       "name":  "production_prepared_not_shadow",
+                       "ok":  true,
+                       "detail":  "mode=production_prepared; shadow=False; approved=False"
+                   },
+                   {
+                       "name":  "history_refresh_lifecycle",
+                       "ok":  true,
+                       "detail":  "refresh=True; sync_refreshes=False"
+                   },
+                   {
+                       "name":  "weekly_metrics",
+                       "ok":  true,
+                       "detail":  "bookings=29.96 guests=38.79"
+                   },
+                   {
+                       "name":  "auth_missing_401",
+                       "ok":  true,
+                       "detail":  "status=401"
+                   },
+                   {
+                       "name":  "auth_wrong_401",
+                       "ok":  true,
+                       "detail":  "status=401"
+                   },
+                   {
+                       "name":  "health_public",
+                       "ok":  true,
+                       "detail":  "status=200"
+                   },
+                   {
+                       "name":  "forecast_7d",
+                       "ok":  true,
+                       "detail":  "http=200; rows=7; bw=29.96; gw=38.79; first=0/0"
+                   },
+                   {
+                       "name":  "forecast_30d",
+                       "ok":  true,
+                       "detail":  "http=200; rows=30; bw=29.96; gw=38.79; first=0/0"
+                   },
+                   {
+                       "name":  "forecast_90d",
+                       "ok":  true,
+                       "detail":  "http=200; rows=90; bw=29.96; gw=38.79; first=0/0"
+                   },
+                   {
+                       "name":  "history_refresh_invalid_422",
+                       "ok":  true,
+                       "detail":  "http=422; code=INVALID_HISTORY"
+                   },
+                   {
+                       "name":  "release_manifest_files",
+                       "ok":  true,
+                       "detail":  "files=42"
+                   },
+                   {
+                       "name":  "history_refresh_in_manifest",
+                       "ok":  true,
+                       "detail":  "history_refresh.py hashed"
+                   }
+               ],
+    "weekly_wape":  {
+                        "bookings":  29.96,
+                        "guests":  38.79
+                    },
+    "forecasts":  {
+                      "7":  {
+                                "total_guests":  3,
+                                "total_bookings":  2,
+                                "rows":  7,
+                                "bookings_wape":  29.96,
+                                "guests_wape":  38.79
+                            },
+                      "90":  {
+                                 "total_guests":  39,
+                                 "total_bookings":  26,
+                                 "rows":  90,
+                                 "bookings_wape":  29.96,
+                                 "guests_wape":  38.79
+                             },
+                      "30":  {
+                                 "total_guests":  12,
+                                 "total_bookings":  8,
+                                 "rows":  30,
+                                 "bookings_wape":  29.96,
+                                 "guests_wape":  38.79
+                             }
+                  }
+}
