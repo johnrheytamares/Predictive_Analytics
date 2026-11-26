@@ -1,0 +1,63 @@
+{
+  "suite": "v32_final_integration",
+  "production_approved": false,
+  "requirements": [
+    {
+      "name": "HTTP Python-Node-Vue communication",
+      "result": "PASS"
+    },
+    {
+      "name": "7/30/90-day forecasts",
+      "result": "PASS"
+    },
+    {
+      "name": "Sample Jan1-Feb8 2027 = 12/108",
+      "result": "PASS"
+    },
+    {
+      "name": "Booking parity with v3.1",
+      "result": "PASS"
+    },
+    {
+      "name": "Guest MAE/RMSE 29.18/40.94",
+      "result": "PASS"
+    },
+    {
+      "name": "Booking MAE/RMSE 2.54/3.87",
+      "result": "PASS"
+    },
+    {
+      "name": "Model names + MAE/RMSE presentation",
+      "result": "PASS"
+    },
+    {
+      "name": "Period-preserving demographics",
+      "result": "PASS"
+    },
+    {
+      "name": "Recommendations + daily table",
+      "result": "PASS"
+    },
+    {
+      "name": "CSV export consistency",
+      "result": "PASS"
+    },
+    {
+      "name": "History refresh + persistent storage",
+      "result": "PASS"
+    },
+    {
+      "name": "Linux Docker integrity",
+      "result": "PASS"
+    },
+    {
+      "name": "Dockerfile.v32 + rollback docs",
+      "result": "PASS"
+    },
+    {
+      "name": "Approval disabled",
+      "result": "PASS"
+    }
+  ],
+  "all_pass": true
+}

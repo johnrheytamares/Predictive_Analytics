@@ -1,0 +1,126 @@
+{
+  "model_version": "3.1",
+  "reservision_version": "3.1",
+  "trained_at": "2026-11-23T08:19:41Z",
+  "training_days": 356,
+  "minimum_training_days": 120,
+  "date_from": "2025-12-01",
+  "date_to": "2026-11-21",
+  "data_source": "booking_demand_daily",
+  "is_demo": false,
+  "provenance_verified": true,
+  "guest_mix_coverage_pct": 99.48,
+  "guest_mix_ready": true,
+  "guest_mix_proportions": {
+    "adults": 0.69725596,
+    "children": 0.19358225,
+    "seniors": 0.06537712,
+    "infants": 0.03853651,
+    "unknown_guests": 0.00524816
+  },
+  "typical_guests_per_booking": 7.0,
+  "ready": true,
+  "blocking_reasons": [],
+  "safe_for_live_use": true,
+  "deployment_scope": "release-candidate-not-deployed",
+  "release_candidate_id": "reservision_v3_1_two_stage_rc_20261124",
+  "release_configuration": "two_stage_robust_median_floor_round",
+  "production_approved": false,
+  "staging_approved": false,
+  "shadow_serving_only": true,
+  "serving_mode": "isolated_shadow",
+  "postprocess": {
+    "selected_mode": "floor_round",
+    "party_size_floor": false,
+    "description": "Floor bookings and guests to nonnegative integers, then enforce guests>=bookings and booking-min only if guests remain >0 after flooring.",
+    "source_experiment": "experiments/v3_1_postprocessing_optimization_20261124",
+    "variant_a_not_selected": true
+  },
+  "evaluation_scope": "retrospective_rolling_28_origins",
+  "prospective_validation": "not_run_required_before_production",
+  "targets": {
+    "bookings": {
+      "target": "bookings",
+      "selected_model": "two_stage",
+      "evaluation_protocol": "rolling_28_monday_origins_7day",
+      "selection_metric": "weekly_wape",
+      "model_path": "bookings_model.joblib",
+      "raw_weekly_metrics": {
+        "wape": 32.72234791049451,
+        "mae": 2.769713019566857,
+        "rmse": 3.909415622750741,
+        "bias": 0.9403568384502454
+      },
+      "operational_weekly_metrics": {
+        "wape": 29.957805907173,
+        "mae": 2.5357142857142856,
+        "rmse": 3.868369904014573,
+        "bias": -0.4642857142857143
+      },
+      "selected_metrics": {
+        "wape": 29.957805907173,
+        "mae": 2.5357142857142856,
+        "rmse": 3.868369904014573,
+        "bias": -0.4642857142857143
+      },
+      "nested_past_only_selected_weekly_wape": 35.0210970464135,
+      "variant_a_weekly_wape": 38.39662447257384,
+      "metrics_note": "selected_metrics are floor_round operational weekly scores; raw_weekly_metrics preserve the 32.72% selection-protocol headline."
+    },
+    "guests": {
+      "target": "guests",
+      "selected_model": "robust_median_guests",
+      "evaluation_protocol": "rolling_28_monday_origins_7day",
+      "selection_metric": "weekly_wape",
+      "model_path": "guests_model.joblib",
+      "raw_weekly_metrics": {
+        "wape": 38.83089770354906
+      },
+      "operational_weekly_metrics": {
+        "wape": 38.78914405010438
+      },
+      "selected_metrics": {
+        "wape": 38.78914405010438
+      },
+      "variant_a_weekly_wape": 43.0062630480167,
+      "interval_coverage_evaluated": false,
+      "interval_status": "Not evaluated",
+      "metrics_note": "Floor_round barely changes guest weekly WAPE vs raw Robust Median; Variant A worsens guests."
+    }
+  },
+  "mae": 2.5357142857142856,
+  "rmse": 3.868369904014573,
+  "wape": 29.957805907173,
+  "bias": -0.4642857142857143,
+  "usable_days": 356,
+  "training_snapshot": {
+    "input_sha256": "0af4b7c020769453ef748f2302ca8176c9ced891e77d86db4f33ec5eb2a77cf1",
+    "days": 356,
+    "bookings": 519,
+    "guests": 6669,
+    "verification_basis": "User-confirmed server aggregate export; source register not independently audited",
+    "guest_mix_basis": "Category counts from user-confirmed server export; validated against daily totals",
+    "test_from": "2026-10-25",
+    "test_to": "2026-11-21",
+    "test_bookings": 8,
+    "test_guests": 74
+  },
+  "forecast_policy": {
+    "bookings_method": "two_stage",
+    "guests_method": "robust_median_guests",
+    "postprocess": "floor_round",
+    "profile": "cutoff_anchored_four_week_weekday_median",
+    "maximum_days_per_cutoff": 90,
+    "supported_horizons_days": [
+      7,
+      30,
+      90
+    ],
+    "party_size_floor": false,
+    "recursive_predictions": false,
+    "fallback": null,
+    "interval_status": "Not evaluated"
+  },
+  "frozen_selection_sha256": "46ae2ff5a4701dc45ad23241d130e4d4a1ed1ab97b49715aed013f9b5829479c",
+  "prepared_at_utc": "2026-11-24T13:29:15Z"
+}

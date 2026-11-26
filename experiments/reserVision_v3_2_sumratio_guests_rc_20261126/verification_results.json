@@ -1,0 +1,66 @@
+{
+  "weekly_guest_mae": 29.178571428571427,
+  "weekly_guest_rmse": 40.941159869116696,
+  "weekly_guest_bias": -1.8214285714285714,
+  "weekly_guest_wape": 34.11273486430063,
+  "weekly_booking_wape": 29.957805907172997,
+  "sample_2027": {
+    "bookings": 12,
+    "guests": 108
+  },
+  "sample_v31_guests": 18,
+  "booking_identity_sample_vs_v31": true,
+  "interval": {
+    "method": "past_only_party_size_ratio_quantiles_q10_q90",
+    "daily_coverage": 0.5141242937853108,
+    "observations": 177
+  },
+  "horizon_pooled": [
+    {
+      "horizon": 7,
+      "aggregation": "horizon_total_pooled",
+      "origins": 28,
+      "guest_mae": 29.178571428571427,
+      "guest_rmse": 40.941159869116696,
+      "guest_bias": -1.8214285714285714,
+      "guest_wape_pct": 34.11273486430063,
+      "booking_mae": 2.5357142857142856,
+      "booking_rmse": 3.8683699040145725,
+      "booking_bias": -0.4642857142857143,
+      "booking_wape_pct": 29.957805907172997,
+      "interval_coverage": 0.8214285714285714,
+      "bookings_source": "frozen_two_stage"
+    },
+    {
+      "horizon": 30,
+      "aggregation": "horizon_total_pooled",
+      "origins": 25,
+      "guest_mae": 80.92,
+      "guest_rmse": 102.38144363115808,
+      "guest_bias": 35.56,
+      "guest_wape_pct": 23.006937336517687,
+      "booking_mae": 8.4,
+      "booking_rmse": 10.825894882179487,
+      "booking_bias": 2.0,
+      "booking_wape_pct": 24.110218140068888,
+      "interval_coverage": 0.88,
+      "bookings_source": "two_stage_floor_round_v31_identical"
+    },
+    {
+      "horizon": 90,
+      "aggregation": "horizon_total_pooled",
+      "origins": 17,
+      "guest_mae": 315.0,
+      "guest_rmse": 377.6245412015049,
+      "guest_bias": 315.0,
+      "guest_wape_pct": 30.9788267962513,
+      "booking_mae": 20.823529411764707,
+      "booking_rmse": 26.067784941661344,
+      "booking_bias": 17.88235294117647,
+      "booking_wape_pct": 20.2865329512894,
+      "interval_coverage": 1.0,
+      "bookings_source": "two_stage_floor_round_v31_identical"
+    }
+  ],
+  "booking_recompute_match_rate_7day": 1.0
+}

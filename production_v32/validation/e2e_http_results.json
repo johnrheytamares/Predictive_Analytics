@@ -1,0 +1,144 @@
+{
+  "suite": "v32_http_e2e",
+  "python_url": "http://127.0.0.1:8002",
+  "node_url": "http://127.0.0.1:8016",
+  "vue_url": "http://127.0.0.1:5179",
+  "production_approved": false,
+  "checks": [
+    {
+      "name": "python_http_health",
+      "ok": true,
+      "detail": "3.2"
+    },
+    {
+      "name": "approval_disabled",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "booking_mae_rmse",
+      "ok": true,
+      "detail": "2.5357142857142856/3.8683699040145725"
+    },
+    {
+      "name": "guest_mae_rmse",
+      "ok": true,
+      "detail": "29.178571428571427/40.941159869116696"
+    },
+    {
+      "name": "node_http_ping",
+      "ok": true,
+      "detail": "{\"success\":true,\"service\":\"reservision-v32-e2e-node\",\"python\":\"http://127.0.0.1:8002\"}"
+    },
+    {
+      "name": "node_readiness_via_python",
+      "ok": true,
+      "detail": "3.2"
+    },
+    {
+      "name": "model_names_mae_rmse_presentation",
+      "ok": true,
+      "detail": "[{\"name\":\"Two-Stage Forecasting\",\"mae\":2.5357142857142856,\"rmse\":3.8683699040145725},{\"name\":\"Historical Guests-per-Booking Ratio Forecasting\",\"mae\":29.178571428571427,\"rmse\":40.941159869116696}]"
+    },
+    {
+      "name": "horizon_7_via_node",
+      "ok": true,
+      "detail": "len=7; ver=3.2"
+    },
+    {
+      "name": "horizon_7_recommendations",
+      "ok": true,
+      "detail": "keys=operations,promotions,activities,monitoring"
+    },
+    {
+      "name": "horizon_7_daily_table",
+      "ok": true,
+      "detail": "rows=7"
+    },
+    {
+      "name": "horizon_30_via_node",
+      "ok": true,
+      "detail": "len=30; ver=3.2"
+    },
+    {
+      "name": "horizon_30_recommendations",
+      "ok": true,
+      "detail": "keys=operations,promotions,activities,monitoring"
+    },
+    {
+      "name": "horizon_30_daily_table",
+      "ok": true,
+      "detail": "rows=30"
+    },
+    {
+      "name": "horizon_90_via_node",
+      "ok": true,
+      "detail": "len=90; ver=3.2"
+    },
+    {
+      "name": "horizon_90_recommendations",
+      "ok": true,
+      "detail": "keys=operations,promotions,activities,monitoring"
+    },
+    {
+      "name": "horizon_90_daily_table",
+      "ok": true,
+      "detail": "rows=90"
+    },
+    {
+      "name": "sample_12_108_via_node",
+      "ok": true,
+      "detail": "12/108"
+    },
+    {
+      "name": "booking_parity_with_v31",
+      "ok": true,
+      "detail": "{\"match\":true,\"v32_guests\":108,\"v31_guests\":18}"
+    },
+    {
+      "name": "period_preserving_guest_demographics",
+      "ok": true,
+      "detail": "{\"adults\":75,\"children\":21,\"seniors\":7,\"infants\":4,\"unknown_guests\":1}"
+    },
+    {
+      "name": "csv_export_consistency",
+      "ok": true,
+      "detail": "csv+summary totals"
+    },
+    {
+      "name": "history_refresh_isolated",
+      "ok": true,
+      "detail": "{\"history_as_of\":\"2026-11-24\",\"model_retrained\":false,\"approved\":false}"
+    },
+    {
+      "name": "history_persistent_storage",
+      "ok": true,
+      "detail": "C:\\Users\\JOHNRH~1\\AppData\\Local\\Temp\\reservision-v32-history-yDtnRp"
+    },
+    {
+      "name": "history_as_of_advanced",
+      "ok": true,
+      "detail": "2026-11-24"
+    },
+    {
+      "name": "vue_facing_page_served",
+      "ok": true,
+      "detail": "html"
+    },
+    {
+      "name": "vue_node_python_http_chain",
+      "ok": true,
+      "detail": "12/108"
+    },
+    {
+      "name": "dockerfile_v32_present",
+      "ok": true,
+      "detail": "Dockerfile.v32"
+    },
+    {
+      "name": "rollback_doc_present",
+      "ok": true,
+      "detail": "ROLLBACK.txt"
+    }
+  ]
+}

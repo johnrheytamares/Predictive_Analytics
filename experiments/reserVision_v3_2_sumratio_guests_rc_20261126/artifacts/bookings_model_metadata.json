@@ -1,0 +1,13 @@
+{
+  "model_version": "3.1",
+  "selected_model": "two_stage",
+  "postprocess": "floor_round",
+  "deployment_scope": "release-candidate-not-deployed",
+  "production_approved": false,
+  "shadow_serving_only": true,
+  "date_from": "2025-12-01",
+  "date_to": "2026-11-21",
+  "ready": true,
+  "safe_for_live_use": true,
+  "is_demo": false
+}

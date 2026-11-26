@@ -1,0 +1,44 @@
+﻿{
+    "suite":  "docker_v32_smoke",
+    "image":  "reservision-predictive:3.2-prepared",
+    "container":  "reservision-v32-smoke-test",
+    "port":  8013,
+    "passed":  true,
+    "checks":  [
+                   {
+                       "name":  "container_ready",
+                       "ok":  true,
+                       "detail":  "health model_ready within timeout"
+                   },
+                   {
+                       "name":  "version_3_2",
+                       "ok":  true,
+                       "detail":  "3.2"
+                   },
+                   {
+                       "name":  "approval_disabled",
+                       "ok":  true,
+                       "detail":  "approved=False"
+                   },
+                   {
+                       "name":  "champions",
+                       "ok":  true,
+                       "detail":  "b=two_stage; g=guests_per_booking_sumratio"
+                   },
+                   {
+                       "name":  "booking_mae_rmse",
+                       "ok":  true,
+                       "detail":  "2.54/3.87"
+                   },
+                   {
+                       "name":  "guest_mae_rmse",
+                       "ok":  true,
+                       "detail":  "29.18/40.94"
+                   },
+                   {
+                       "name":  "sample_12_108",
+                       "ok":  true,
+                       "detail":  "http=200; b=12; g=108"
+                   }
+               ]
+}

@@ -1,0 +1,407 @@
+{
+  "release_candidate_id": "reservision_v3_1_two_stage_rc_20261124",
+  "reservision_version": "3.1",
+  "deployment_scope": "release-candidate-not-deployed",
+  "production_approved": false,
+  "staging_approved": false,
+  "selected_experimental_booking_model": "two_stage",
+  "source_experiment": "experiments/intermittent_bookings_20261124",
+  "not_selected": [
+    "experiments/two_stage_optimization_20261124/two_stage_optimized",
+    "adaptive_two_stage",
+    "direct_weekly candidates"
+  ],
+  "recipe": {
+    "type": "hurdle_two_stage",
+    "description": "P(occurrence) * E[size | positive]; zeros remain in occurrence denominator",
+    "probability": "weekday empirical rate shrunk to global rate over prob_days",
+    "conditional_size": "mean of positive observations over size_days",
+    "tuning": "nested chronological MAE over 4 past folds; grid prob_days={14,28,56}, size_days={28,84,168}, shrink={0,0.5,1}",
+    "evaluation_protocol": "28 rolling 7-day origins 2026-05-04..2026-11-09; raw expected counts"
+  },
+  "per_origin_parameters": [
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-04",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-11",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-18",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-05-25",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-01",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-08",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 84,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-15",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-22",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-06-29",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-06",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-13",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-20",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 168,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-07-27",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-03",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-10",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-17",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-24",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-08-31",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-07",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 56,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-14",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-21",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-09-28",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-05",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-12",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-19",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 1.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-10-26",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-02",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "rolling_7day",
+      "origin": "2026-11-09",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 14,
+        "size_days": 28,
+        "shrink": 0.0
+      }
+    },
+    {
+      "protocol": "original_holdout_28day",
+      "origin": "2026-10-25",
+      "method": "two_stage",
+      "parameters": {
+        "prob_days": 28,
+        "size_days": 28,
+        "shrink": 0.5
+      }
+    }
+  ],
+  "reported_rolling_weekly": {
+    "n": 28,
+    "actual_total": 237.0,
+    "mae": 2.769713019566857,
+    "rmse": 3.909415622750741,
+    "bias": 0.9403568384502454,
+    "wape": 32.72234791049451
+  },
+  "reported_rolling_daily": {
+    "n": 196,
+    "actual_total": 237.0,
+    "mae": 0.7852193510115989,
+    "rmse": 1.142205608375311,
+    "bias": 0.1343366912071779,
+    "wape": 64.93797164484108
+  },
+  "reported_holdout_weekly": {
+    "n": 4,
+    "actual_total": 8.0,
+    "mae": 2.875,
+    "rmse": 3.3260336739125176,
+    "bias": 2.75,
+    "wape": 143.75
+  },
+  "reported_holdout_daily": {
+    "n": 28,
+    "actual_total": 8.0,
+    "mae": 0.6704400510204084,
+    "rmse": 0.7027741471577232,
+    "bias": 0.39285714285714274,
+    "wape": 234.65401785714292
+  },
+  "guests": {
+    "model": "robust_median_guests",
+    "profile": "cutoff_anchored_four_week_weekday_median",
+    "source_rc": "experiments/robust_release_candidate_20261124",
+    "deployment_scope_label_in_source": "release-candidate-not-deployed",
+    "preserved": true,
+    "interval_status": "Not evaluated"
+  },
+  "postprocess": {
+    "selected_mode": "floor_round",
+    "source_experiment": "experiments/v3_1_postprocessing_optimization_20261124",
+    "description": "Floor bookings and guests to nonnegative integers, then enforce guests>=bookings and booking-min only if guests remain >0 after flooring.",
+    "party_size_floor": false,
+    "variant_a_not_selected": true,
+    "nested_past_only_selected_weekly_wape": 35.0210970464135,
+    "nested_note": "Preserved for evidence; not the frozen serving ops mode. Fixed floor_round outperformed nested ops selection.",
+    "reported_raw_bookings_weekly": {
+      "wape": 32.72234791049451,
+      "mae": 2.769713019566857,
+      "rmse": 3.909415622750741,
+      "bias": 0.9403568384502454
+    },
+    "reported_floor_round_bookings_weekly": {
+      "wape": 29.957805907173,
+      "mae": 2.5357142857142856,
+      "rmse": 3.868369904014573,
+      "bias": -0.4642857142857143
+    },
+    "reported_variant_a_bookings_weekly_wape": 38.39662447257384,
+    "guests_floor_round_vs_raw": {
+      "note": "Floor_round barely changes guest weekly WAPE vs raw Robust Median; Variant A worsens guests.",
+      "raw_weekly_wape": 38.83089770354906,
+      "floor_round_weekly_wape": 38.78914405010438,
+      "variant_a_weekly_wape": 43.0062630480167
+    },
+    "evaluation_scope": "retrospective_rolling_28_origins",
+    "prospective_validation": "required_before_production"
+  },
+  "evidence_sha256": {
+    "daily_predictions.csv": "a82fb9fb2db3762b719170cb9cfd1ee1b684d0ef26b89f8c8bab863062abb654",
+    "comparison.csv": "e74d5e74c7e8307675ff51514e1b6ed0756fccb363db5a2e114256886d15347b",
+    "results.json": "d1431349e46fe5d6dc48b6f6e7d46fcafdb2fd95ee631d4c79b28fb06d98e7a9",
+    "intermittent_experiment.py": "ba62e7b1ab6df3578cbbd98c93ff8f88a48f76c2cd14ffc9e9156a8c414de8ed"
+  },
+  "canonical_production_sha256": {
+    "bookings_model.joblib": "d629e26d07c98107a62a745dde0cad13156d72da6582af1aa16fa11c30525487",
+    "guests_model.joblib": "2f0725fb9c1b3207fa9c2acb30126f6b99c222bbcbdd42552faef11a882771ef",
+    "forecast_models_metadata.json": "60f06f2c7a2d8f89f4bad5fc5ff75e0e79b13234819f8bf6fd1bf6df9953565a",
+    "bookings_model_metadata.json": "d7d8c03aad381f31d0d47e7afbdc03377ca26f8a79cddda91e8b0047229ebe48"
+  },
+  "created_at_utc": "2026-11-24T13:00:35Z",
+  "configuration_complete": {
+    "bookings": "two_stage",
+    "guests": "robust_median_guests",
+    "postprocess": "floor_round",
+    "reservision_version": "3.1",
+    "deployment_scope": "release-candidate-not-deployed",
+    "production_approved": false,
+    "updated_at_utc": "2026-11-24T13:18:33Z",
+    "prior_freeze_sha256": "b2c94b2eb927908aabb08f5b77585f0ca877ea55944a1706d5e0f56242ab8fb5"
+  }
+}

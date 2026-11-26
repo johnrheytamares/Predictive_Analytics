@@ -1,0 +1,24 @@
+{
+  "release_candidate_id": "reservision_v3_2_sumratio_guests_rc_20261126",
+  "forward_cutoff": "2026-11-22",
+  "forward_parameters": {
+    "prob_days": 14,
+    "size_days": 84,
+    "shrink": 0.0
+  },
+  "parameters_source": "identical to v3.1 serving_snapshot forward_parameters",
+  "no_runtime_optimization": true,
+  "frozen_history_end": "2026-11-21",
+  "rollback_release_candidate_id": "reservision_v3_1_two_stage_rc_20261124",
+  "protected_files": {
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/artifacts/bookings_model.joblib": "f20043e01bf66cfeef9724d8c5ca880248910f3b3dbf5fdcfd22947d1438f967",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/artifacts/guests_model.joblib": "13b52b20425c16be267bb8370cc28d1cc6ccc579eb0fe27bcfa22f500453a30f",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/artifacts/frozen_selection.json": "46ae2ff5a4701dc45ad23241d130e4d4a1ed1ab97b49715aed013f9b5829479c",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/artifacts/ops.py": "53bb997baf6763f6c93b36e8a4bc82d3f53d0ac79a927c881a09e7eb7605e57e",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/shadow_predict.py": "56bbc1c70b172d9bada6322213026c5a7db81b47a9bab60d8276071a506651bb",
+    "experiments/reserVision_v3_1_two_stage_rc_20261124/artifacts/bookings_model.joblib": "f20043e01bf66cfeef9724d8c5ca880248910f3b3dbf5fdcfd22947d1438f967",
+    "experiments/reserVision_v3_1_two_stage_rc_20261124/package/postprocess_evidence/daily_predictions.csv": "6c401ad29960a58457e9f6a45022b872ad7fd2739b9e8c16f840e72497b35bc9",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/package/rollback/v31_guests_model.joblib": "afef3aa1b11a094092c7b133c52827bfcfb3577bb60eec6feca83f7f7c150fcb",
+    "experiments/reserVision_v3_2_sumratio_guests_rc_20261126/artifacts/forecast_models_metadata.json": "6896b398640f60c29bbc398a15acaaf659978596ecce9f542ab3fe1c0df7663a"
+  }
+}

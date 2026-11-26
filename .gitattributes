@@ -11,3 +11,7 @@
 /evaluate_forecasts.py -text
 /experiments/reserVision_v3_1_two_stage_rc_20261124/** -text
 /production_v31/** -text
+# Preserve v3.2 manifest-verified bytes across Windows and Linux.
+# CRLF is intentional; retain normal trailing-space and blank-EOF checks.
+/experiments/reserVision_v3_2_sumratio_guests_rc_20261126/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/production_v32/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

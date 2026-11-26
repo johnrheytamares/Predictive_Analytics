@@ -1,0 +1,43 @@
+{
+  "python_v32_ready": true,
+  "production_approved": false,
+  "activation_disabled": true,
+  "booking_mae_rmse": [
+    2.54,
+    3.87
+  ],
+  "guest_mae_rmse": [
+    29.18,
+    40.94
+  ],
+  "sample_2027": {
+    "bookings": 12,
+    "guests": 108
+  },
+  "horizons": {
+    "7": {
+      "days": 7,
+      "bookings": 2,
+      "guests": 18,
+      "model_version": "3.2",
+      "production_approved": false
+    },
+    "30": {
+      "days": 30,
+      "bookings": 8,
+      "guests": 72,
+      "model_version": "3.2",
+      "production_approved": false
+    },
+    "90": {
+      "days": 90,
+      "bookings": 26,
+      "guests": 234,
+      "model_version": "3.2",
+      "production_approved": false
+    }
+  },
+  "interval_disclaimer": "Observed interval coverage only; not a validated confidence level.",
+  "rollback_commit": "8892d292d267cf870eee2657be639e74014c0dc1",
+  "v31_still_approved": true
+}

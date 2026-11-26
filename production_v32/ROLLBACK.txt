@@ -1,0 +1,21 @@
+ReserVision v3.2 → v3.1 rollback procedure (do not execute without authorization)
+
+Rollback references (immutable):
+- Git commit: 8892d292d267cf870eee2657be639e74014c0dc1 (8892d29)
+- Release candidate: experiments/reserVision_v3_1_two_stage_rc_20261124/
+- Production adapter rollback target: production_v31/ (Two-Stage + Robust Median)
+
+Local / staging rollback steps:
+1. Stop the v3.2 process (PORT=8002 / production_v32.serve or Docker image reservision-predictive:3.2-prepared).
+2. Point PREDICTIVE_ANALYTICS_URL back to the v3.1 service (PORT=8001 / production_v31.serve).
+3. Confirm GET /health returns model_version=3.1, production_approved=true, guests=robust_median_guests.
+4. Confirm a sample forecast matches v3.1 booking integers (Two-Stage + floor_round).
+5. Do not delete v3.2 artifacts; keep them offline for audit.
+
+Docker rollback:
+  docker stop <v32-container>
+  docker run --rm -p 8001:8001 -e PREDICTION_API_KEY=... reservision-predictive:3.1-prepared
+  # then restore Node PREDICTIVE_ANALYTICS_URL to the v3.1 hostname
+
+v3.2 is production-approved. Traffic cutover still requires pointing PREDICTIVE_ANALYTICS_URL
+at production_v32 (or the 3.2 Docker image). Use this file to roll back to v3.1 if needed.
