@@ -414,17 +414,119 @@ def build_guest_mix_block(metadata: dict) -> dict:
     return block
 
 
+GUEST_MIX_CATEGORIES = ("adults", "children", "seniors", "infants", "unknown_guests")
+
+
 def estimate_guest_mix(total: int, metadata: dict) -> dict | None:
+    """Largest-remainder allocation of a single guest total onto frozen proportions."""
     if metadata.get("guest_mix_ready") is not True:
         return None
     proportions = metadata.get("guest_mix_proportions") or {}
-    categories = ("adults", "children", "seniors", "infants", "unknown_guests")
+    categories = GUEST_MIX_CATEGORIES
+    total = max(0, int(total))
     raw = {key: max(0.0, float(proportions.get(key, 0))) * total for key in categories}
     allocated = {key: int(np.floor(value)) for key, value in raw.items()}
     remaining = total - sum(allocated.values())
-    for key in sorted(categories, key=lambda item: raw[item] - allocated[item], reverse=True)[:remaining]:
+    # Tie-break: larger fractional remainder, then stable category order.
+    order = sorted(
+        categories,
+        key=lambda item: (raw[item] - allocated[item], -categories.index(item)),
+        reverse=True,
+    )
+    for key in order[:remaining]:
         allocated[key] += 1
     return allocated
+
+
+def allocate_guest_mix_period(
+    daily_guests: list[int] | tuple[int, ...],
+    metadata: dict,
+) -> list[dict] | None:
+    """Allocate guest categories across a forecast period.
+
+    1. Allocate the period total with ``estimate_guest_mix`` (frozen proportions).
+    2. Seed each day with the same single-total allocator.
+    3. Transfer units *within* days so category column sums match the period
+       aggregate while each day's guest total is unchanged.
+
+    Does not alter booking or total-guest forecasts.
+    """
+    if metadata.get("guest_mix_ready") is not True:
+        return None
+
+    categories = GUEST_MIX_CATEGORIES
+    guests = [max(0, int(value)) for value in daily_guests]
+    period_total = sum(guests)
+    if period_total == 0:
+        return [{key: 0 for key in categories} for _ in guests]
+
+    desired = estimate_guest_mix(period_total, metadata)
+    assert desired is not None
+    assert sum(desired.values()) == period_total
+
+    rows: list[dict] = []
+    for day_total in guests:
+        if day_total == 0:
+            rows.append({key: 0 for key in categories})
+        else:
+            seed = estimate_guest_mix(day_total, metadata)
+            assert seed is not None
+            rows.append(dict(seed))
+
+    current = {key: sum(row[key] for row in rows) for key in categories}
+    # At most one transfer per guest-unit of mismatch.
+    for _ in range(period_total * len(categories) + 1):
+        surplus = [key for key in categories if current[key] > desired[key]]
+        deficit = [key for key in categories if current[key] < desired[key]]
+        if not surplus:
+            break
+        moved = False
+        for source in surplus:
+            if current[source] <= desired[source]:
+                continue
+            for target in deficit:
+                if current[target] >= desired[target]:
+                    continue
+                for row in rows:
+                    if row[source] <= 0:
+                        continue
+                    row[source] -= 1
+                    row[target] += 1
+                    current[source] -= 1
+                    current[target] += 1
+                    moved = True
+                    break
+                if moved:
+                    break
+            if moved:
+                break
+        if not moved:
+            raise RuntimeError("Unable to reconcile daily guest mix to period aggregate.")
+
+    if current != desired:
+        raise RuntimeError("Guest mix period reconciliation left residual mismatch.")
+    for day_total, row in zip(guests, rows):
+        if sum(row.values()) != day_total:
+            raise RuntimeError("Guest mix redistribution changed a daily guest total.")
+    return rows
+
+
+def apply_period_guest_mix(forecasts: list[dict], metadata: dict) -> None:
+    """Set each row's estimated_guest_mix from period-preserving allocation."""
+    ready = metadata.get("guest_mix_ready") is True
+    if not ready:
+        for row in forecasts:
+            row["estimated_guest_mix"] = None
+            row["guest_mix_ready"] = False
+        return
+    mixes = allocate_guest_mix_period(
+        [int(row["predicted_total_guests"]) for row in forecasts],
+        metadata,
+    )
+    assert mixes is not None and len(mixes) == len(forecasts)
+    for row, mix in zip(forecasts, mixes):
+        row["estimated_guest_mix"] = mix
+        row["guest_mix_ready"] = True
 
 
 def generate_forecast(
@@ -481,10 +583,13 @@ def generate_forecast(
                 "predicted_total_guests": predicted_guests,
                 "guests_lower": guests_lower,
                 "guests_upper": guests_upper,
-                "estimated_guest_mix": estimate_guest_mix(predicted_guests, metadata),
+                # Placeholder; replaced by period-preserving allocation below.
+                "estimated_guest_mix": None,
                 "guest_mix_ready": guest_mix_ready,
             }
         )
+
+    apply_period_guest_mix(forecasts, metadata)
 
     bookings_target = (metadata.get("targets") or {}).get("bookings") or {}
     # Older bundles store Prophet metrics under `metrics`, even when the

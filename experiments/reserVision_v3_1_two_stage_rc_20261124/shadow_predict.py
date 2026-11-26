@@ -338,10 +338,13 @@ def generate_shadow_forecast(
                 "predicted_total_guests": predicted_guests,
                 "guests_lower": guests_lower,
                 "guests_upper": guests_upper,
-                "estimated_guest_mix": serving.estimate_guest_mix(predicted_guests, metadata),
+                # Placeholder; period-preserving allocation applied after the loop.
+                "estimated_guest_mix": None,
                 "guest_mix_ready": guest_mix_ready,
             }
         )
+
+    serving.apply_period_guest_mix(forecasts, metadata)
 
     bookings_target = (metadata.get("targets") or {}).get("bookings") or {}
     guests_target = (metadata.get("targets") or {}).get("guests") or {}

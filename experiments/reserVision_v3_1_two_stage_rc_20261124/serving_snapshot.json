@@ -58,7 +58,7 @@
     "guests_model.unverified.joblib": "7b4236e9b075f6ea844fb5c1c989f1be5032f8777199a6e19b605ab520ca7b08",
     "load_bookings.py": "56bb51bdd1d663db5189ca40c45eaa38c58e635f6563c8e716a67bb4fb36ad7c",
     "predict_bookings.py": "29e6d0d32cf8a9578fc11aafed0669916431f3658a24e4ae75d66cb6a49a34b1",
-    "predict_real.py": "3eec28a7446bd89d435d24414c4db33eb9d4a7c126b79e9f5bc10573d682e737",
+    "predict_real.py": "17ea8a9687159f569f3d4ced5a9ea6fd04b6d59dfe323bcdb8bbb743f5e8612f",
     "prepare_export_release.py": "f04341f6ddb53cec5826a80e154fb6997205a88657b9d9da20fd660ca1e8b68c",
     "synthetic_bookings.csv": "2dde5fa37c73719aa10fbacd09b8fbe572a863b083355792277d9bcf6c9f37e5",
     "synthetic_bookings_2024_2025.csv": "779868413629411be55f4ffd5132708c05cd4ade662e26ee682b323fdb69dbaa",
