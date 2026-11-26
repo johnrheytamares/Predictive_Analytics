@@ -8,7 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Canonical / v3.1 paths stay available for explicit rollback; this image serves v3.2 only.
 COPY api.py predict_real.py evaluate_forecasts.py ./
 COPY Dockerfile ./
-COPY experiments/intermittent_bookings_20261124/ ./experiments/intermittent_bookings_20261124/
+# Runtime needs only experiment.predict() (two_stage). Do not ship results/datasets.
+COPY experiments/intermittent_bookings_20261124/experiment.py ./experiments/intermittent_bookings_20261124/experiment.py
 COPY experiments/reserVision_v3_1_two_stage_rc_20261124/ ./experiments/reserVision_v3_1_two_stage_rc_20261124/
 COPY experiments/reserVision_v3_2_sumratio_guests_rc_20261126/ ./experiments/reserVision_v3_2_sumratio_guests_rc_20261126/
 RUN mkdir -p production_v31 && printf '' > production_v31/__init__.py

@@ -7,7 +7,7 @@
 **/node_modules
 experiments/*
 !experiments/intermittent_bookings_20261124/
-!experiments/intermittent_bookings_20261124/**
+!experiments/intermittent_bookings_20261124/experiment.py
 !experiments/reserVision_v3_1_two_stage_rc_20261124/
 !experiments/reserVision_v3_1_two_stage_rc_20261124/**
 !experiments/reserVision_v3_2_sumratio_guests_rc_20261126/
